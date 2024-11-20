@@ -1,0 +1,15 @@
+artifact_uri: file:///home/iosoypato/Documents/ITESO/CienciaDatos/EXAMENFINAL/final-exam-pcd2024-autumn/pipeline/mlruns/0/64c9ec46a7f7462a911ac7fce64963ef/artifacts
+end_time: 1732095862323
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 64c9ec46a7f7462a911ac7fce64963ef
+run_name: Logistic Regression Pipeline
+run_uuid: 64c9ec46a7f7462a911ac7fce64963ef
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732095813250
+status: 3
+tags: []
+user_id: iosoypato

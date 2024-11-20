@@ -1,0 +1,15 @@
+artifact_uri: file:///home/iosoypato/Documents/ITESO/CienciaDatos/EXAMENFINAL/final-exam-pcd2024-autumn/pipeline/mlruns/0/8542a10d60ff438399df7d81e0fa44c3/artifacts
+end_time: 1732097125743
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8542a10d60ff438399df7d81e0fa44c3
+run_name: bald-rat-681
+run_uuid: 8542a10d60ff438399df7d81e0fa44c3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732097123278
+status: 3
+tags: []
+user_id: iosoypato

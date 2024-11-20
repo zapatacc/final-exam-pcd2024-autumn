@@ -12,6 +12,7 @@ from sklearn.preprocessing import LabelEncoder
 import mlflow
 import mlflow.sklearn
 from mlflow.tracking import MlflowClient
+from sklearn.pipeline import Pipeline
 
 
 def removeX(text:str)-> str: 
@@ -88,55 +89,67 @@ def processParameters(df:pd.DataFrame):
     X_train_tfidf = tfidf.fit_transform(X_train)
     X_test_tfidf = tfidf.transform(X_test)
 
-    return y_train, y_test, X_train_tfidf,X_test_tfidf
+    return X,y,y_train, y_test, X_train_tfidf,X_test_tfidf
+
+import pickle
 
 
 @task(name="training")
-def trainingModel(df:pd.DataFrame)->None:
+def trainingModel(df: pd.DataFrame) -> None:
+    # Define X e y
+    X = df['complaint_what_happened']
+    y = df['ticket_classification']
 
-    y_train, y_test, X_train_tfidf,X_test_tfidf = processParameters(df)
+    # Codifica las clases de `y`
+    label_encoder = LabelEncoder()
+    y_encoded = label_encoder.fit_transform(y)
+
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y_encoded, test_size=0.4, random_state=17, stratify=y_encoded
+    )
 
     # Configura el tracking de MLflow local
     mlflow.set_tracking_uri("file:///tmp/mlruns")
     mlflow.set_experiment("patricio-villanueva-experiments")
 
-    # Define modelos y parámetros para GridSearch
-    models_and_params = {
-        "Logistic Regression": (LogisticRegression(max_iter=1000), {
-            "C": [0.1, 1, 10],
-            "penalty": ["l2"]
-        }),
-        "Random Forest": (RandomForestClassifier(), {
-            "n_estimators": [100, 200],
-            "max_depth": [None, 10, 20],
-            "min_samples_split": [2, 5],
-            "min_samples_leaf": [1, 2]
-        })
+    # Define el pipeline
+    pipeline = Pipeline([
+        ("tfidf", TfidfVectorizer()),  # Paso 1: Transformación con TF-IDF
+        ("model", LogisticRegression(max_iter=1000))  # Paso 2: Modelo
+    ])
+
+    # Define parámetros para GridSearch
+    param_grid = {
+        "model__C": [0.1, 1, 10],  # Hiperparámetros del modelo
+        "model__penalty": ["l2"]
     }
 
-    # Entrenamiento y logging en MLflow
-    for model_name, (model, params) in models_and_params.items():
-        grid_search = GridSearchCV(model, params, scoring='accuracy', cv=3, n_jobs=-1)
-        
-        with mlflow.start_run(run_name=f"GridSearch - {model_name}"):
-            # Entrena el modelo usando GridSearchCV
-            grid_search.fit(X_train_tfidf, y_train)
-            best_model = grid_search.best_estimator_
-            y_pred = best_model.predict(X_test_tfidf)
+    # Entrena con GridSearchCV
+    grid_search = GridSearchCV(pipeline, param_grid, scoring='accuracy', cv=3, n_jobs=-1)
 
-            # Calcula métricas
-            accuracy = accuracy_score(y_test, y_pred)
-            report = classification_report(y_test, y_pred, output_dict=True)
-            
-            # Loggea parámetros y métricas del mejor modelo
-            mlflow.log_params(grid_search.best_params_)
-            mlflow.log_metric("accuracy", accuracy)
-            mlflow.log_metric("precision", report["weighted avg"]["precision"])
-            mlflow.log_metric("recall", report["weighted avg"]["recall"])
-            mlflow.log_metric("f1_score", report["weighted avg"]["f1-score"])
-            
-            # Loggea el modelo
-            mlflow.sklearn.log_model(best_model, artifact_path=f"best_model_{model_name}")
+    with mlflow.start_run(run_name="Logistic Regression Pipeline"):
+        grid_search.fit(X_train, y_train)
+        best_model = grid_search.best_estimator_
+        y_pred = best_model.predict(X_test)
+
+        # Calcula métricas
+        accuracy = accuracy_score(y_test, y_pred)
+        report = classification_report(y_test, y_pred, output_dict=True)
+
+        # Loggea parámetros y métricas del mejor modelo
+        mlflow.log_params(grid_search.best_params_)
+        mlflow.log_metric("accuracy", accuracy)
+        mlflow.log_metric("precision", report["weighted avg"]["precision"])
+        mlflow.log_metric("recall", report["weighted avg"]["recall"])
+        mlflow.log_metric("f1_score", report["weighted avg"]["f1-score"])
+
+        # Loggea el pipeline completo
+        mlflow.sklearn.log_model(best_model, artifact_path="pipeline_model")
+
+        # Guarda el LabelEncoder
+        with open("label_encoder.pkl", "wb") as f:
+            pickle.dump(label_encoder, f)
+        mlflow.log_artifact("label_encoder.pkl")
 
 
 @task(name="selectBestModel")
