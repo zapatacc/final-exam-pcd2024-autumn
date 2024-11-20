@@ -2,6 +2,15 @@ import prefect
 from prefect import flow, task
 import pandas as pd
 import json
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.preprocessing import LabelEncoder
+import mlflow
+import mlflow.sklearn
 
 
 def removeX(text:str)-> str: 
@@ -42,9 +51,12 @@ async def preprocessData(df:pd.DataFrame) -> None:
 async def cleanData() -> pd.DataFrame:
     df = pd.read_csv("../data/preprocessed_data/preprocessed.csv")
     df["complaint_what_happened"] = df["complaint_what_happened"].apply(removeX)
+    class_counts = df['ticket_classification'].value_counts()
+    valid_classes = class_counts[class_counts >= 100].index
+    df = df[df['ticket_classification'].isin(valid_classes)]
     df.to_csv("../data/clean_data/cleaned.csv",index=False)
-    return df
 
+    return df
 
 
 
