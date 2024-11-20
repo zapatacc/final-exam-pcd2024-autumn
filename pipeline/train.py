@@ -4,6 +4,9 @@ import pandas as pd
 import json
 
 
+def removeX(text:str)-> str: 
+    return text.replace("X","")
+
 
 @task(name="readData")
 async def readData(path:str)-> json:
@@ -35,6 +38,15 @@ async def preprocessData(df:pd.DataFrame) -> None:
 
     return None
 
+@task(name="clean")
+async def cleanData() -> pd.DataFrame:
+    df = pd.read_csv("../data/preprocessed_data/preprocessed.csv")
+    df["complaint_what_happened"] = df["complaint_what_happened"].apply(removeX)
+    df.to_csv("../data/clean_data/cleaned.csv",index=False)
+    return df
+
+
+
 
 @flow(name="mainFlow")
 async def mainFlow(path:str)->None:
@@ -44,8 +56,13 @@ async def mainFlow(path:str)->None:
     df = normalize(data)
     # preprocessData es una funcion sin tipo de dato de retorno que actualiza el csv contenido en data/proprocessed_data/ con los datos limpios y listos para procesarse
     preprocessData(df)
-    
+    # cleanData no necesita parametros ya que esta pensado para funcionar remplazando el preprocessed.csv en cada ejecucion de este training pipeline por lo que el path es fijo
+    cleanedData = cleanData()
 
+
+    '''
+    Next steps add the model into a MLFLOW repo
+    '''
 
 
 
