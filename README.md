@@ -63,7 +63,7 @@ Antes de comenzar el examen, por favor, lea cuidadosamente las siguientes indica
 
 | Aspecto a Evaluar                                                                                                           | Porcentaje |
 |-----------------------------------------------------------------------------------------------------------------------------|------------|
-| **Repositorio de Github/Dagshub debidamente configurado y debidamente estructurado con commits explícitos y profesionales** | 10         |
+| **Repositorio de Github/Dagshub debidamente configurado y debidamente estructurado con commits explícitos y profesionales** | 10%        |
 | **Análisis Exploratorio de Datos**                                                                                          | 5%         |
 | **Ingeniería de Características - Data Wrangling**                                                                          | 5%         |
 | **Entrenamiento de Modelos con mlflow**                                                                                     |            |
