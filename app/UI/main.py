@@ -25,9 +25,8 @@ if st.button('Predict'):
         data=json.dumps(input_dict)  
     )
 
-    # Verificar la respuesta
     if response.status_code == 200:
-        st.write(f"The category is: {response.json()['prediction']}")
+        st.write(f"The category is: **{response.json()['prediction']}**")
     else:
         st.write("Error en la predicción.")
         st.write(f"Detalle del error: {response.text}")
