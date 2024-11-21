@@ -8,7 +8,8 @@ from pydantic import BaseModel
 
 
 dagshub.init(repo_owner='zapatacc', repo_name='final-exam-pcd2024-autumn', mlflow=True)
-mlflow.set_experiment("jesus-carbajal-logreg-rf")
+mlflow.set_experiment("jesus-carbajal-logreg-label-encoder")
+
 TRACKING_URI = mlflow.get_tracking_uri()
 
 run_uri = 'runs:/8ccf9f0120494d78a04c99aa0b113d82/pipeline_model'
@@ -29,13 +30,12 @@ def predict(input_data):
 app = FastAPI()
 
 class InputData(BaseModel):
-    complaint_what_happened: float
+    complaint_what_happened: str
 
 
 @app.post("/predict")
 def predict_endpoint(input_data: InputData):
     result = predict(input_data)[0]
-
     return{
         "prediction": result
     }
