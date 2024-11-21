@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./backend
+      dockerfile: dockerfile.api
+    container_name: api-container
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./backend:/code
+    environment:
+      - MLFLOW_TRACKING_URI=${MLFLOW_TRACKING_URI}
+      - MLFLOW_TRACKING_USERNAME=${MLFLOW_TRACKING_USERNAME}
+      - MLFLOW_TRACKING_PASSWORD=${MLFLOW_TRACKING_PASSWORD}
+    deploy:
+      resources:
+        limits:
+          memory: 50g
+    networks:
+      - app-network
+
+  streamlit:
+    build:
+      context: ./frontend
+      dockerfile: dockerfile.streamlit
+    container_name: streamlit-container
+    ports:
+      - "8502:8502"
+    depends_on:
+      - api
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

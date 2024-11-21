@@ -1,0 +1,27 @@
+# Usamos una imagen base de Python 3.11 slim
+FROM python:3.11-slim
+
+# Establecemos el directorio de trabajo
+WORKDIR /code
+
+# Copiamos los archivos necesarios
+COPY requirements_api.txt ./
+COPY api.py ./
+# Copiamos los archivos de modelo, el label_encoder.pkl y el vectorizer.pkl 
+COPY models/ ./models/
+
+# Instalamos las dependencias del sistema necesarias
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalamos las dependencias de Python
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements_api.txt
+
+# Exponemos el puerto en el que correrá FastAPI
+EXPOSE 8001
+
+# Comando para ejecutar la aplicación
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8001"]

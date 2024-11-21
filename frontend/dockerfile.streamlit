@@ -1,0 +1,27 @@
+# Usamos una imagen base de Python 3.11 slim
+FROM python:3.11-slim
+
+# Establecemos el directorio de trabajo
+WORKDIR /code
+
+# Copiamos los archivos necesarios
+COPY requirements_streamlit.txt ./
+COPY app.py ./
+
+# Instalamos las dependencias del sistema necesarias
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libxml2-dev \
+    libxslt1-dev \
+    zlib1g-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Instalamos las dependencias de Python
+RUN pip install --no-cache-dir --upgrade pip \
+    && pip install --no-cache-dir -r requirements_streamlit.txt
+
+# Exponemos el puerto en el que correrá Streamlit
+EXPOSE 8502
+
+# Comando para ejecutar la aplicación
+CMD ["streamlit", "run", "app.py", "--server.port", "8502", "--server.address", "0.0.0.0"]
