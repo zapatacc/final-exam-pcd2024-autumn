@@ -173,4 +173,62 @@ def hyper_parameter_tunning(X_train, X_test, y_train, y_test):
         best_params_rf['bootstrap'] = bool(best_params_rf['bootstrap'])
         mlflow.log_params(best_params_rf)
 
-    return best_params_lr
+    return best_params_lr, best_params_rf
+
+@task(name = "Train Best Models")
+def train_best_model(X_train, X_test, y_train, y_test, best_params_lr, best_params_rf) -> None:
+    with mlflow.start_run(run_name="Best lr model ever"):
+        best_model_lr = LogisticRegression(**best_params_lr, random_state=42)
+        best_model_lr.fit(X_train, y_train)
+
+        y_pred_lr = best_model_lr.predict(X_test)
+        accuracy_lr = accuracy_score(y_test, y_pred_lr)
+        mlflow.log_metric("accuracy", accuracy_lr)
+
+    with mlflow.start_run(run_name="Best rf model ever"):
+        best_model_rf = RandomForestClassifier(**best_params_rf, random_state=42)
+        best_model_rf.fit(X_train, y_train)
+
+        y_pred_rf = best_model_rf.predict(X_test)
+        accuracy_rf = accuracy_score(y_test, y_pred_rf)
+        mlflow.log_metric("accuracy", accuracy_rf)
+
+    return None
+
+@task(name="Register Best Model")
+def register_best_model() -> None:
+    client = MlflowClient()
+
+    # Declaramos el experimento en el que estamos trabajando
+    experiment_name = "arturo-prefect-experiment"
+
+    experiment = client.get_experiment_by_name(experiment_name)
+
+    # Buscamos las dos mejores ejecuciones en base al accuracy
+    top_runs = mlflow.search_runs(
+        experiment_ids=[experiment.experiment_id],
+        order_by=["metrics.accuracy DESC"],  # Cambia a ASC si buscas minimizar
+        max_results=2  # Recuperar las dos mejores
+    )
+
+    # Obtenemos los IDs de las mejores ejecuciones
+    champion_run = top_runs.iloc[0]
+    challenger_run = top_runs.iloc[1]
+
+    # Obtenemos los IDs de las ejecuciones
+    champion_run_id = champion_run.run_id
+    challenger_run_id = challenger_run.run_id
+
+    champion_model_uri = f"runs:/{champion_run_id}/model"
+    challenger_model_uri = f"runs:/{challenger_run_id}/model"
+
+    # Declaramos el nombre del modelo registrado
+    model_name = "arturo-model"
+
+    # Registramos el Champion
+    champion_model_version = mlflow.register_model(champion_model_uri, model_name)
+    client.set_registered_model_alias(model_name, "champion", champion_model_version.version)
+
+    # Registramos el Challenger
+    challenger_model_version = mlflow.register_model(challenger_model_uri, model_name)
+    client.set_registered_model_alias(model_name, "challenger", challenger_model_version.version)
