@@ -82,4 +82,95 @@ def data_wrangling(file_path):
     return df
 @task(name = "split data")
 def split_data(df):
+    # Separamos nuestras variables
+    X = df['complaint_what_happened']
+    y = df['ticket_classification']
 
+    # Dividimos los datos en conjunto de entrenamiento y prueba
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+    # Vectorizamos los datos
+    vectorizer = TfidfVectorizer(max_features=5000)
+    X_train = vectorizer.fit_transform(X_train)
+    X_test = vectorizer.transform(X_test)
+
+    return X_train, X_test, y_train, y_test
+
+@task(name = "Hyper-Parameter Tunning")
+def hyper_parameter_tunning(X_train, X_test, y_train, y_test):
+    def objective_lr(params):
+        with mlflow.start_run(nested=True):
+            mlflow.set_tag("model_family", "LogisticRegression")
+            mlflow.log_params(params)
+
+            model = LogisticRegression(**params, random_state=42)
+            model.fit(X_train, y_train)
+
+            y_pred = model.predict(X_test)
+            accuracy = accuracy_score(y_test, y_pred)
+
+            mlflow.log_metric("accuracy", accuracy)
+            mlflow.sklearn.log_model(model, "model-lr")
+
+        return {'loss': accuracy, 'status': STATUS_OK}
+
+    with mlflow.start_run(run_name="LogisticRegression Hyper-parameter Optimization"):
+        search_space_lr = {
+            'C': hp.loguniform('C', -4, 2),
+            'solver': hp.choice('solver', ['liblinear', 'lbfgs'])
+        }
+
+        best_params_lr = fmin(
+            fn=objective_lr,
+            space=search_space_lr,
+            algo=tpe.suggest,
+            max_evals=10,
+            trials=Trials()
+        )
+
+        # Convertimos parámetros al formato adecuado
+        best_params_lr['solver'] = ['liblinear', 'lbfgs'][best_params_lr['solver']]
+        mlflow.log_params(best_params_lr)
+
+    def objective_rf(params):
+        with mlflow.start_run(nested=True):
+            mlflow.set_tag("model_family", "RandomForest")
+            mlflow.log_params(params)
+
+            model = RandomForestClassifier(**params, random_state=42)
+            model.fit(X_train, y_train)
+
+            y_pred = model.predict(X_test)
+            accuracy = accuracy_score(y_test, y_pred)
+
+            mlflow.log_metric("accuracy", accuracy)
+            mlflow.sklearn.log_model(model, artifact_path="model-rf")
+
+        return {'loss': -accuracy, 'status': STATUS_OK}
+
+    with mlflow.start_run(run_name="RandomForest Hyper-parameter Optimization"):
+        search_space_rf = {
+            'n_estimators': scope.int(hp.quniform('n_estimators', 100, 500, 1)),
+            'max_depth': scope.int(hp.quniform('max_depth', 5, 50, 1)),
+            'min_samples_split': scope.int(hp.quniform('min_samples_split', 2, 10, 1)),
+            'min_samples_leaf': scope.int(hp.quniform('min_samples_leaf', 1, 4, 1)),
+            'bootstrap': hp.choice('bootstrap', [True, False])
+        }
+
+        best_params_rf = fmin(
+            fn=objective_rf,
+            space=search_space_rf,
+            algo=tpe.suggest,
+            max_evals=10,
+            trials=Trials()
+        )
+
+        # Convertir parámetros al formato adecuado
+        best_params_rf['n_estimators'] = int(best_params_rf['n_estimators'])
+        best_params_rf['max_depth'] = int(best_params_rf['max_depth'])
+        best_params_rf['min_samples_split'] = int(best_params_rf['min_samples_split'])
+        best_params_rf['min_samples_leaf'] = int(best_params_rf['min_samples_leaf'])
+        best_params_rf['bootstrap'] = bool(best_params_rf['bootstrap'])
+        mlflow.log_params(best_params_rf)
+
+    return best_params_lr
