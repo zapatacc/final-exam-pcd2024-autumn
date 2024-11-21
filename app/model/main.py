@@ -3,23 +3,15 @@ import mlflow
 from fastapi import FastAPI
 from pydantic import BaseModel
 from mlflow import MlflowClient
+import dagshub
+from pydantic import BaseModel
 
-# MLflow settings
-dagshub_repo = "https://dagshub.com/" #!!!!!!!
 
-MLFLOW_TRACKING_URI = "https://dagshub.com/.mlflow" #!!!!!!!
+dagshub.init(repo_owner='zapatacc', repo_name='final-exam-pcd2024-autumn', mlflow=True)
+mlflow.set_experiment("jesus-carbajal-logreg-rf")
+TRACKING_URI = mlflow.get_tracking_uri()
 
-mlflow.set_tracking_uri(uri=MLFLOW_TRACKING_URI)
-client = MlflowClient(tracking_uri=MLFLOW_TRACKING_URI)
-
-run_ = mlflow.search_runs(order_by=['metrics.accuracy'],
-                          output_format="list",
-                          experiment_names=[""] #!!!!!!!
-                          )[0]
-
-run_id = run_.info.run_id
-
-run_uri =  #!!!!!!!
+run_uri = 'runs:/8ccf9f0120494d78a04c99aa0b113d82/pipeline_model'
 
 dv = mlflow.pyfunc.load_model(run_uri)
 
@@ -30,14 +22,13 @@ def preprocess(input_data):
     return input_dict
 
 def predict(input_data):
-
-    X_pred = vectorize(input_data) #!!!!!!!
-
+    X_pred = preprocess(input_data)
     return dv.predict(X_pred)
+
 
 app = FastAPI()
 
-class InputData(Basemode):
+class InputData(BaseModel):
     complaint_what_happened: float
 
 
@@ -46,5 +37,5 @@ def predict_endpoint(input_data: InputData):
     result = predict(input_data)[0]
 
     return{
-        "prediction": float(result)
+        "prediction": result
     }
