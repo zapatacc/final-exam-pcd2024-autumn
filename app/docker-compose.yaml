@@ -1,0 +1,28 @@
+version: '3.9'
+
+name: Examen_app
+
+services:
+  model:
+    build:
+      context: ./model
+    container_name: model_service
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+
+  ui:
+    build:
+      context: ./UI
+    container_name: ui_service
+    ports:
+      - "8501:8501"
+    depends_on:
+      - model
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
