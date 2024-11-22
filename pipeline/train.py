@@ -16,25 +16,65 @@ from sklearn.pipeline import Pipeline
 import pickle
 import dagshub
 
-# Utility function to remove "X" from text
+# funcion utilitaria para eliminar la letra "X" de un texto
 def removeX(text: str) -> str:
+    '''
+    entrada de la funcion
+    text: texto en el cual se busca eliminar la letra "X"
+    
+    que hace la funcion
+    reemplaza las ocurrencias de "X" con una cadena vacia
+    
+    salida de la funcion
+    texto sin la letra "X"
+    '''
     return text.replace("X", "")
 
-
+# tarea para leer un archivo json desde la ruta especificada
 @task(name="readData")
 def read_data(path: str) -> json:
+    '''
+    entrada de la funcion
+    path: ruta del archivo json
+    
+    que hace la funcion
+    lee un archivo json desde la ruta proporcionada y devuelve el contenido
+    
+    salida de la funcion
+    contenido del archivo json como objeto python
+    '''
     with open(path, "r") as f:
         data = json.load(f)
     return data
 
-
+# tarea para normalizar datos json a un dataframe
 @task(name="normalize")
 def normalize_data(data: json) -> pd.DataFrame:
+    '''
+    entrada de la funcion
+    data: datos en formato json
+    
+    que hace la funcion
+    convierte los datos json en un dataframe de pandas
+    
+    salida de la funcion
+    dataframe con los datos normalizados
+    '''
     return pd.json_normalize(data)
 
-
+# tarea para preprocesar datos, renombrar columnas y filtrar informacion relevante
 @task(name="preprocess")
 def preprocess_data(df: pd.DataFrame) -> None:
+    '''
+    entrada de la funcion
+    df: dataframe con los datos normalizados
+    
+    que hace la funcion
+    filtra columnas relevantes, renombra columnas, genera una nueva columna de clasificacion y guarda los datos preprocesados
+    
+    salida de la funcion
+    no devuelve nada, pero guarda los datos preprocesados en un archivo csv
+    '''
     df = df[["_source.complaint_what_happened", "_source.product", "_source.sub_product"]]
 
     rename = {
@@ -51,9 +91,19 @@ def preprocess_data(df: pd.DataFrame) -> None:
     df.to_csv("../data/preprocessed_data/preprocessed.csv", index=False)
     return None
 
-
+# tarea para limpiar datos eliminando clases con menos de 100 registros
 @task(name="clean")
 def clean_data() -> pd.DataFrame:
+    '''
+    entrada de la funcion
+    no requiere argumentos
+    
+    que hace la funcion
+    carga los datos preprocesados, limpia el texto y filtra clases con al menos 100 registros
+    
+    salida de la funcion
+    dataframe con los datos limpios
+    '''
     df = pd.read_csv("../data/preprocessed_data/preprocessed.csv")
     df["complaint_what_happened"] = df["complaint_what_happened"].apply(removeX)
     class_counts = df['ticket_classification'].value_counts()
@@ -62,32 +112,45 @@ def clean_data() -> pd.DataFrame:
     df.to_csv("../data/clean_data/cleaned.csv", index=False)
     return df
 
-
+# tarea para entrenar un modelo con gridsearch y registrar los resultados en mlflow
 @task(name="training")
 def training_pipeline(model_name: str, model, param_grid: dict, df: pd.DataFrame):
+    '''
+    entrada de la funcion
+    model_name: nombre del modelo
+    model: modelo sklearn
+    param_grid: diccionario con los parametros para gridsearch
+    df: dataframe con los datos limpios
+    
+    que hace la funcion
+    entrena un modelo con pipeline y gridsearch, calcula metricas y las registra en mlflow
+    
+    salida de la funcion
+    no devuelve nada, pero registra el modelo y metricas en mlflow
+    '''
     X = df['complaint_what_happened']
     y = df['ticket_classification']
 
-    # Encode labels
+    # codifica las etiquetas
     label_encoder = LabelEncoder()
     y_encoded = label_encoder.fit_transform(y)
 
-    # Split data
+    # divide los datos
     X_train, X_test, y_train, y_test = train_test_split(
         X, y_encoded, test_size=0.4, random_state=17, stratify=y_encoded
     )
 
-    # Initialize DAGsHub and MLflow
+    # inicializa dagshub y mlflow
     dagshub.init(repo_owner='zapatacc', repo_name='final-exam-pcd2024-autumn', mlflow=True)
     mlflow.set_experiment("patricio-villanueva-experiments")
 
-    # Define pipeline
+    # define el pipeline
     pipeline = Pipeline([
         ("tfidf", TfidfVectorizer()),
         ("model", model)
     ])
 
-    # Train model with GridSearchCV
+    # entrena el modelo con gridsearch
     grid_search = GridSearchCV(pipeline, param_grid, scoring='accuracy', cv=3, n_jobs=-1)
 
     with mlflow.start_run(run_name=f"{model_name} Pipeline"):
@@ -95,11 +158,11 @@ def training_pipeline(model_name: str, model, param_grid: dict, df: pd.DataFrame
         best_model = grid_search.best_estimator_
         y_pred = best_model.predict(X_test)
 
-        # Compute metrics
+        # calcula metricas
         accuracy = accuracy_score(y_test, y_pred)
         report = classification_report(y_test, y_pred, output_dict=True)
 
-        # Log parameters, metrics, and model
+        # registra parametros, metricas y el modelo
         mlflow.log_params(grid_search.best_params_)
         mlflow.log_metric("accuracy", accuracy)
         mlflow.log_metric("precision", report["weighted avg"]["precision"])
@@ -107,14 +170,24 @@ def training_pipeline(model_name: str, model, param_grid: dict, df: pd.DataFrame
         mlflow.log_metric("f1_score", report["weighted avg"]["f1-score"])
         mlflow.sklearn.log_model(best_model, artifact_path="pipeline_model")
 
-        # Save and log the LabelEncoder
+        # guarda y registra el labelencoder
         with open("label_encoder.pkl", "wb") as f:
             pickle.dump(label_encoder, f)
         mlflow.log_artifact("label_encoder.pkl")
 
-
+# tarea para seleccionar el mejor modelo basado en las metricas de precision
 @task(name="selectBestModel")
 def select_best_model():
+    '''
+    entrada de la funcion
+    no requiere argumentos
+    
+    que hace la funcion
+    busca las mejores corridas en mlflow, selecciona el mejor modelo y registra alias para las versiones champion y challenger
+    
+    salida de la funcion
+    no devuelve nada, pero actualiza los alias en mlflow
+    '''
     dagshub.init(repo_owner='zapatacc', repo_name='final-exam-pcd2024-autumn', mlflow=True)
     all_runs = mlflow.search_runs(
         experiment_names=["patricio-villanueva-experiments"],
@@ -143,9 +216,19 @@ def select_best_model():
             version=model_version
         )
 
-
+# flujo principal que coordina todas las tareas
 @flow(name="mainFlow")
 def main_flow(path: str):
+    '''
+    entrada de la funcion
+    path: ruta del archivo json con los datos sin procesar
+    
+    que hace la funcion
+    coordina la lectura, normalizacion, preprocesamiento, limpieza, entrenamiento y seleccion del mejor modelo
+    
+    salida de la funcion
+    no devuelve nada, pero ejecuta todo el flujo de trabajo
+    '''
     data = read_data(path)
     df = normalize_data(data)
     preprocess_data(df)
@@ -170,5 +253,5 @@ def main_flow(path: str):
 
     select_best_model()
 
-
+# ejecuta el flujo principal
 main_flow("../data/raw_data/tickets_classification_eng.json")
