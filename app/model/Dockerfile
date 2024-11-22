@@ -1,17 +1,21 @@
+# se usa la imagen base de python 3.11 en su version slim
 FROM python:3.11-slim
 
+# se establece el directorio de trabajo dentro del contenedor
 WORKDIR /code
 
+# se copia el archivo requirements.txt al directorio de trabajo
 COPY ./requirements.txt /code/requirements.txt
 
+# se actualizan los paquetes, se instala procps, se actualiza pip y se configura la zona horaria a mexico city
 RUN apt-get update && apt-get install -y procps && pip install -U pip && rm /etc/localtime && ln -s /usr/share/zoneinfo/America/Mexico_City /etc/localtime
 
+# se instalan las dependencias del archivo requirements.txt
 RUN pip install -r ./requirements.txt
 
+# se copia el archivo main.py al directorio de trabajo
 COPY ./main.py /code/
 
+# se expone el puerto 8000 para que la aplicacion sea accesible desde el exterior
 EXPOSE 8000
-
-CMD ["uvicorn","main:app", "--host", "0.0.0.0", "--port", "8000"]
-
 
