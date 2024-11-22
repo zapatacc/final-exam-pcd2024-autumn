@@ -1,0 +1,10 @@
+dagshub==0.3.35
+fastapi==0.115.2
+mlflow==2.16.1
+uvicorn
+xgboost
+numpy
+pandas
+psutil
+scipy
+scikit-learn

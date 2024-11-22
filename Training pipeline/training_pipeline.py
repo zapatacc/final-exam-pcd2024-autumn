@@ -18,6 +18,7 @@ import contractions
 import re
 import nltk
 from nltk.corpus import stopwords
+from sklearn.preprocessing import LabelEncoder
 
 @task(name = "data wrangling")
 def data_wrangling(file_path):
@@ -85,12 +86,21 @@ def split_data(df):
     # Separamos nuestras variables
     X = df['complaint_what_happened']
     y = df['ticket_classification']
+    label_encoder = LabelEncoder()
+    pathlib.Path("models").mkdir(exist_ok=True)
+    with open ("models/labelencoder.pkl","wb") as file:
+        pickle.dump(label_encoder, file)
+
+    y = label_encoder.fit_transform(y)
 
     # Dividimos los datos en conjunto de entrenamiento y prueba
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     # Vectorizamos los datos
     vectorizer = TfidfVectorizer(max_features=5000)
+    pathlib.Path("models").mkdir(exist_ok=True)
+    with open ("models/vectorizer.pkl","wb") as file:
+        pickle.dump(vectorizer, file)
     X_train = vectorizer.fit_transform(X_train)
     X_test = vectorizer.transform(X_test)
 
@@ -100,7 +110,7 @@ def split_data(df):
 def hyper_parameter_tunning(X_train, X_test, y_train, y_test):
     def objective_lr(params):
         with mlflow.start_run(nested=True):
-            mlflow.set_tag("model_family", "LogisticRegression")
+            mlflow.set_tag("model_family", "LogisticRegression-prefect")
             mlflow.log_params(params)
 
             model = LogisticRegression(**params, random_state=42)
@@ -111,6 +121,8 @@ def hyper_parameter_tunning(X_train, X_test, y_train, y_test):
 
             mlflow.log_metric("accuracy", accuracy)
             mlflow.sklearn.log_model(model, "model-lr")
+            mlflow.log_artifact("models/labelencoder.pkl", artifact_path="LabelEncoder")
+            mlflow.log_artifact("models/vectorizer.pkl", artifact_path="Vectorizer")
 
         return {'loss': accuracy, 'status': STATUS_OK}
 
@@ -134,7 +146,7 @@ def hyper_parameter_tunning(X_train, X_test, y_train, y_test):
 
     def objective_rf(params):
         with mlflow.start_run(nested=True):
-            mlflow.set_tag("model_family", "RandomForest")
+            mlflow.set_tag("model_family", "RandomForest-prefect")
             mlflow.log_params(params)
 
             model = RandomForestClassifier(**params, random_state=42)
@@ -145,6 +157,8 @@ def hyper_parameter_tunning(X_train, X_test, y_train, y_test):
 
             mlflow.log_metric("accuracy", accuracy)
             mlflow.sklearn.log_model(model, artifact_path="model-rf")
+            mlflow.log_artifact("models/labelencoder.pkl", artifact_path="LabelEncoder")
+            mlflow.log_artifact("models/vectorizer.pkl", artifact_path="Vectorizer")
 
         return {'loss': -accuracy, 'status': STATUS_OK}
 
@@ -193,6 +207,10 @@ def train_best_model(X_train, X_test, y_train, y_test, best_params_lr, best_para
         accuracy_rf = accuracy_score(y_test, y_pred_rf)
         mlflow.log_metric("accuracy", accuracy_rf)
 
+    pathlib.Path("models").mkdir(exist_ok=True)
+    mlflow.log_artifact("models/labelencoder.pkl", artifact_path="LabelEncoder")
+    mlflow.log_artifact("models/vectorizer.pkl", artifact_path="Vectorizer")
+
     return None
 
 @task(name="Register Best Model")
@@ -223,7 +241,7 @@ def register_best_model() -> None:
     challenger_model_uri = f"runs:/{challenger_run_id}/model"
 
     # Declaramos el nombre del modelo registrado
-    model_name = "arturo-model"
+    model_name = "arturo-prefect-model"
 
     # Registramos el Champion
     champion_model_version = mlflow.register_model(champion_model_uri, model_name)
@@ -232,3 +250,36 @@ def register_best_model() -> None:
     # Registramos el Challenger
     challenger_model_version = mlflow.register_model(challenger_model_uri, model_name)
     client.set_registered_model_alias(model_name, "challenger", challenger_model_version.version)
+
+@flow(name="Main flow")
+def main_flow(year: str, month_train: str, month_val: str) -> None:
+    file_path = "../Data/raw_data/tickets_classification_eng.json"
+
+    # Inicializar DagsHub y MLflow
+    dagshub.init(url="https://dagshub.com/zapatacc/final-exam-pcd2024-autumn", mlflow=True)
+    MLFLOW_TRACKING_URI = mlflow.get_tracking_uri()
+    mlflow.set_tracking_uri(MLFLOW_TRACKING_URI)
+    mlflow.set_experiment(experiment_name="arturo-prefect-experiment")
+
+    print("MLflow tracking URI:", MLFLOW_TRACKING_URI)
+
+    # Ejecutar las tareas del flujo
+    print("Ejecutando tarea: data wrangling")
+    df = data_wrangling(file_path)
+
+    print("Ejecutando tarea: split data")
+    X_train, X_test, y_train, y_test = split_data(df)
+
+    print("Ejecutando tarea: hyper-parameter tuning")
+    best_params_lr, best_params_rf = hyper_parameter_tunning(X_train, X_test, y_train, y_test)
+
+    print("Ejecutando tarea: train best models")
+    train_best_model(X_train, X_test, y_train, y_test, best_params_lr, best_params_rf)
+
+    print("Ejecutando tarea: register best model")
+    register_best_model()
+
+    print("Flujo completado con éxito.")
+
+
+main_flow(year="2024", month_train="11", month_val="21")
