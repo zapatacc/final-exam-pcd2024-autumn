@@ -31,4 +31,4 @@ services:
  
 networks:
   nyc-taxi-network:  # Definición de la red
-    driver: bridge  # Utiliza el driver por defecto "bridge"
+    driver: bridge  
