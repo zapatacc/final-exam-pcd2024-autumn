@@ -1,0 +1,34 @@
+
+name: dafne-tamayo-app  # Nombre del proyecto de la aplicación
+
+ 
+services:
+  # Servicio de Frontend
+  ui:
+    image: dafne-ui-image:latest  # Nombre y etiqueta de la imagen que se generará o usará
+    container_name: dafne-ui-container  # Nombre asignado al contenedor
+    build:
+      context: ./UI  # Carpeta que contiene los archivos para construir la imagen del frontend
+      dockerfile: Dockerfile  # Nombre del Dockerfile, relativo al contexto especificado
+    ports:
+      - "8501:8501"  # Mapea el puerto 8501 del host al puerto 8501 del contenedor
+    depends_on:
+      - model  # Garantiza que el contenedor 'model' (backend) se levante antes que el frontend
+    networks:
+      - nyc-taxi-network  # Conecta este servicio a la red personalizada
+ 
+  # Servicio de Backend
+  model:
+    image: dafne-image:latest  # Nombre y etiqueta de la imagen que se generará o usará para el backend
+    container_name: dafne-model-container  # Nombre asignado al contenedor backend
+    build:
+      context: ./model  # Carpeta que contiene los archivos para construir la imagen del backend
+      dockerfile: Dockerfile  # Nombre del Dockerfile, relativo al contexto especificado
+    ports:
+      - "8000:8000"  # Mapea el puerto 8000 del host al puerto 8000 del contenedor
+    networks:
+      - nyc-taxi-network  # Conecta este servicio a la red personalizada
+ 
+networks:
+  nyc-taxi-network:  # Definición de la red
+    driver: bridge  # Utiliza el driver por defecto "bridge"

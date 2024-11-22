@@ -3,8 +3,7 @@ import requests
 import json
 
 st.write("""
-# Clasificación de la predicción del ticket
-by:Dafne""")
+# Clasificación de la predicción del ticket""")
 
 st.sidebar.header('User Input Parameters')
 
@@ -20,7 +19,7 @@ input_dict = user_input_features()
 
 if st.button('Predict'):
     response = requests.post(
-        url="http://localhost:8000/predict",  
+        url="http://dafne-model-container:8000/predict",  
         headers={"Content-Type": "application/json"},
         data=json.dumps(input_dict)  
     )
