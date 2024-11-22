@@ -1,19 +1,30 @@
 from prefect import flow, task
 import mlflow
 import mlflow.sklearn
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from hyperopt import fmin, tpe, hp, Trials, STATUS_OK
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from mlflow.tracking import MlflowClient
+from dagshub import init
+import pickle
 
-# Configuración de MLflow
-mlflow.set_tracking_uri("http://127.0.0.1:5000")
-mlflow.set_experiment("Francisco-Gonzalez-logistic-randomforest")
+# Inicializar dagshub y configurar mlflow
+init(repo_owner='zapatacc', repo_name='final-exam-pcd2024-autumn', mlflow=True)
 
-# Cargar y preprocesar datos
+# Variables globales
+best_rf_model = None
+best_rf_accuracy = 0
+best_lr_model = None
+best_lr_accuracy = 0
+vectorizer = None
+
+# Cargar datos
 def load_data(file_path):
+    global vectorizer
     df = pd.read_csv(file_path)
     X = df['complaint_what_happened']
     y = df['ticket_classification']
@@ -21,117 +32,119 @@ def load_data(file_path):
     X_vectorized = vectorizer.fit_transform(X)
     return train_test_split(X_vectorized, y, test_size=0.2, random_state=42)
 
-# Definir tareas
+# Función objetivo para Random Forest
+def objective_rf(params):
+    global best_rf_model, best_rf_accuracy
+    rf_model = RandomForestClassifier(
+        n_estimators=int(params['n_estimators']),
+        max_depth=int(params['max_depth']),
+        min_samples_split=int(params['min_samples_split']),
+        min_samples_leaf=int(params['min_samples_leaf']),
+        random_state=42
+    )
+    rf_model.fit(X_train, y_train)
+    y_pred = rf_model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+
+    if accuracy > best_rf_accuracy:
+        best_rf_accuracy = accuracy
+        best_rf_model = rf_model
+
+    return {'loss': -accuracy, 'status': STATUS_OK}
+
+# Espacio de búsqueda para Random Forest
+search_space_rf = {
+    'n_estimators': hp.quniform('n_estimators', 50, 300, 1),
+    'max_depth': hp.quniform('max_depth', 5, 30, 1),
+    'min_samples_split': hp.quniform('min_samples_split', 2, 10, 1),
+    'min_samples_leaf': hp.quniform('min_samples_leaf', 1, 5, 1),
+}
+
+# Función objetivo para Logistic Regression
+def objective_lr(params):
+    global best_lr_model, best_lr_accuracy
+    lr_model = LogisticRegression(
+        C=params['C'], 
+        solver='liblinear', 
+        random_state=42
+    )
+    lr_model.fit(X_train, y_train)
+    y_pred = lr_model.predict(X_test)
+    accuracy = accuracy_score(y_test, y_pred)
+
+    if accuracy > best_lr_accuracy:
+        best_lr_accuracy = accuracy
+        best_lr_model = lr_model
+
+    return {'loss': -accuracy, 'status': STATUS_OK}
+
+# Espacio de búsqueda para Logistic Regression
+search_space_lr = {
+    'C': hp.loguniform('C', -4, 2)
+}
+
 @task
-def train_logistic_regression(X_train, y_train, X_test, y_test):
-    with mlflow.start_run(run_name="Francisco-Gonzalez-logistic-regression") as run:
-        params = {'C': [0.1, 1, 10]}
-        model = GridSearchCV(LogisticRegression(), params, cv=3)
-        model.fit(X_train, y_train)
-        
-        best_model = model.best_estimator_
-        y_pred = best_model.predict(X_test)
-        accuracy = accuracy_score(y_test, y_pred)
-        
-        mlflow.log_param("best_C", model.best_params_['C'])
-        mlflow.log_metric("accuracy", accuracy)
-        mlflow.sklearn.log_model(best_model, "model")
-        
-        return run.info.run_id, accuracy
-
-
-@task
-def train_random_forest(X_train, y_train, X_test, y_test):
-    with mlflow.start_run(run_name="Francisco-Gonzalez-random-forest") as run:
-        params = {'n_estimators': [50, 100, 200], 'max_depth': [5, 10, 15]}
-        model = GridSearchCV(RandomForestClassifier(), params, cv=3)
-        model.fit(X_train, y_train)
-        
-        best_model = model.best_estimator_
-        y_pred = best_model.predict(X_test)
-        accuracy = accuracy_score(y_test, y_pred)
-        
-        mlflow.log_params(model.best_params_)
-        mlflow.log_metric("accuracy", accuracy)
-        mlflow.sklearn.log_model(best_model, "model")
-        
-        return run.info.run_id, accuracy
-
-@task
-def register_models(logistic_run_id, rf_run_id, logistic_acc, rf_acc):
-    from mlflow.tracking import MlflowClient
-
+def register_models():
     client = MlflowClient()
 
-    # Nombres de los modelos
-    champion_model_name = "Francisco-Gonzalez-model-champion"
-    challenger_model_name = "Francisco-Gonzalez-model-challenger"
-
-    # Función para verificar si un modelo ya está registrado
-    def model_exists(model_name):
-        try:
-            client.get_registered_model(model_name)
-            return True
-        except mlflow.exceptions.RestException:
-            return False
-
-    # Registrar modelos como Champion y Challenger
-    if logistic_acc > rf_acc:
-        # Registrar el modelo Champion
-        if not model_exists(champion_model_name):
-            client.create_registered_model(champion_model_name)
-        client.create_model_version(
-            name=champion_model_name,
-            source=f"runs:/{logistic_run_id}/model",
-            run_id=logistic_run_id,
-        )
-
-        # **Guardar el modelo Champion**
-        best_model = client.download_artifacts(run_id=logistic_run_id, path="model")
-        import joblib
-        joblib.dump(best_model, "champion_model.pkl")
-
-        # Registrar el modelo Challenger
-        if not model_exists(challenger_model_name):
-            client.create_registered_model(challenger_model_name)
-        client.create_model_version(
-            name=challenger_model_name,
-            source=f"runs:/{rf_run_id}/model",
-            run_id=rf_run_id,
-        )
+    # Comparar resultados para determinar Champion y Challenger
+    if best_rf_accuracy > best_lr_accuracy:
+        champion_model, challenger_model = best_rf_model, best_lr_model
+        champion_accuracy, challenger_accuracy = best_rf_accuracy, best_lr_accuracy
+        champion_name = "Francisco-RandomForest"
+        challenger_name = "Francisco-LogisticRegression"
     else:
-        # Registrar el modelo Champion
-        if not model_exists(champion_model_name):
-            client.create_registered_model(champion_model_name)
-        client.create_model_version(
-            name=champion_model_name,
-            source=f"runs:/{rf_run_id}/model",
-            run_id=rf_run_id,
+        champion_model, challenger_model = best_lr_model, best_rf_model
+        champion_accuracy, challenger_accuracy = best_lr_accuracy, best_rf_accuracy
+        champion_name = "Francisco-LogisticRegression"
+        challenger_name = "Francisco-RandomForest"
+
+    # Registrar Champion
+    with mlflow.start_run(run_name="Francisco-Model"):
+        mlflow.log_metric("accuracy", champion_accuracy)
+        mlflow.sklearn.log_model(champion_model, "model")
+        with open("vectorizer.pkl", "wb") as f:
+            pickle.dump(vectorizer, f)
+        mlflow.log_artifact("vectorizer.pkl", artifact_path="preprocessing")
+        registered_model_champion = mlflow.register_model(
+            f"runs:/{mlflow.active_run().info.run_id}/model",
+            champion_name
         )
+        print(f"Champion model registered: {registered_model_champion.name}")
 
-        # **Guardar el modelo Champion**
-        best_model = client.download_artifacts(run_id=rf_run_id, path="model")
-        import joblib
-        joblib.dump(best_model, "champion_model.pkl")
-
-        # Registrar el modelo Challenger
-        if not model_exists(challenger_model_name):
-            client.create_registered_model(challenger_model_name)
-        client.create_model_version(
-            name=challenger_model_name,
-            source=f"runs:/{logistic_run_id}/model",
-            run_id=logistic_run_id,
+    # Registrar Challenger
+    with mlflow.start_run(run_name="Francisco-Model"):
+        mlflow.log_metric("accuracy", challenger_accuracy)
+        mlflow.sklearn.log_model(challenger_model, "model")
+        registered_model_challenger = mlflow.register_model(
+            f"runs:/{mlflow.active_run().info.run_id}/model",
+            challenger_name
         )
+        print(f"Challenger model registered: {registered_model_challenger.name}")
 
+    print(f"Champion Accuracy: {champion_accuracy}")
+    print(f"Challenger Accuracy: {challenger_accuracy}")
 
-@flow(name="Entrenamiento y Registro")
+@flow(name="Entrenamiento y Optimización")
 def main_flow(file_path):
+    global X_train, X_test, y_train, y_test
     X_train, X_test, y_train, y_test = load_data(file_path)
-    logistic_run_id, logistic_acc = train_logistic_regression(X_train, y_train, X_test, y_test)
-    rf_run_id, rf_acc = train_random_forest(X_train, y_train, X_test, y_test)
-    register_models(logistic_run_id, rf_run_id, logistic_acc, rf_acc)
 
-# Ejecutar el flujo
+    # Tracking en MLflow
+    mlflow.set_experiment("Francisco-RandomForest")
+    with mlflow.start_run(run_name="Random Forest Training"):
+        fmin(fn=objective_rf, space=search_space_rf, algo=tpe.suggest, max_evals=10, trials=Trials())
+        mlflow.log_metric("best_rf_accuracy", best_rf_accuracy)
+
+    mlflow.set_experiment("Francisco-LogisticRegression")
+    with mlflow.start_run(run_name="Logistic Regression Training"):
+        fmin(fn=objective_lr, space=search_space_lr, algo=tpe.suggest, max_evals=10, trials=Trials())
+        mlflow.log_metric("best_lr_accuracy", best_lr_accuracy)
+
+    # Registrar modelos en el Model Registry
+    register_models()
+
+# Ejecutar flujo principal
 if __name__ == "__main__":
     file_path = "Data/processed/cleaned_tickets.csv"
     main_flow(file_path)

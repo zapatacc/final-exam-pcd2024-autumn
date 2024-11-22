@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./artifacts:/app/artifacts 
+    environment:
+      - MLFLOW_TRACKING_URI=https://dagshub.com/zapatacc/final-exam-pcd2024-autumn.mlflow
+
+    networks:
+      - app_network
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./artifacts:/app/artifacts  
+    depends_on:
+      - api
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
