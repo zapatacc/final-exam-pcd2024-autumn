@@ -11,10 +11,10 @@ import contractions
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
-# Descargar recursos de NLTK (solo si no están descargados)
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('punkt')
+nltk.download('punkt_tab')
 
 # Configurar logging
 logging.basicConfig(level=logging.INFO)
