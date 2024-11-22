@@ -22,13 +22,11 @@ def convert_int64(obj):
     else:
         return obj
 
+
 def user_input_features():
         """Collect user inputs via Streamlit widgets and map them to backend-compatible values."""
         InputComplaint = st.sidebar.text_input("Input Complaint", max_chars=500)
-        input_dict = {
-             'complaint_what_happened': InputComplaint
-        }
-        return input_dict
+        return {'complaint_what_happened': InputComplaint}
 
 #Collect user inputs
 input_dict = user_input_features()
@@ -38,7 +36,8 @@ input_dict = convert_int64(input_dict)
 if st.button('Predict'):
     try:
         response = requests.post(
-            url="http://pcd-car-model-container:4444/predict",
+            url="http://localhost:8000/predict",
+            
             data=json.dumps(input_dict),
             headers={"Content-Type": "application/json"}
         )

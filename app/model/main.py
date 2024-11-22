@@ -7,24 +7,23 @@ import dagshub
 from pydantic import BaseModel
 
 
-dagshub.init(repo_owner='zapatacc', repo_name='final-exam-pcd2024-autumn', mlflow=True)
-mlflow.set_experiment("jesus-carbajal-logreg-label-encoder")
 
-TRACKING_URI = mlflow.get_tracking_uri()
+dagshub_repo = "https://dagshub.com/zapatacc/final-exam-pcd2024-autumn"
+MLFLOW_TRACKING_URI = "https://dagshub.com/zapatacc/final-exam-pcd2024-autumn.mlflow"
+mlflow.set_tracking_uri(uri=MLFLOW_TRACKING_URI)
+client = MlflowClient(tracking_uri=MLFLOW_TRACKING_URI)
 
 run_uri = 'runs:/8ccf9f0120494d78a04c99aa0b113d82/pipeline_model'
 
 dv = mlflow.pyfunc.load_model(run_uri)
 
-def preprocess(input_data):
-    input_dict = {
-        'complaint_what_happened':input_data.complaint_what_happened
-    }
-    return input_dict
+
+def preprocess(input_complaint):
+    return input_complaint.complaint_what_happened
 
 def predict(input_data):
     X_pred = preprocess(input_data)
-    return dv.predict(X_pred)
+    return dv.predict([X_pred])
 
 
 app = FastAPI()

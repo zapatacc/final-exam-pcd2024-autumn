@@ -10,6 +10,6 @@ RUN pip install -r ./requirements.txt
 
 COPY ./main.py /code/
 
-EXPOSE 5555
+EXPOSE 8501
 
 CMD ["streamlit","run", "main.py"]
