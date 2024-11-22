@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/carlosmoreno/Desktop/ITESO/5to_SEMESTRE/Proyecto_de_Ciencia_de_Datos/final-exam-pcd2024-autumn/mlruns/0/d3133990b24c4f9298a58c16d62c131f/artifacts
+end_time: 1732275831322
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d3133990b24c4f9298a58c16d62c131f
+run_name: MLP
+run_uuid: d3133990b24c4f9298a58c16d62c131f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732275829928
+status: 3
+tags: []
+user_id: carlosmoreno

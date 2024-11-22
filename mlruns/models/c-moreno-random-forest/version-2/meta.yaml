@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1732272732658
+current_stage: None
+description: null
+last_updated_timestamp: 1732272732658
+name: c-moreno-random-forest
+run_id: e8c66aa613b649ebbefec967ea378360
+run_link: null
+source: file:///Users/carlosmoreno/Desktop/ITESO/5to_SEMESTRE/Proyecto_de_Ciencia_de_Datos/final-exam-pcd2024-autumn/mlruns/0/e8c66aa613b649ebbefec967ea378360/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///Users/carlosmoreno/Desktop/ITESO/5to_SEMESTRE/Proyecto_de_Ciencia_de_Datos/final-exam-pcd2024-autumn/mlruns/0/e8c66aa613b649ebbefec967ea378360/artifacts/model
+user_id: null
+version: 2
