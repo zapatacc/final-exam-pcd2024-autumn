@@ -14,7 +14,7 @@ client = MlflowClient(tracking_uri=MLFLOW_TRACKING_URI)
 run_ = mlflow.search_runs(
     order_by=["metrics.accuracy DESC"],
     output_format="list",
-    experiment_names=["Tinoco-RandomForest-prefect"]
+    experiment_names=["Tinoco-random_forest-modelo-prefect"]
 )[0]
 run_id = run_.info.run_id
 
@@ -30,7 +30,7 @@ with open("preprocessor/preprocessor.b", "rb") as f_in:
     dv = pickle.load(f_in)
 
 # Cargar el modelo Champion
-model_name = "Tinoco-RandomForest-prefect"
+model_name = "Tinoco-random_forest-modelo-prefect"
 alias = "champion"
 model_uri = f"models:/{model_name}@{alias}"
 
