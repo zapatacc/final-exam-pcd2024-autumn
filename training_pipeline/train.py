@@ -19,9 +19,9 @@ import numpy as np
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 
-
 # Configura la URL del experimento en DagsHub
 DAGSHUB_URL = "https://dagshub.com/zapatacc/final-exam-pcd2024-autumn"
+
 
 @task(name="Read and clean Data", retries=4, retry_delay_seconds=[1, 4, 8, 16])
 def read_data(file_path: str) -> pd.DataFrame:
@@ -319,7 +319,7 @@ def main_flow(model_type: str = "random_forest") -> None:
     # Inicializar MLflow en DagsHub
     DAGSHUB_URL = "https://dagshub.com/zapatacc/final-exam-pcd2024-autumn"
     dagshub.init(url=DAGSHUB_URL, mlflow=True)
-    mlflow.set_experiment(experiment_name=f"Tinoco-{model_type}-model-experiment-prefect")
+    mlflow.set_experiment(experiment_name=f"Tinoco-{model_type}-modelo-prefect")
 
     # Paso 1: Lectura de datos
     CSV_PATH = "../data/tickets_classification_eng.json"

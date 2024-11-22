@@ -5,7 +5,7 @@ name: ticket-classification-app  # Nombre del proyecto de la aplicación
 services:
   # Servicio de Frontend
   ui:
-    image: ticket-classification-ui-image:latest  # Nombre y etiqueta de la imagen que se generará o usará
+    image: ticket-classification-ui-image:latest  # Nombre y etiqueta de la imagen que se generará
     container_name: ticket-classification-ui-container  # Nombre asignado al contenedor
     build:
       context: ./Ui  # Carpeta que contiene los archivos para construir la imagen del frontend
@@ -30,10 +30,14 @@ services:
       - ticket-classification-network  # Conecta este servicio a la red definida
     environment:
       - MODEL_NAME=ticket-classification-model  # Variable de entorno para el nombre del modelo
-      - DATA_PATH=/code/data  # Ruta para los datos (ajusta según la estructura de tu proyecto)
+      - DATA_PATH=/code/data  # Ruta para los datos
 
   # Definición de redes
 networks:
   ticket-classification-network:  # Nombre de la red que comparten los servicios
     name: ticket-classification-network-1  # Nombre específico de la red
     driver: bridge  # El tipo de red, 'bridge' permite la comunicación interna entre los contenedores
+
+
+
+
