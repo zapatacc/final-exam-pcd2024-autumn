@@ -1,0 +1,20 @@
+# Imagen base de Python
+FROM python:3.9-slim
+
+# Establecer directorio de trabajo
+WORKDIR /app
+
+# Copiar dependencias
+COPY requirements.txt requirements.txt
+
+# Instalar dependencias
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar el resto del código
+COPY . .
+
+# Ejecutar la aplicación Streamlit
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
+
+# streamlit run frontend/app.py

@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  api:
+    build:
+      context: ./api  # Ruta correcta a la carpeta del backend
+    container_name: api_container
+    volumes:
+      - ./api/models:/app/models  # Mapeo para cargar los modelos en el contenedor
+    ports:
+      - "8000:8000"  # Mapea el puerto de la API al host
+    networks:
+      - app_network  # Conexión a una red común
+
+  frontend:
+    build:
+      context: ./frontend  # Ruta correcta a la carpeta del frontend
+    container_name: frontend_container
+    volumes:
+      - ./frontend:/app  # Mapeo para desarrollo
+    ports:
+      - "8501:8501"  # Mapea el puerto de Streamlit al host
+    networks:
+      - app_network  # Conexión a una red común
+
+networks:
+  app_network:
+    driver: bridge

@@ -1,0 +1,27 @@
+# Usar una imagen base ligera de Python
+FROM python:3.9-slim
+
+# Establecer el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copiar el archivo de dependencias
+COPY requirements.txt requirements.txt
+
+# Instalar las dependencias
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Descargar recursos necesarios de NLTK
+RUN python -m nltk.downloader stopwords wordnet omw-1.4
+
+# Copiar el resto del código de la API al contenedor
+COPY . .
+
+# Copiar la carpeta models
+COPY models /app/models
+
+# Exponer el puerto para la API
+EXPOSE 8000
+
+# Comando para ejecutar la API
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
