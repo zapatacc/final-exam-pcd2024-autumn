@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/proggg/examen/final-exam-pcd2024-autumn/pipelines/mlruns/0/cb2119192f1d49a994e7411cdaf09d8d/artifacts
+end_time: 1732262851868
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cb2119192f1d49a994e7411cdaf09d8d
+run_name: bald-swan-632
+run_uuid: cb2119192f1d49a994e7411cdaf09d8d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732262735300
+status: 4
+tags: []
+user_id: luisl

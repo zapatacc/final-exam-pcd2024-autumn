@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/proggg/examen/final-exam-pcd2024-autumn/pipelines/mlruns/0/9071fbbfe75d42b5a214f4bc8428185d/artifacts
+end_time: 1732262276059
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9071fbbfe75d42b5a214f4bc8428185d
+run_name: brawny-mare-729
+run_uuid: 9071fbbfe75d42b5a214f4bc8428185d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732262011114
+status: 4
+tags: []
+user_id: luisl

@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1732264311828
+current_stage: None
+description: null
+last_updated_timestamp: 1732264311828
+name: luis-lopez_naive_bayes_model
+run_id: 4619ec22717b4d25a8a0494c639a7e38
+run_link: null
+source: file:///C:/proggg/examen/final-exam-pcd2024-autumn/pipelines/mlruns/965885130722853627/4619ec22717b4d25a8a0494c639a7e38/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///C:/proggg/examen/final-exam-pcd2024-autumn/pipelines/mlruns/965885130722853627/4619ec22717b4d25a8a0494c639a7e38/artifacts/model
+user_id: null
+version: 2

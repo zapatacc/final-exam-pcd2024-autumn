@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/proggg/examen/final-exam-pcd2024-autumn/pipelines/mlruns/0/4f6a593f4b1949969ba57ef425ea3e90/artifacts
+end_time: 1732261037236
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4f6a593f4b1949969ba57ef425ea3e90
+run_name: bemused-gnat-790
+run_uuid: 4f6a593f4b1949969ba57ef425ea3e90
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732261006786
+status: 4
+tags: []
+user_id: luisl

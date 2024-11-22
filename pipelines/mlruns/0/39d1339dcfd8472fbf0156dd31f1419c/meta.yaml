@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/proggg/examen/final-exam-pcd2024-autumn/pipelines/mlruns/0/39d1339dcfd8472fbf0156dd31f1419c/artifacts
+end_time: 1732261037246
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 39d1339dcfd8472fbf0156dd31f1419c
+run_name: Naive Bayes Hyperparameter Optimization
+run_uuid: 39d1339dcfd8472fbf0156dd31f1419c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732261006691
+status: 4
+tags: []
+user_id: luisl

@@ -1,0 +1,1353 @@
+digest: 4cce750b
+name: dataset
+profile: '{"num_rows": 16857, "num_elements": 33764571}'
+schema: '{"mlflow_colspec": [{"type": "string", "name": "ticket_classification", "required":
+  true}, {"type": "string", "name": "cleaned_complaint", "required": true}, {"type":
+  "double", "name": "predicted_topic", "required": true}, {"type": "double", "name":
+  "ability", "required": true}, {"type": "double", "name": "able", "required": true},
+  {"type": "double", "name": "absolutely", "required": true}, {"type": "double", "name":
+  "abuse", "required": true}, {"type": "double", "name": "abusive", "required": true},
+  {"type": "double", "name": "accept", "required": true}, {"type": "double", "name":
+  "acceptable", "required": true}, {"type": "double", "name": "accepted", "required":
+  true}, {"type": "double", "name": "accepting", "required": true}, {"type": "double",
+  "name": "access", "required": true}, {"type": "double", "name": "according", "required":
+  true}, {"type": "double", "name": "accordingly", "required": true}, {"type": "double",
+  "name": "account", "required": true}, {"type": "double", "name": "accountable",
+  "required": true}, {"type": "double", "name": "accountchecking", "required": true},
+  {"type": "double", "name": "accounting", "required": true}, {"type": "double", "name":
+  "accountother", "required": true}, {"type": "double", "name": "accounts", "required":
+  true}, {"type": "double", "name": "accountsavings", "required": true}, {"type":
+  "double", "name": "accrued", "required": true}, {"type": "double", "name": "acct",
+  "required": true}, {"type": "double", "name": "accurate", "required": true}, {"type":
+  "double", "name": "ach", "required": true}, {"type": "double", "name": "acknowledge",
+  "required": true}, {"type": "double", "name": "acknowledged", "required": true},
+  {"type": "double", "name": "acquired", "required": true}, {"type": "double", "name":
+  "across", "required": true}, {"type": "double", "name": "act", "required": true},
+  {"type": "double", "name": "acting", "required": true}, {"type": "double", "name":
+  "action", "required": true}, {"type": "double", "name": "actions", "required": true},
+  {"type": "double", "name": "activated", "required": true}, {"type": "double", "name":
+  "active", "required": true}, {"type": "double", "name": "activities", "required":
+  true}, {"type": "double", "name": "activity", "required": true}, {"type": "double",
+  "name": "actual", "required": true}, {"type": "double", "name": "actually", "required":
+  true}, {"type": "double", "name": "add", "required": true}, {"type": "double", "name":
+  "added", "required": true}, {"type": "double", "name": "adding", "required": true},
+  {"type": "double", "name": "addition", "required": true}, {"type": "double", "name":
+  "additional", "required": true}, {"type": "double", "name": "additionally", "required":
+  true}, {"type": "double", "name": "address", "required": true}, {"type": "double",
+  "name": "addressed", "required": true}, {"type": "double", "name": "addresses",
+  "required": true}, {"type": "double", "name": "adjustable", "required": true}, {"type":
+  "double", "name": "admitted", "required": true}, {"type": "double", "name": "advance",
+  "required": true}, {"type": "double", "name": "advantage", "required": true}, {"type":
+  "double", "name": "advertised", "required": true}, {"type": "double", "name": "advertisement",
+  "required": true}, {"type": "double", "name": "advertising", "required": true},
+  {"type": "double", "name": "advice", "required": true}, {"type": "double", "name":
+  "advise", "required": true}, {"type": "double", "name": "advised", "required": true},
+  {"type": "double", "name": "advising", "required": true}, {"type": "double", "name":
+  "affect", "required": true}, {"type": "double", "name": "affected", "required":
+  true}, {"type": "double", "name": "affecting", "required": true}, {"type": "double",
+  "name": "affidavit", "required": true}, {"type": "double", "name": "afford", "required":
+  true}, {"type": "double", "name": "affordable", "required": true}, {"type": "double",
+  "name": "afternoon", "required": true}, {"type": "double", "name": "age", "required":
+  true}, {"type": "double", "name": "agencies", "required": true}, {"type": "double",
+  "name": "agency", "required": true}, {"type": "double", "name": "agent", "required":
+  true}, {"type": "double", "name": "agents", "required": true}, {"type": "double",
+  "name": "ago", "required": true}, {"type": "double", "name": "agree", "required":
+  true}, {"type": "double", "name": "agreed", "required": true}, {"type": "double",
+  "name": "agreement", "required": true}, {"type": "double", "name": "ahead", "required":
+  true}, {"type": "double", "name": "airline", "required": true}, {"type": "double",
+  "name": "airlines", "required": true}, {"type": "double", "name": "alert", "required":
+  true}, {"type": "double", "name": "alerted", "required": true}, {"type": "double",
+  "name": "alerts", "required": true}, {"type": "double", "name": "alleged", "required":
+  true}, {"type": "double", "name": "allow", "required": true}, {"type": "double",
+  "name": "allowed", "required": true}, {"type": "double", "name": "allowing", "required":
+  true}, {"type": "double", "name": "allows", "required": true}, {"type": "double",
+  "name": "almost", "required": true}, {"type": "double", "name": "alone", "required":
+  true}, {"type": "double", "name": "along", "required": true}, {"type": "double",
+  "name": "already", "required": true}, {"type": "double", "name": "also", "required":
+  true}, {"type": "double", "name": "although", "required": true}, {"type": "double",
+  "name": "always", "required": true}, {"type": "double", "name": "amazon", "required":
+  true}, {"type": "double", "name": "american", "required": true}, {"type": "double",
+  "name": "amount", "required": true}, {"type": "double", "name": "amounts", "required":
+  true}, {"type": "double", "name": "analysis", "required": true}, {"type": "double",
+  "name": "annual", "required": true}, {"type": "double", "name": "another", "required":
+  true}, {"type": "double", "name": "answer", "required": true}, {"type": "double",
+  "name": "answered", "required": true}, {"type": "double", "name": "answers", "required":
+  true}, {"type": "double", "name": "anymore", "required": true}, {"type": "double",
+  "name": "anyone", "required": true}, {"type": "double", "name": "anything", "required":
+  true}, {"type": "double", "name": "anyway", "required": true}, {"type": "double",
+  "name": "anywhere", "required": true}, {"type": "double", "name": "apartment", "required":
+  true}, {"type": "double", "name": "apologized", "required": true}, {"type": "double",
+  "name": "app", "required": true}, {"type": "double", "name": "apparently", "required":
+  true}, {"type": "double", "name": "appeal", "required": true}, {"type": "double",
+  "name": "appear", "required": true}, {"type": "double", "name": "appeared", "required":
+  true}, {"type": "double", "name": "appears", "required": true}, {"type": "double",
+  "name": "applicable", "required": true}, {"type": "double", "name": "application",
+  "required": true}, {"type": "double", "name": "applications", "required": true},
+  {"type": "double", "name": "applied", "required": true}, {"type": "double", "name":
+  "apply", "required": true}, {"type": "double", "name": "applying", "required": true},
+  {"type": "double", "name": "appointment", "required": true}, {"type": "double",
+  "name": "appraisal", "required": true}, {"type": "double", "name": "appreciate",
+  "required": true}, {"type": "double", "name": "appropriate", "required": true},
+  {"type": "double", "name": "approval", "required": true}, {"type": "double", "name":
+  "approve", "required": true}, {"type": "double", "name": "approved", "required":
+  true}, {"type": "double", "name": "approx", "required": true}, {"type": "double",
+  "name": "approximately", "required": true}, {"type": "double", "name": "apr", "required":
+  true}, {"type": "double", "name": "area", "required": true}, {"type": "double",
+  "name": "arm", "required": true}, {"type": "double", "name": "around", "required":
+  true}, {"type": "double", "name": "arrangement", "required": true}, {"type": "double",
+  "name": "arrangements", "required": true}, {"type": "double", "name": "arrive",
+  "required": true}, {"type": "double", "name": "arrived", "required": true}, {"type":
+  "double", "name": "asap", "required": true}, {"type": "double", "name": "ask", "required":
+  true}, {"type": "double", "name": "asked", "required": true}, {"type": "double",
+  "name": "asking", "required": true}, {"type": "double", "name": "assessed", "required":
+  true}, {"type": "double", "name": "assets", "required": true}, {"type": "double",
+  "name": "assigned", "required": true}, {"type": "double", "name": "assignment",
+  "required": true}, {"type": "double", "name": "assist", "required": true}, {"type":
+  "double", "name": "assistance", "required": true}, {"type": "double", "name": "associate",
+  "required": true}, {"type": "double", "name": "associated", "required": true}, {"type":
+  "double", "name": "assume", "required": true}, {"type": "double", "name": "assumed",
+  "required": true}, {"type": "double", "name": "assured", "required": true}, {"type":
+  "double", "name": "atm", "required": true}, {"type": "double", "name": "attach",
+  "required": true}, {"type": "double", "name": "attached", "required": true}, {"type":
+  "double", "name": "attaching", "required": true}, {"type": "double", "name": "attachment",
+  "required": true}, {"type": "double", "name": "attachments", "required": true},
+  {"type": "double", "name": "attempt", "required": true}, {"type": "double", "name":
+  "attempted", "required": true}, {"type": "double", "name": "attempting", "required":
+  true}, {"type": "double", "name": "attempts", "required": true}, {"type": "double",
+  "name": "attention", "required": true}, {"type": "double", "name": "attorney", "required":
+  true}, {"type": "double", "name": "attorneys", "required": true}, {"type": "double",
+  "name": "authority", "required": true}, {"type": "double", "name": "authorization",
+  "required": true}, {"type": "double", "name": "authorize", "required": true}, {"type":
+  "double", "name": "authorized", "required": true}, {"type": "double", "name": "auto",
+  "required": true}, {"type": "double", "name": "automated", "required": true}, {"type":
+  "double", "name": "automatic", "required": true}, {"type": "double", "name": "automatically",
+  "required": true}, {"type": "double", "name": "avail", "required": true}, {"type":
+  "double", "name": "available", "required": true}, {"type": "double", "name": "average",
+  "required": true}, {"type": "double", "name": "avoid", "required": true}, {"type":
+  "double", "name": "aware", "required": true}, {"type": "double", "name": "away",
+  "required": true}, {"type": "double", "name": "back", "required": true}, {"type":
+  "double", "name": "bad", "required": true}, {"type": "double", "name": "bait", "required":
+  true}, {"type": "double", "name": "balance", "required": true}, {"type": "double",
+  "name": "balances", "required": true}, {"type": "double", "name": "bank", "required":
+  true}, {"type": "double", "name": "banker", "required": true}, {"type": "double",
+  "name": "banking", "required": true}, {"type": "double", "name": "bankruptcy", "required":
+  true}, {"type": "double", "name": "banks", "required": true}, {"type": "double",
+  "name": "based", "required": true}, {"type": "double", "name": "basic", "required":
+  true}, {"type": "double", "name": "basically", "required": true}, {"type": "double",
+  "name": "basis", "required": true}, {"type": "double", "name": "became", "required":
+  true}, {"type": "double", "name": "become", "required": true}, {"type": "double",
+  "name": "began", "required": true}, {"type": "double", "name": "begin", "required":
+  true}, {"type": "double", "name": "beginning", "required": true}, {"type": "double",
+  "name": "behalf", "required": true}, {"type": "double", "name": "behavior", "required":
+  true}, {"type": "double", "name": "behind", "required": true}, {"type": "double",
+  "name": "believe", "required": true}, {"type": "double", "name": "believed", "required":
+  true}, {"type": "double", "name": "belong", "required": true}, {"type": "double",
+  "name": "beneficiary", "required": true}, {"type": "double", "name": "benefit",
+  "required": true}, {"type": "double", "name": "benefits", "required": true}, {"type":
+  "double", "name": "best", "required": true}, {"type": "double", "name": "better",
+  "required": true}, {"type": "double", "name": "beyond", "required": true}, {"type":
+  "double", "name": "big", "required": true}, {"type": "double", "name": "bill", "required":
+  true}, {"type": "double", "name": "billed", "required": true}, {"type": "double",
+  "name": "billing", "required": true}, {"type": "double", "name": "bills", "required":
+  true}, {"type": "double", "name": "block", "required": true}, {"type": "double",
+  "name": "blocked", "required": true}, {"type": "double", "name": "bonus", "required":
+  true}, {"type": "double", "name": "book", "required": true}, {"type": "double",
+  "name": "booked", "required": true}, {"type": "double", "name": "booking", "required":
+  true}, {"type": "double", "name": "borrower", "required": true}, {"type": "double",
+  "name": "borrowers", "required": true}, {"type": "double", "name": "bottom", "required":
+  true}, {"type": "double", "name": "bought", "required": true}, {"type": "double",
+  "name": "bounced", "required": true}, {"type": "double", "name": "box", "required":
+  true}, {"type": "double", "name": "branch", "required": true}, {"type": "double",
+  "name": "branches", "required": true}, {"type": "double", "name": "breach", "required":
+  true}, {"type": "double", "name": "bring", "required": true}, {"type": "double",
+  "name": "broken", "required": true}, {"type": "double", "name": "broker", "required":
+  true}, {"type": "double", "name": "brother", "required": true}, {"type": "double",
+  "name": "brought", "required": true}, {"type": "double", "name": "building", "required":
+  true}, {"type": "double", "name": "burden", "required": true}, {"type": "double",
+  "name": "bureau", "required": true}, {"type": "double", "name": "bureaus", "required":
+  true}, {"type": "double", "name": "business", "required": true}, {"type": "double",
+  "name": "busy", "required": true}, {"type": "double", "name": "buy", "required":
+  true}, {"type": "double", "name": "buyer", "required": true}, {"type": "double",
+  "name": "buying", "required": true}, {"type": "double", "name": "ca", "required":
+  true}, {"type": "double", "name": "calculated", "required": true}, {"type": "double",
+  "name": "california", "required": true}, {"type": "double", "name": "call", "required":
+  true}, {"type": "double", "name": "called", "required": true}, {"type": "double",
+  "name": "calling", "required": true}, {"type": "double", "name": "calls", "required":
+  true}, {"type": "double", "name": "came", "required": true}, {"type": "double",
+  "name": "cancel", "required": true}, {"type": "double", "name": "canceled", "required":
+  true}, {"type": "double", "name": "cancellation", "required": true}, {"type": "double",
+  "name": "cancelled", "required": true}, {"type": "double", "name": "cant", "required":
+  true}, {"type": "double", "name": "car", "required": true}, {"type": "double", "name":
+  "card", "required": true}, {"type": "double", "name": "cardgeneralpurpose", "required":
+  true}, {"type": "double", "name": "cardholder", "required": true}, {"type": "double",
+  "name": "cardmember", "required": true}, {"type": "double", "name": "cardnone",
+  "required": true}, {"type": "double", "name": "cards", "required": true}, {"type":
+  "double", "name": "care", "required": true}, {"type": "double", "name": "case",
+  "required": true}, {"type": "double", "name": "cases", "required": true}, {"type":
+  "double", "name": "cash", "required": true}, {"type": "double", "name": "cashed",
+  "required": true}, {"type": "double", "name": "cashier", "required": true}, {"type":
+  "double", "name": "cashiers", "required": true}, {"type": "double", "name": "caught",
+  "required": true}, {"type": "double", "name": "cause", "required": true}, {"type":
+  "double", "name": "caused", "required": true}, {"type": "double", "name": "causing",
+  "required": true}, {"type": "double", "name": "cc", "required": true}, {"type":
+  "double", "name": "cd", "required": true}, {"type": "double", "name": "cease", "required":
+  true}, {"type": "double", "name": "cell", "required": true}, {"type": "double",
+  "name": "center", "required": true}, {"type": "double", "name": "ceo", "required":
+  true}, {"type": "double", "name": "certain", "required": true}, {"type": "double",
+  "name": "certainly", "required": true}, {"type": "double", "name": "certificate",
+  "required": true}, {"type": "double", "name": "certified", "required": true}, {"type":
+  "double", "name": "cfpb", "required": true}, {"type": "double", "name": "chance",
+  "required": true}, {"type": "double", "name": "change", "required": true}, {"type":
+  "double", "name": "changed", "required": true}, {"type": "double", "name": "changes",
+  "required": true}, {"type": "double", "name": "changing", "required": true}, {"type":
+  "double", "name": "chapter", "required": true}, {"type": "double", "name": "charge",
+  "required": true}, {"type": "double", "name": "chargeback", "required": true}, {"type":
+  "double", "name": "charged", "required": true}, {"type": "double", "name": "charges",
+  "required": true}, {"type": "double", "name": "charging", "required": true}, {"type":
+  "double", "name": "chase", "required": true}, {"type": "double", "name": "chases",
+  "required": true}, {"type": "double", "name": "check", "required": true}, {"type":
+  "double", "name": "checked", "required": true}, {"type": "double", "name": "checking",
+  "required": true}, {"type": "double", "name": "checks", "required": true}, {"type":
+  "double", "name": "child", "required": true}, {"type": "double", "name": "children",
+  "required": true}, {"type": "double", "name": "chip", "required": true}, {"type":
+  "double", "name": "choice", "required": true}, {"type": "double", "name": "choose",
+  "required": true}, {"type": "double", "name": "chose", "required": true}, {"type":
+  "double", "name": "circumstances", "required": true}, {"type": "double", "name":
+  "citizen", "required": true}, {"type": "double", "name": "city", "required": true},
+  {"type": "double", "name": "civil", "required": true}, {"type": "double", "name":
+  "claim", "required": true}, {"type": "double", "name": "claimed", "required": true},
+  {"type": "double", "name": "claiming", "required": true}, {"type": "double", "name":
+  "claims", "required": true}, {"type": "double", "name": "class", "required": true},
+  {"type": "double", "name": "clear", "required": true}, {"type": "double", "name":
+  "cleared", "required": true}, {"type": "double", "name": "clearly", "required":
+  true}, {"type": "double", "name": "client", "required": true}, {"type": "double",
+  "name": "clients", "required": true}, {"type": "double", "name": "close", "required":
+  true}, {"type": "double", "name": "closed", "required": true}, {"type": "double",
+  "name": "closing", "required": true}, {"type": "double", "name": "closure", "required":
+  true}, {"type": "double", "name": "co", "required": true}, {"type": "double", "name":
+  "code", "required": true}, {"type": "double", "name": "collect", "required": true},
+  {"type": "double", "name": "collected", "required": true}, {"type": "double", "name":
+  "collection", "required": true}, {"type": "double", "name": "collectioncredit",
+  "required": true}, {"type": "double", "name": "collections", "required": true},
+  {"type": "double", "name": "collector", "required": true}, {"type": "double", "name":
+  "college", "required": true}, {"type": "double", "name": "come", "required": true},
+  {"type": "double", "name": "comes", "required": true}, {"type": "double", "name":
+  "coming", "required": true}, {"type": "double", "name": "commission", "required":
+  true}, {"type": "double", "name": "committed", "required": true}, {"type": "double",
+  "name": "common", "required": true}, {"type": "double", "name": "communicate", "required":
+  true}, {"type": "double", "name": "communicated", "required": true}, {"type": "double",
+  "name": "communication", "required": true}, {"type": "double", "name": "communications",
+  "required": true}, {"type": "double", "name": "companies", "required": true}, {"type":
+  "double", "name": "company", "required": true}, {"type": "double", "name": "compensation",
+  "required": true}, {"type": "double", "name": "complain", "required": true}, {"type":
+  "double", "name": "complained", "required": true}, {"type": "double", "name": "complaint",
+  "required": true}, {"type": "double", "name": "complaints", "required": true}, {"type":
+  "double", "name": "complete", "required": true}, {"type": "double", "name": "completed",
+  "required": true}, {"type": "double", "name": "completely", "required": true}, {"type":
+  "double", "name": "compliance", "required": true}, {"type": "double", "name": "complied",
+  "required": true}, {"type": "double", "name": "comply", "required": true}, {"type":
+  "double", "name": "compromised", "required": true}, {"type": "double", "name": "computer",
+  "required": true}, {"type": "double", "name": "concern", "required": true}, {"type":
+  "double", "name": "concerned", "required": true}, {"type": "double", "name": "concerning",
+  "required": true}, {"type": "double", "name": "concerns", "required": true}, {"type":
+  "double", "name": "conclusion", "required": true}, {"type": "double", "name": "condition",
+  "required": true}, {"type": "double", "name": "conditions", "required": true}, {"type":
+  "double", "name": "condo", "required": true}, {"type": "double", "name": "conduct",
+  "required": true}, {"type": "double", "name": "confirm", "required": true}, {"type":
+  "double", "name": "confirmation", "required": true}, {"type": "double", "name":
+  "confirmed", "required": true}, {"type": "double", "name": "confirming", "required":
+  true}, {"type": "double", "name": "confused", "required": true}, {"type": "double",
+  "name": "connected", "required": true}, {"type": "double", "name": "connection",
+  "required": true}, {"type": "double", "name": "consent", "required": true}, {"type":
+  "double", "name": "consider", "required": true}, {"type": "double", "name": "consideration",
+  "required": true}, {"type": "double", "name": "considered", "required": true}, {"type":
+  "double", "name": "considering", "required": true}, {"type": "double", "name": "constantly",
+  "required": true}, {"type": "double", "name": "consumer", "required": true}, {"type":
+  "double", "name": "consumers", "required": true}, {"type": "double", "name": "contact",
+  "required": true}, {"type": "double", "name": "contacted", "required": true}, {"type":
+  "double", "name": "contacting", "required": true}, {"type": "double", "name": "contained",
+  "required": true}, {"type": "double", "name": "continue", "required": true}, {"type":
+  "double", "name": "continued", "required": true}, {"type": "double", "name": "continues",
+  "required": true}, {"type": "double", "name": "continuing", "required": true}, {"type":
+  "double", "name": "contract", "required": true}, {"type": "double", "name": "contractor",
+  "required": true}, {"type": "double", "name": "control", "required": true}, {"type":
+  "double", "name": "conversation", "required": true}, {"type": "double", "name":
+  "conversations", "required": true}, {"type": "double", "name": "copies", "required":
+  true}, {"type": "double", "name": "copy", "required": true}, {"type": "double",
+  "name": "corporate", "required": true}, {"type": "double", "name": "corporation",
+  "required": true}, {"type": "double", "name": "correct", "required": true}, {"type":
+  "double", "name": "corrected", "required": true}, {"type": "double", "name": "correctly",
+  "required": true}, {"type": "double", "name": "correspondence", "required": true},
+  {"type": "double", "name": "cost", "required": true}, {"type": "double", "name":
+  "costs", "required": true}, {"type": "double", "name": "could", "required": true},
+  {"type": "double", "name": "couldnt", "required": true}, {"type": "double", "name":
+  "count", "required": true}, {"type": "double", "name": "country", "required": true},
+  {"type": "double", "name": "county", "required": true}, {"type": "double", "name":
+  "couple", "required": true}, {"type": "double", "name": "coupon", "required": true},
+  {"type": "double", "name": "course", "required": true}, {"type": "double", "name":
+  "court", "required": true}, {"type": "double", "name": "courtesy", "required": true},
+  {"type": "double", "name": "cover", "required": true}, {"type": "double", "name":
+  "coverage", "required": true}, {"type": "double", "name": "covered", "required":
+  true}, {"type": "double", "name": "covid", "required": true}, {"type": "double",
+  "name": "create", "required": true}, {"type": "double", "name": "created", "required":
+  true}, {"type": "double", "name": "credit", "required": true}, {"type": "double",
+  "name": "credited", "required": true}, {"type": "double", "name": "creditor", "required":
+  true}, {"type": "double", "name": "creditors", "required": true}, {"type": "double",
+  "name": "credits", "required": true}, {"type": "double", "name": "crime", "required":
+  true}, {"type": "double", "name": "criminal", "required": true}, {"type": "double",
+  "name": "crisis", "required": true}, {"type": "double", "name": "currency", "required":
+  true}, {"type": "double", "name": "current", "required": true}, {"type": "double",
+  "name": "currently", "required": true}, {"type": "double", "name": "customer", "required":
+  true}, {"type": "double", "name": "customers", "required": true}, {"type": "double",
+  "name": "cut", "required": true}, {"type": "double", "name": "cycle", "required":
+  true}, {"type": "double", "name": "daily", "required": true}, {"type": "double",
+  "name": "damage", "required": true}, {"type": "double", "name": "damaged", "required":
+  true}, {"type": "double", "name": "damages", "required": true}, {"type": "double",
+  "name": "data", "required": true}, {"type": "double", "name": "date", "required":
+  true}, {"type": "double", "name": "dated", "required": true}, {"type": "double",
+  "name": "dates", "required": true}, {"type": "double", "name": "daughter", "required":
+  true}, {"type": "double", "name": "day", "required": true}, {"type": "double", "name":
+  "days", "required": true}, {"type": "double", "name": "de", "required": true}, {"type":
+  "double", "name": "deadline", "required": true}, {"type": "double", "name": "deal",
+  "required": true}, {"type": "double", "name": "dealership", "required": true}, {"type":
+  "double", "name": "dealing", "required": true}, {"type": "double", "name": "dear",
+  "required": true}, {"type": "double", "name": "death", "required": true}, {"type":
+  "double", "name": "debit", "required": true}, {"type": "double", "name": "debited",
+  "required": true}, {"type": "double", "name": "debits", "required": true}, {"type":
+  "double", "name": "debt", "required": true}, {"type": "double", "name": "debts",
+  "required": true}, {"type": "double", "name": "deceased", "required": true}, {"type":
+  "double", "name": "deceptive", "required": true}, {"type": "double", "name": "decide",
+  "required": true}, {"type": "double", "name": "decided", "required": true}, {"type":
+  "double", "name": "decision", "required": true}, {"type": "double", "name": "decline",
+  "required": true}, {"type": "double", "name": "declined", "required": true}, {"type":
+  "double", "name": "deducted", "required": true}, {"type": "double", "name": "deed",
+  "required": true}, {"type": "double", "name": "deemed", "required": true}, {"type":
+  "double", "name": "default", "required": true}, {"type": "double", "name": "definitely",
+  "required": true}, {"type": "double", "name": "delay", "required": true}, {"type":
+  "double", "name": "delayed", "required": true}, {"type": "double", "name": "delete",
+  "required": true}, {"type": "double", "name": "deleted", "required": true}, {"type":
+  "double", "name": "delinquency", "required": true}, {"type": "double", "name": "delinquent",
+  "required": true}, {"type": "double", "name": "deliver", "required": true}, {"type":
+  "double", "name": "delivered", "required": true}, {"type": "double", "name": "delivery",
+  "required": true}, {"type": "double", "name": "demand", "required": true}, {"type":
+  "double", "name": "demanded", "required": true}, {"type": "double", "name": "demanding",
+  "required": true}, {"type": "double", "name": "denial", "required": true}, {"type":
+  "double", "name": "denied", "required": true}, {"type": "double", "name": "deny",
+  "required": true}, {"type": "double", "name": "denying", "required": true}, {"type":
+  "double", "name": "department", "required": true}, {"type": "double", "name": "departments",
+  "required": true}, {"type": "double", "name": "deposit", "required": true}, {"type":
+  "double", "name": "deposited", "required": true}, {"type": "double", "name": "depositing",
+  "required": true}, {"type": "double", "name": "deposits", "required": true}, {"type":
+  "double", "name": "dept", "required": true}, {"type": "double", "name": "derogatory",
+  "required": true}, {"type": "double", "name": "described", "required": true}, {"type":
+  "double", "name": "description", "required": true}, {"type": "double", "name": "desk",
+  "required": true}, {"type": "double", "name": "despite", "required": true}, {"type":
+  "double", "name": "detail", "required": true}, {"type": "double", "name": "detailed",
+  "required": true}, {"type": "double", "name": "details", "required": true}, {"type":
+  "double", "name": "determine", "required": true}, {"type": "double", "name": "determined",
+  "required": true}, {"type": "double", "name": "device", "required": true}, {"type":
+  "double", "name": "didnt", "required": true}, {"type": "double", "name": "difference",
+  "required": true}, {"type": "double", "name": "different", "required": true}, {"type":
+  "double", "name": "difficult", "required": true}, {"type": "double", "name": "digital",
+  "required": true}, {"type": "double", "name": "diligence", "required": true}, {"type":
+  "double", "name": "direct", "required": true}, {"type": "double", "name": "directed",
+  "required": true}, {"type": "double", "name": "directly", "required": true}, {"type":
+  "double", "name": "disappointed", "required": true}, {"type": "double", "name":
+  "discharged", "required": true}, {"type": "double", "name": "disclose", "required":
+  true}, {"type": "double", "name": "disclosed", "required": true}, {"type": "double",
+  "name": "disclosure", "required": true}, {"type": "double", "name": "disconnected",
+  "required": true}, {"type": "double", "name": "discovered", "required": true}, {"type":
+  "double", "name": "discriminated", "required": true}, {"type": "double", "name":
+  "discrimination", "required": true}, {"type": "double", "name": "discuss", "required":
+  true}, {"type": "double", "name": "discussed", "required": true}, {"type": "double",
+  "name": "dispute", "required": true}, {"type": "double", "name": "disputed", "required":
+  true}, {"type": "double", "name": "disputes", "required": true}, {"type": "double",
+  "name": "disputing", "required": true}, {"type": "double", "name": "district", "required":
+  true}, {"type": "double", "name": "division", "required": true}, {"type": "double",
+  "name": "divorce", "required": true}, {"type": "double", "name": "docs", "required":
+  true}, {"type": "double", "name": "document", "required": true}, {"type": "double",
+  "name": "documentation", "required": true}, {"type": "double", "name": "documented",
+  "required": true}, {"type": "double", "name": "documents", "required": true}, {"type":
+  "double", "name": "doesnt", "required": true}, {"type": "double", "name": "dollar",
+  "required": true}, {"type": "double", "name": "dollars", "required": true}, {"type":
+  "double", "name": "done", "required": true}, {"type": "double", "name": "dont",
+  "required": true}, {"type": "double", "name": "door", "required": true}, {"type":
+  "double", "name": "double", "required": true}, {"type": "double", "name": "draft",
+  "required": true}, {"type": "double", "name": "drawn", "required": true}, {"type":
+  "double", "name": "drive", "required": true}, {"type": "double", "name": "driver",
+  "required": true}, {"type": "double", "name": "drop", "required": true}, {"type":
+  "double", "name": "dropped", "required": true}, {"type": "double", "name": "due",
+  "required": true}, {"type": "double", "name": "duplicate", "required": true}, {"type":
+  "double", "name": "earlier", "required": true}, {"type": "double", "name": "early",
+  "required": true}, {"type": "double", "name": "earn", "required": true}, {"type":
+  "double", "name": "earned", "required": true}, {"type": "double", "name": "easily",
+  "required": true}, {"type": "double", "name": "easy", "required": true}, {"type":
+  "double", "name": "effect", "required": true}, {"type": "double", "name": "effective",
+  "required": true}, {"type": "double", "name": "effort", "required": true}, {"type":
+  "double", "name": "efforts", "required": true}, {"type": "double", "name": "either",
+  "required": true}, {"type": "double", "name": "electronic", "required": true}, {"type":
+  "double", "name": "electronically", "required": true}, {"type": "double", "name":
+  "eligible", "required": true}, {"type": "double", "name": "else", "required": true},
+  {"type": "double", "name": "email", "required": true}, {"type": "double", "name":
+  "emailed", "required": true}, {"type": "double", "name": "emails", "required": true},
+  {"type": "double", "name": "emergency", "required": true}, {"type": "double", "name":
+  "employed", "required": true}, {"type": "double", "name": "employee", "required":
+  true}, {"type": "double", "name": "employees", "required": true}, {"type": "double",
+  "name": "employer", "required": true}, {"type": "double", "name": "employment",
+  "required": true}, {"type": "double", "name": "enclosed", "required": true}, {"type":
+  "double", "name": "end", "required": true}, {"type": "double", "name": "ended",
+  "required": true}, {"type": "double", "name": "ending", "required": true}, {"type":
+  "double", "name": "enough", "required": true}, {"type": "double", "name": "ensure",
+  "required": true}, {"type": "double", "name": "enter", "required": true}, {"type":
+  "double", "name": "entered", "required": true}, {"type": "double", "name": "entire",
+  "required": true}, {"type": "double", "name": "entitled", "required": true}, {"type":
+  "double", "name": "entity", "required": true}, {"type": "double", "name": "equity",
+  "required": true}, {"type": "double", "name": "erroneous", "required": true}, {"type":
+  "double", "name": "error", "required": true}, {"type": "double", "name": "errors",
+  "required": true}, {"type": "double", "name": "escalate", "required": true}, {"type":
+  "double", "name": "escalated", "required": true}, {"type": "double", "name": "escalation",
+  "required": true}, {"type": "double", "name": "escrow", "required": true}, {"type":
+  "double", "name": "especially", "required": true}, {"type": "double", "name": "essentially",
+  "required": true}, {"type": "double", "name": "est", "required": true}, {"type":
+  "double", "name": "established", "required": true}, {"type": "double", "name": "estate",
+  "required": true}, {"type": "double", "name": "estimate", "required": true}, {"type":
+  "double", "name": "etc", "required": true}, {"type": "double", "name": "even", "required":
+  true}, {"type": "double", "name": "evening", "required": true}, {"type": "double",
+  "name": "event", "required": true}, {"type": "double", "name": "events", "required":
+  true}, {"type": "double", "name": "eventually", "required": true}, {"type": "double",
+  "name": "ever", "required": true}, {"type": "double", "name": "every", "required":
+  true}, {"type": "double", "name": "everyone", "required": true}, {"type": "double",
+  "name": "everything", "required": true}, {"type": "double", "name": "evidence",
+  "required": true}, {"type": "double", "name": "ex", "required": true}, {"type":
+  "double", "name": "exact", "required": true}, {"type": "double", "name": "exactly",
+  "required": true}, {"type": "double", "name": "example", "required": true}, {"type":
+  "double", "name": "excellent", "required": true}, {"type": "double", "name": "except",
+  "required": true}, {"type": "double", "name": "excess", "required": true}, {"type":
+  "double", "name": "excessive", "required": true}, {"type": "double", "name": "exchange",
+  "required": true}, {"type": "double", "name": "excuse", "required": true}, {"type":
+  "double", "name": "executive", "required": true}, {"type": "double", "name": "exhibit",
+  "required": true}, {"type": "double", "name": "exist", "required": true}, {"type":
+  "double", "name": "existing", "required": true}, {"type": "double", "name": "expect",
+  "required": true}, {"type": "double", "name": "expected", "required": true}, {"type":
+  "double", "name": "expense", "required": true}, {"type": "double", "name": "expenses",
+  "required": true}, {"type": "double", "name": "experience", "required": true}, {"type":
+  "double", "name": "experienced", "required": true}, {"type": "double", "name": "expiration",
+  "required": true}, {"type": "double", "name": "expired", "required": true}, {"type":
+  "double", "name": "explain", "required": true}, {"type": "double", "name": "explained",
+  "required": true}, {"type": "double", "name": "explaining", "required": true}, {"type":
+  "double", "name": "explanation", "required": true}, {"type": "double", "name": "ext",
+  "required": true}, {"type": "double", "name": "extend", "required": true}, {"type":
+  "double", "name": "extended", "required": true}, {"type": "double", "name": "extension",
+  "required": true}, {"type": "double", "name": "external", "required": true}, {"type":
+  "double", "name": "extra", "required": true}, {"type": "double", "name": "extremely",
+  "required": true}, {"type": "double", "name": "face", "required": true}, {"type":
+  "double", "name": "fact", "required": true}, {"type": "double", "name": "facts",
+  "required": true}, {"type": "double", "name": "fail", "required": true}, {"type":
+  "double", "name": "failed", "required": true}, {"type": "double", "name": "failing",
+  "required": true}, {"type": "double", "name": "failure", "required": true}, {"type":
+  "double", "name": "fair", "required": true}, {"type": "double", "name": "faith",
+  "required": true}, {"type": "double", "name": "fake", "required": true}, {"type":
+  "double", "name": "fall", "required": true}, {"type": "double", "name": "false",
+  "required": true}, {"type": "double", "name": "falsely", "required": true}, {"type":
+  "double", "name": "family", "required": true}, {"type": "double", "name": "far",
+  "required": true}, {"type": "double", "name": "fast", "required": true}, {"type":
+  "double", "name": "father", "required": true}, {"type": "double", "name": "fault",
+  "required": true}, {"type": "double", "name": "favor", "required": true}, {"type":
+  "double", "name": "fax", "required": true}, {"type": "double", "name": "faxed",
+  "required": true}, {"type": "double", "name": "fbi", "required": true}, {"type":
+  "double", "name": "fcra", "required": true}, {"type": "double", "name": "fdic",
+  "required": true}, {"type": "double", "name": "federal", "required": true}, {"type":
+  "double", "name": "fee", "required": true}, {"type": "double", "name": "feel", "required":
+  true}, {"type": "double", "name": "fees", "required": true}, {"type": "double",
+  "name": "fell", "required": true}, {"type": "double", "name": "felt", "required":
+  true}, {"type": "double", "name": "fha", "required": true}, {"type": "double", "name":
+  "fico", "required": true}, {"type": "double", "name": "figure", "required": true},
+  {"type": "double", "name": "figured", "required": true}, {"type": "double", "name":
+  "file", "required": true}, {"type": "double", "name": "filed", "required": true},
+  {"type": "double", "name": "files", "required": true}, {"type": "double", "name":
+  "filing", "required": true}, {"type": "double", "name": "fill", "required": true},
+  {"type": "double", "name": "filled", "required": true}, {"type": "double", "name":
+  "final", "required": true}, {"type": "double", "name": "finally", "required": true},
+  {"type": "double", "name": "finance", "required": true}, {"type": "double", "name":
+  "finances", "required": true}, {"type": "double", "name": "financial", "required":
+  true}, {"type": "double", "name": "financially", "required": true}, {"type": "double",
+  "name": "financing", "required": true}, {"type": "double", "name": "find", "required":
+  true}, {"type": "double", "name": "finding", "required": true}, {"type": "double",
+  "name": "fine", "required": true}, {"type": "double", "name": "firm", "required":
+  true}, {"type": "double", "name": "first", "required": true}, {"type": "double",
+  "name": "five", "required": true}, {"type": "double", "name": "fix", "required":
+  true}, {"type": "double", "name": "fixed", "required": true}, {"type": "double",
+  "name": "fl", "required": true}, {"type": "double", "name": "flagged", "required":
+  true}, {"type": "double", "name": "flight", "required": true}, {"type": "double",
+  "name": "flights", "required": true}, {"type": "double", "name": "florida", "required":
+  true}, {"type": "double", "name": "follow", "required": true}, {"type": "double",
+  "name": "followed", "required": true}, {"type": "double", "name": "following", "required":
+  true}, {"type": "double", "name": "follows", "required": true}, {"type": "double",
+  "name": "food", "required": true}, {"type": "double", "name": "footage", "required":
+  true}, {"type": "double", "name": "forbearance", "required": true}, {"type": "double",
+  "name": "force", "required": true}, {"type": "double", "name": "forced", "required":
+  true}, {"type": "double", "name": "foreclose", "required": true}, {"type": "double",
+  "name": "foreclosed", "required": true}, {"type": "double", "name": "foreclosure",
+  "required": true}, {"type": "double", "name": "foreign", "required": true}, {"type":
+  "double", "name": "forged", "required": true}, {"type": "double", "name": "form",
+  "required": true}, {"type": "double", "name": "formal", "required": true}, {"type":
+  "double", "name": "former", "required": true}, {"type": "double", "name": "forms",
+  "required": true}, {"type": "double", "name": "forth", "required": true}, {"type":
+  "double", "name": "forward", "required": true}, {"type": "double", "name": "forwarded",
+  "required": true}, {"type": "double", "name": "found", "required": true}, {"type":
+  "double", "name": "four", "required": true}, {"type": "double", "name": "frame",
+  "required": true}, {"type": "double", "name": "fraud", "required": true}, {"type":
+  "double", "name": "frauding", "required": true}, {"type": "double", "name": "fraudulent",
+  "required": true}, {"type": "double", "name": "fraudulently", "required": true},
+  {"type": "double", "name": "free", "required": true}, {"type": "double", "name":
+  "freedom", "required": true}, {"type": "double", "name": "freeze", "required": true},
+  {"type": "double", "name": "friday", "required": true}, {"type": "double", "name":
+  "friend", "required": true}, {"type": "double", "name": "friends", "required": true},
+  {"type": "double", "name": "front", "required": true}, {"type": "double", "name":
+  "froze", "required": true}, {"type": "double", "name": "frozen", "required": true},
+  {"type": "double", "name": "frustrated", "required": true}, {"type": "double", "name":
+  "frustrating", "required": true}, {"type": "double", "name": "ftc", "required":
+  true}, {"type": "double", "name": "full", "required": true}, {"type": "double",
+  "name": "fully", "required": true}, {"type": "double", "name": "fund", "required":
+  true}, {"type": "double", "name": "funds", "required": true}, {"type": "double",
+  "name": "furthermore", "required": true}, {"type": "double", "name": "future", "required":
+  true}, {"type": "double", "name": "gain", "required": true}, {"type": "double",
+  "name": "gas", "required": true}, {"type": "double", "name": "gave", "required":
+  true}, {"type": "double", "name": "general", "required": true}, {"type": "double",
+  "name": "get", "required": true}, {"type": "double", "name": "gets", "required":
+  true}, {"type": "double", "name": "getting", "required": true}, {"type": "double",
+  "name": "gift", "required": true}, {"type": "double", "name": "give", "required":
+  true}, {"type": "double", "name": "given", "required": true}, {"type": "double",
+  "name": "gives", "required": true}, {"type": "double", "name": "giving", "required":
+  true}, {"type": "double", "name": "go", "required": true}, {"type": "double", "name":
+  "goes", "required": true}, {"type": "double", "name": "going", "required": true},
+  {"type": "double", "name": "gone", "required": true}, {"type": "double", "name":
+  "good", "required": true}, {"type": "double", "name": "goods", "required": true},
+  {"type": "double", "name": "got", "required": true}, {"type": "double", "name":
+  "gotten", "required": true}, {"type": "double", "name": "government", "required":
+  true}, {"type": "double", "name": "granted", "required": true}, {"type": "double",
+  "name": "great", "required": true}, {"type": "double", "name": "greatly", "required":
+  true}, {"type": "double", "name": "group", "required": true}, {"type": "double",
+  "name": "guarantee", "required": true}, {"type": "double", "name": "guess", "required":
+  true}, {"type": "double", "name": "guidelines", "required": true}, {"type": "double",
+  "name": "guy", "required": true}, {"type": "double", "name": "hacked", "required":
+  true}, {"type": "double", "name": "half", "required": true}, {"type": "double",
+  "name": "hamp", "required": true}, {"type": "double", "name": "hand", "required":
+  true}, {"type": "double", "name": "handle", "required": true}, {"type": "double",
+  "name": "handled", "required": true}, {"type": "double", "name": "handling", "required":
+  true}, {"type": "double", "name": "hands", "required": true}, {"type": "double",
+  "name": "happen", "required": true}, {"type": "double", "name": "happened", "required":
+  true}, {"type": "double", "name": "happening", "required": true}, {"type": "double",
+  "name": "happens", "required": true}, {"type": "double", "name": "happy", "required":
+  true}, {"type": "double", "name": "harassment", "required": true}, {"type": "double",
+  "name": "hard", "required": true}, {"type": "double", "name": "hardship", "required":
+  true}, {"type": "double", "name": "harm", "required": true}, {"type": "double",
+  "name": "havent", "required": true}, {"type": "double", "name": "health", "required":
+  true}, {"type": "double", "name": "hear", "required": true}, {"type": "double",
+  "name": "heard", "required": true}, {"type": "double", "name": "hearing", "required":
+  true}, {"type": "double", "name": "held", "required": true}, {"type": "double",
+  "name": "hello", "required": true}, {"type": "double", "name": "heloc", "required":
+  true}, {"type": "double", "name": "help", "required": true}, {"type": "double",
+  "name": "helped", "required": true}, {"type": "double", "name": "helpful", "required":
+  true}, {"type": "double", "name": "helping", "required": true}, {"type": "double",
+  "name": "hi", "required": true}, {"type": "double", "name": "high", "required":
+  true}, {"type": "double", "name": "higher", "required": true}, {"type": "double",
+  "name": "highest", "required": true}, {"type": "double", "name": "highly", "required":
+  true}, {"type": "double", "name": "hired", "required": true}, {"type": "double",
+  "name": "history", "required": true}, {"type": "double", "name": "hit", "required":
+  true}, {"type": "double", "name": "hold", "required": true}, {"type": "double",
+  "name": "holder", "required": true}, {"type": "double", "name": "holders", "required":
+  true}, {"type": "double", "name": "holding", "required": true}, {"type": "double",
+  "name": "holds", "required": true}, {"type": "double", "name": "home", "required":
+  true}, {"type": "double", "name": "homeowner", "required": true}, {"type": "double",
+  "name": "homeowners", "required": true}, {"type": "double", "name": "homes", "required":
+  true}, {"type": "double", "name": "honest", "required": true}, {"type": "double",
+  "name": "honor", "required": true}, {"type": "double", "name": "honored", "required":
+  true}, {"type": "double", "name": "hope", "required": true}, {"type": "double",
+  "name": "hoping", "required": true}, {"type": "double", "name": "horrible", "required":
+  true}, {"type": "double", "name": "hospital", "required": true}, {"type": "double",
+  "name": "hotel", "required": true}, {"type": "double", "name": "hour", "required":
+  true}, {"type": "double", "name": "hours", "required": true}, {"type": "double",
+  "name": "house", "required": true}, {"type": "double", "name": "housing", "required":
+  true}, {"type": "double", "name": "however", "required": true}, {"type": "double",
+  "name": "hud", "required": true}, {"type": "double", "name": "huge", "required":
+  true}, {"type": "double", "name": "hung", "required": true}, {"type": "double",
+  "name": "hurt", "required": true}, {"type": "double", "name": "husband", "required":
+  true}, {"type": "double", "name": "id", "required": true}, {"type": "double", "name":
+  "idea", "required": true}, {"type": "double", "name": "identification", "required":
+  true}, {"type": "double", "name": "identified", "required": true}, {"type": "double",
+  "name": "identify", "required": true}, {"type": "double", "name": "identity", "required":
+  true}, {"type": "double", "name": "ignore", "required": true}, {"type": "double",
+  "name": "ignored", "required": true}, {"type": "double", "name": "il", "required":
+  true}, {"type": "double", "name": "illegal", "required": true}, {"type": "double",
+  "name": "illegally", "required": true}, {"type": "double", "name": "im", "required":
+  true}, {"type": "double", "name": "immediate", "required": true}, {"type": "double",
+  "name": "immediately", "required": true}, {"type": "double", "name": "impact", "required":
+  true}, {"type": "double", "name": "impacted", "required": true}, {"type": "double",
+  "name": "important", "required": true}, {"type": "double", "name": "impossible",
+  "required": true}, {"type": "double", "name": "inaccurate", "required": true}, {"type":
+  "double", "name": "incident", "required": true}, {"type": "double", "name": "include",
+  "required": true}, {"type": "double", "name": "included", "required": true}, {"type":
+  "double", "name": "includes", "required": true}, {"type": "double", "name": "including",
+  "required": true}, {"type": "double", "name": "income", "required": true}, {"type":
+  "double", "name": "inconvenience", "required": true}, {"type": "double", "name":
+  "incorrect", "required": true}, {"type": "double", "name": "incorrectly", "required":
+  true}, {"type": "double", "name": "increase", "required": true}, {"type": "double",
+  "name": "increased", "required": true}, {"type": "double", "name": "incurred", "required":
+  true}, {"type": "double", "name": "indeed", "required": true}, {"type": "double",
+  "name": "indicate", "required": true}, {"type": "double", "name": "indicated", "required":
+  true}, {"type": "double", "name": "indicates", "required": true}, {"type": "double",
+  "name": "indicating", "required": true}, {"type": "double", "name": "individual",
+  "required": true}, {"type": "double", "name": "individuals", "required": true},
+  {"type": "double", "name": "info", "required": true}, {"type": "double", "name":
+  "inform", "required": true}, {"type": "double", "name": "information", "required":
+  true}, {"type": "double", "name": "informed", "required": true}, {"type": "double",
+  "name": "informing", "required": true}, {"type": "double", "name": "initial", "required":
+  true}, {"type": "double", "name": "initially", "required": true}, {"type": "double",
+  "name": "initiate", "required": true}, {"type": "double", "name": "initiated", "required":
+  true}, {"type": "double", "name": "ink", "required": true}, {"type": "double", "name":
+  "inquire", "required": true}, {"type": "double", "name": "inquired", "required":
+  true}, {"type": "double", "name": "inquires", "required": true}, {"type": "double",
+  "name": "inquiries", "required": true}, {"type": "double", "name": "inquiry", "required":
+  true}, {"type": "double", "name": "inside", "required": true}, {"type": "double",
+  "name": "insisted", "required": true}, {"type": "double", "name": "inspection",
+  "required": true}, {"type": "double", "name": "instead", "required": true}, {"type":
+  "double", "name": "institution", "required": true}, {"type": "double", "name": "institutions",
+  "required": true}, {"type": "double", "name": "instructed", "required": true}, {"type":
+  "double", "name": "instructions", "required": true}, {"type": "double", "name":
+  "insufficient", "required": true}, {"type": "double", "name": "insurance", "required":
+  true}, {"type": "double", "name": "intended", "required": true}, {"type": "double",
+  "name": "intent", "required": true}, {"type": "double", "name": "intention", "required":
+  true}, {"type": "double", "name": "intentionally", "required": true}, {"type": "double",
+  "name": "interest", "required": true}, {"type": "double", "name": "interested",
+  "required": true}, {"type": "double", "name": "internal", "required": true}, {"type":
+  "double", "name": "international", "required": true}, {"type": "double", "name":
+  "internet", "required": true}, {"type": "double", "name": "invalid", "required":
+  true}, {"type": "double", "name": "investigate", "required": true}, {"type": "double",
+  "name": "investigated", "required": true}, {"type": "double", "name": "investigating",
+  "required": true}, {"type": "double", "name": "investigation", "required": true},
+  {"type": "double", "name": "investigator", "required": true}, {"type": "double",
+  "name": "investment", "required": true}, {"type": "double", "name": "investor",
+  "required": true}, {"type": "double", "name": "invoice", "required": true}, {"type":
+  "double", "name": "involved", "required": true}, {"type": "double", "name": "irs",
+  "required": true}, {"type": "double", "name": "issue", "required": true}, {"type":
+  "double", "name": "issued", "required": true}, {"type": "double", "name": "issuer",
+  "required": true}, {"type": "double", "name": "issues", "required": true}, {"type":
+  "double", "name": "issuing", "required": true}, {"type": "double", "name": "item",
+  "required": true}, {"type": "double", "name": "items", "required": true}, {"type":
+  "double", "name": "ive", "required": true}, {"type": "double", "name": "job", "required":
+  true}, {"type": "double", "name": "joint", "required": true}, {"type": "double",
+  "name": "jp", "required": true}, {"type": "double", "name": "jpm", "required": true},
+  {"type": "double", "name": "jpmc", "required": true}, {"type": "double", "name":
+  "jpmcb", "required": true}, {"type": "double", "name": "jpmorgan", "required": true},
+  {"type": "double", "name": "judge", "required": true}, {"type": "double", "name":
+  "judgement", "required": true}, {"type": "double", "name": "judgment", "required":
+  true}, {"type": "double", "name": "keep", "required": true}, {"type": "double",
+  "name": "keeping", "required": true}, {"type": "double", "name": "keeps", "required":
+  true}, {"type": "double", "name": "kept", "required": true}, {"type": "double",
+  "name": "kids", "required": true}, {"type": "double", "name": "kind", "required":
+  true}, {"type": "double", "name": "knew", "required": true}, {"type": "double",
+  "name": "know", "required": true}, {"type": "double", "name": "knowing", "required":
+  true}, {"type": "double", "name": "knowledge", "required": true}, {"type": "double",
+  "name": "known", "required": true}, {"type": "double", "name": "knows", "required":
+  true}, {"type": "double", "name": "lack", "required": true}, {"type": "double",
+  "name": "lady", "required": true}, {"type": "double", "name": "large", "required":
+  true}, {"type": "double", "name": "last", "required": true}, {"type": "double",
+  "name": "late", "required": true}, {"type": "double", "name": "later", "required":
+  true}, {"type": "double", "name": "latest", "required": true}, {"type": "double",
+  "name": "law", "required": true}, {"type": "double", "name": "laws", "required":
+  true}, {"type": "double", "name": "lawsuit", "required": true}, {"type": "double",
+  "name": "lawyer", "required": true}, {"type": "double", "name": "lead", "required":
+  true}, {"type": "double", "name": "learned", "required": true}, {"type": "double",
+  "name": "lease", "required": true}, {"type": "double", "name": "leaseloan", "required":
+  true}, {"type": "double", "name": "least", "required": true}, {"type": "double",
+  "name": "leave", "required": true}, {"type": "double", "name": "leaving", "required":
+  true}, {"type": "double", "name": "led", "required": true}, {"type": "double", "name":
+  "left", "required": true}, {"type": "double", "name": "legal", "required": true},
+  {"type": "double", "name": "legally", "required": true}, {"type": "double", "name":
+  "legitimate", "required": true}, {"type": "double", "name": "lender", "required":
+  true}, {"type": "double", "name": "lending", "required": true}, {"type": "double",
+  "name": "less", "required": true}, {"type": "double", "name": "let", "required":
+  true}, {"type": "double", "name": "letter", "required": true}, {"type": "double",
+  "name": "letters", "required": true}, {"type": "double", "name": "letting", "required":
+  true}, {"type": "double", "name": "level", "required": true}, {"type": "double",
+  "name": "liability", "required": true}, {"type": "double", "name": "liable", "required":
+  true}, {"type": "double", "name": "license", "required": true}, {"type": "double",
+  "name": "lie", "required": true}, {"type": "double", "name": "lied", "required":
+  true}, {"type": "double", "name": "lien", "required": true}, {"type": "double",
+  "name": "lies", "required": true}, {"type": "double", "name": "life", "required":
+  true}, {"type": "double", "name": "light", "required": true}, {"type": "double",
+  "name": "like", "required": true}, {"type": "double", "name": "likely", "required":
+  true}, {"type": "double", "name": "limit", "required": true}, {"type": "double",
+  "name": "limited", "required": true}, {"type": "double", "name": "limits", "required":
+  true}, {"type": "double", "name": "line", "required": true}, {"type": "double",
+  "name": "lines", "required": true}, {"type": "double", "name": "link", "required":
+  true}, {"type": "double", "name": "linked", "required": true}, {"type": "double",
+  "name": "list", "required": true}, {"type": "double", "name": "listed", "required":
+  true}, {"type": "double", "name": "listen", "required": true}, {"type": "double",
+  "name": "listing", "required": true}, {"type": "double", "name": "literally", "required":
+  true}, {"type": "double", "name": "little", "required": true}, {"type": "double",
+  "name": "live", "required": true}, {"type": "double", "name": "lived", "required":
+  true}, {"type": "double", "name": "lives", "required": true}, {"type": "double",
+  "name": "living", "required": true}, {"type": "double", "name": "loan", "required":
+  true}, {"type": "double", "name": "loans", "required": true}, {"type": "double",
+  "name": "loanvehicle", "required": true}, {"type": "double", "name": "local", "required":
+  true}, {"type": "double", "name": "locate", "required": true}, {"type": "double",
+  "name": "located", "required": true}, {"type": "double", "name": "location", "required":
+  true}, {"type": "double", "name": "lock", "required": true}, {"type": "double",
+  "name": "locked", "required": true}, {"type": "double", "name": "log", "required":
+  true}, {"type": "double", "name": "logged", "required": true}, {"type": "double",
+  "name": "login", "required": true}, {"type": "double", "name": "long", "required":
+  true}, {"type": "double", "name": "longer", "required": true}, {"type": "double",
+  "name": "look", "required": true}, {"type": "double", "name": "looked", "required":
+  true}, {"type": "double", "name": "looking", "required": true}, {"type": "double",
+  "name": "looks", "required": true}, {"type": "double", "name": "lose", "required":
+  true}, {"type": "double", "name": "losing", "required": true}, {"type": "double",
+  "name": "loss", "required": true}, {"type": "double", "name": "lost", "required":
+  true}, {"type": "double", "name": "lot", "required": true}, {"type": "double", "name":
+  "low", "required": true}, {"type": "double", "name": "lower", "required": true},
+  {"type": "double", "name": "lowered", "required": true}, {"type": "double", "name":
+  "loyal", "required": true}, {"type": "double", "name": "lying", "required": true},
+  {"type": "double", "name": "machine", "required": true}, {"type": "double", "name":
+  "made", "required": true}, {"type": "double", "name": "mail", "required": true},
+  {"type": "double", "name": "mailed", "required": true}, {"type": "double", "name":
+  "mailing", "required": true}, {"type": "double", "name": "main", "required": true},
+  {"type": "double", "name": "maintain", "required": true}, {"type": "double", "name":
+  "major", "required": true}, {"type": "double", "name": "make", "required": true},
+  {"type": "double", "name": "makes", "required": true}, {"type": "double", "name":
+  "making", "required": true}, {"type": "double", "name": "man", "required": true},
+  {"type": "double", "name": "manage", "required": true}, {"type": "double", "name":
+  "managed", "required": true}, {"type": "double", "name": "management", "required":
+  true}, {"type": "double", "name": "manager", "required": true}, {"type": "double",
+  "name": "managers", "required": true}, {"type": "double", "name": "manner", "required":
+  true}, {"type": "double", "name": "many", "required": true}, {"type": "double",
+  "name": "mark", "required": true}, {"type": "double", "name": "marked", "required":
+  true}, {"type": "double", "name": "market", "required": true}, {"type": "double",
+  "name": "marketing", "required": true}, {"type": "double", "name": "marriott", "required":
+  true}, {"type": "double", "name": "match", "required": true}, {"type": "double",
+  "name": "matter", "required": true}, {"type": "double", "name": "matters", "required":
+  true}, {"type": "double", "name": "may", "required": true}, {"type": "double", "name":
+  "maybe", "required": true}, {"type": "double", "name": "mean", "required": true},
+  {"type": "double", "name": "means", "required": true}, {"type": "double", "name":
+  "meant", "required": true}, {"type": "double", "name": "meantime", "required": true},
+  {"type": "double", "name": "medical", "required": true}, {"type": "double", "name":
+  "meet", "required": true}, {"type": "double", "name": "meeting", "required": true},
+  {"type": "double", "name": "member", "required": true}, {"type": "double", "name":
+  "members", "required": true}, {"type": "double", "name": "membership", "required":
+  true}, {"type": "double", "name": "mention", "required": true}, {"type": "double",
+  "name": "mentioned", "required": true}, {"type": "double", "name": "merchandise",
+  "required": true}, {"type": "double", "name": "merchant", "required": true}, {"type":
+  "double", "name": "merchants", "required": true}, {"type": "double", "name": "message",
+  "required": true}, {"type": "double", "name": "messages", "required": true}, {"type":
+  "double", "name": "met", "required": true}, {"type": "double", "name": "method",
+  "required": true}, {"type": "double", "name": "middle", "required": true}, {"type":
+  "double", "name": "might", "required": true}, {"type": "double", "name": "mileage",
+  "required": true}, {"type": "double", "name": "miles", "required": true}, {"type":
+  "double", "name": "military", "required": true}, {"type": "double", "name": "mind",
+  "required": true}, {"type": "double", "name": "mine", "required": true}, {"type":
+  "double", "name": "minimum", "required": true}, {"type": "double", "name": "minute",
+  "required": true}, {"type": "double", "name": "minutes", "required": true}, {"type":
+  "double", "name": "misleading", "required": true}, {"type": "double", "name": "miss",
+  "required": true}, {"type": "double", "name": "missed", "required": true}, {"type":
+  "double", "name": "missing", "required": true}, {"type": "double", "name": "mistake",
+  "required": true}, {"type": "double", "name": "mistakes", "required": true}, {"type":
+  "double", "name": "mitigation", "required": true}, {"type": "double", "name": "mobile",
+  "required": true}, {"type": "double", "name": "modification", "required": true},
+  {"type": "double", "name": "modified", "required": true}, {"type": "double", "name":
+  "modify", "required": true}, {"type": "double", "name": "mom", "required": true},
+  {"type": "double", "name": "moment", "required": true}, {"type": "double", "name":
+  "monday", "required": true}, {"type": "double", "name": "money", "required": true},
+  {"type": "double", "name": "monies", "required": true}, {"type": "double", "name":
+  "monitoring", "required": true}, {"type": "double", "name": "month", "required":
+  true}, {"type": "double", "name": "monthly", "required": true}, {"type": "double",
+  "name": "months", "required": true}, {"type": "double", "name": "morgan", "required":
+  true}, {"type": "double", "name": "morning", "required": true}, {"type": "double",
+  "name": "mortgage", "required": true}, {"type": "double", "name": "mortgageconventional",
+  "required": true}, {"type": "double", "name": "mortgagefha", "required": true},
+  {"type": "double", "name": "mortgagehome", "required": true}, {"type": "double",
+  "name": "mortgageother", "required": true}, {"type": "double", "name": "mortgages",
+  "required": true}, {"type": "double", "name": "mother", "required": true}, {"type":
+  "double", "name": "move", "required": true}, {"type": "double", "name": "moved",
+  "required": true}, {"type": "double", "name": "moving", "required": true}, {"type":
+  "double", "name": "much", "required": true}, {"type": "double", "name": "multiple",
+  "required": true}, {"type": "double", "name": "must", "required": true}, {"type":
+  "double", "name": "mutual", "required": true}, {"type": "double", "name": "na",
+  "required": true}, {"type": "double", "name": "name", "required": true}, {"type":
+  "double", "name": "named", "required": true}, {"type": "double", "name": "names",
+  "required": true}, {"type": "double", "name": "national", "required": true}, {"type":
+  "double", "name": "near", "required": true}, {"type": "double", "name": "nearly",
+  "required": true}, {"type": "double", "name": "necessary", "required": true}, {"type":
+  "double", "name": "need", "required": true}, {"type": "double", "name": "needed",
+  "required": true}, {"type": "double", "name": "needs", "required": true}, {"type":
+  "double", "name": "negative", "required": true}, {"type": "double", "name": "negatively",
+  "required": true}, {"type": "double", "name": "negligence", "required": true}, {"type":
+  "double", "name": "neither", "required": true}, {"type": "double", "name": "never",
+  "required": true}, {"type": "double", "name": "new", "required": true}, {"type":
+  "double", "name": "next", "required": true}, {"type": "double", "name": "nice",
+  "required": true}, {"type": "double", "name": "night", "required": true}, {"type":
+  "double", "name": "nj", "required": true}, {"type": "double", "name": "nobody",
+  "required": true}, {"type": "double", "name": "non", "required": true}, {"type":
+  "double", "name": "none", "required": true}, {"type": "double", "name": "normal",
+  "required": true}, {"type": "double", "name": "notarized", "required": true}, {"type":
+  "double", "name": "note", "required": true}, {"type": "double", "name": "noted",
+  "required": true}, {"type": "double", "name": "notes", "required": true}, {"type":
+  "double", "name": "nothing", "required": true}, {"type": "double", "name": "notice",
+  "required": true}, {"type": "double", "name": "noticed", "required": true}, {"type":
+  "double", "name": "notices", "required": true}, {"type": "double", "name": "notification",
+  "required": true}, {"type": "double", "name": "notifications", "required": true},
+  {"type": "double", "name": "notified", "required": true}, {"type": "double", "name":
+  "notify", "required": true}, {"type": "double", "name": "notifying", "required":
+  true}, {"type": "double", "name": "nowhere", "required": true}, {"type": "double",
+  "name": "nsf", "required": true}, {"type": "double", "name": "number", "required":
+  true}, {"type": "double", "name": "numbers", "required": true}, {"type": "double",
+  "name": "numerous", "required": true}, {"type": "double", "name": "ny", "required":
+  true}, {"type": "double", "name": "obligation", "required": true}, {"type": "double",
+  "name": "obtain", "required": true}, {"type": "double", "name": "obtained", "required":
+  true}, {"type": "double", "name": "obtaining", "required": true}, {"type": "double",
+  "name": "obvious", "required": true}, {"type": "double", "name": "obviously", "required":
+  true}, {"type": "double", "name": "occasions", "required": true}, {"type": "double",
+  "name": "occur", "required": true}, {"type": "double", "name": "occurred", "required":
+  true}, {"type": "double", "name": "offer", "required": true}, {"type": "double",
+  "name": "offered", "required": true}, {"type": "double", "name": "offering", "required":
+  true}, {"type": "double", "name": "offers", "required": true}, {"type": "double",
+  "name": "office", "required": true}, {"type": "double", "name": "officer", "required":
+  true}, {"type": "double", "name": "offices", "required": true}, {"type": "double",
+  "name": "official", "required": true}, {"type": "double", "name": "often", "required":
+  true}, {"type": "double", "name": "oh", "required": true}, {"type": "double", "name":
+  "ohio", "required": true}, {"type": "double", "name": "ok", "required": true}, {"type":
+  "double", "name": "okay", "required": true}, {"type": "double", "name": "old", "required":
+  true}, {"type": "double", "name": "one", "required": true}, {"type": "double", "name":
+  "ones", "required": true}, {"type": "double", "name": "ongoing", "required": true},
+  {"type": "double", "name": "online", "required": true}, {"type": "double", "name":
+  "onto", "required": true}, {"type": "double", "name": "open", "required": true},
+  {"type": "double", "name": "opened", "required": true}, {"type": "double", "name":
+  "opening", "required": true}, {"type": "double", "name": "opinion", "required":
+  true}, {"type": "double", "name": "opportunity", "required": true}, {"type": "double",
+  "name": "option", "required": true}, {"type": "double", "name": "options", "required":
+  true}, {"type": "double", "name": "order", "required": true}, {"type": "double",
+  "name": "ordered", "required": true}, {"type": "double", "name": "orders", "required":
+  true}, {"type": "double", "name": "organization", "required": true}, {"type": "double",
+  "name": "original", "required": true}, {"type": "double", "name": "originally",
+  "required": true}, {"type": "double", "name": "others", "required": true}, {"type":
+  "double", "name": "otherwise", "required": true}, {"type": "double", "name": "outside",
+  "required": true}, {"type": "double", "name": "outstanding", "required": true},
+  {"type": "double", "name": "overall", "required": true}, {"type": "double", "name":
+  "overdraft", "required": true}, {"type": "double", "name": "overdrawn", "required":
+  true}, {"type": "double", "name": "overseas", "required": true}, {"type": "double",
+  "name": "owe", "required": true}, {"type": "double", "name": "owed", "required":
+  true}, {"type": "double", "name": "owned", "required": true}, {"type": "double",
+  "name": "owner", "required": true}, {"type": "double", "name": "owners", "required":
+  true}, {"type": "double", "name": "ownership", "required": true}, {"type": "double",
+  "name": "package", "required": true}, {"type": "double", "name": "page", "required":
+  true}, {"type": "double", "name": "pages", "required": true}, {"type": "double",
+  "name": "paid", "required": true}, {"type": "double", "name": "pandemic", "required":
+  true}, {"type": "double", "name": "paper", "required": true}, {"type": "double",
+  "name": "paperless", "required": true}, {"type": "double", "name": "papers", "required":
+  true}, {"type": "double", "name": "paperwork", "required": true}, {"type": "double",
+  "name": "parents", "required": true}, {"type": "double", "name": "part", "required":
+  true}, {"type": "double", "name": "partial", "required": true}, {"type": "double",
+  "name": "particular", "required": true}, {"type": "double", "name": "parties", "required":
+  true}, {"type": "double", "name": "partner", "required": true}, {"type": "double",
+  "name": "party", "required": true}, {"type": "double", "name": "pass", "required":
+  true}, {"type": "double", "name": "passed", "required": true}, {"type": "double",
+  "name": "password", "required": true}, {"type": "double", "name": "past", "required":
+  true}, {"type": "double", "name": "pay", "required": true}, {"type": "double", "name":
+  "paycheck", "required": true}, {"type": "double", "name": "payee", "required": true},
+  {"type": "double", "name": "paying", "required": true}, {"type": "double", "name":
+  "payment", "required": true}, {"type": "double", "name": "payments", "required":
+  true}, {"type": "double", "name": "payoff", "required": true}, {"type": "double",
+  "name": "payroll", "required": true}, {"type": "double", "name": "penalties", "required":
+  true}, {"type": "double", "name": "penalty", "required": true}, {"type": "double",
+  "name": "pending", "required": true}, {"type": "double", "name": "people", "required":
+  true}, {"type": "double", "name": "per", "required": true}, {"type": "double", "name":
+  "percent", "required": true}, {"type": "double", "name": "perfect", "required":
+  true}, {"type": "double", "name": "performed", "required": true}, {"type": "double",
+  "name": "period", "required": true}, {"type": "double", "name": "permanent", "required":
+  true}, {"type": "double", "name": "permission", "required": true}, {"type": "double",
+  "name": "person", "required": true}, {"type": "double", "name": "personal", "required":
+  true}, {"type": "double", "name": "personally", "required": true}, {"type": "double",
+  "name": "personnel", "required": true}, {"type": "double", "name": "phone", "required":
+  true}, {"type": "double", "name": "physical", "required": true}, {"type": "double",
+  "name": "physically", "required": true}, {"type": "double", "name": "pick", "required":
+  true}, {"type": "double", "name": "picked", "required": true}, {"type": "double",
+  "name": "pictures", "required": true}, {"type": "double", "name": "pin", "required":
+  true}, {"type": "double", "name": "place", "required": true}, {"type": "double",
+  "name": "placed", "required": true}, {"type": "double", "name": "plan", "required":
+  true}, {"type": "double", "name": "please", "required": true}, {"type": "double",
+  "name": "plus", "required": true}, {"type": "double", "name": "pmi", "required":
+  true}, {"type": "double", "name": "point", "required": true}, {"type": "double",
+  "name": "points", "required": true}, {"type": "double", "name": "police", "required":
+  true}, {"type": "double", "name": "policies", "required": true}, {"type": "double",
+  "name": "policy", "required": true}, {"type": "double", "name": "poor", "required":
+  true}, {"type": "double", "name": "portal", "required": true}, {"type": "double",
+  "name": "portion", "required": true}, {"type": "double", "name": "position", "required":
+  true}, {"type": "double", "name": "positive", "required": true}, {"type": "double",
+  "name": "possession", "required": true}, {"type": "double", "name": "possible",
+  "required": true}, {"type": "double", "name": "possibly", "required": true}, {"type":
+  "double", "name": "post", "required": true}, {"type": "double", "name": "posted",
+  "required": true}, {"type": "double", "name": "posting", "required": true}, {"type":
+  "double", "name": "potential", "required": true}, {"type": "double", "name": "power",
+  "required": true}, {"type": "double", "name": "practice", "required": true}, {"type":
+  "double", "name": "practices", "required": true}, {"type": "double", "name": "predatory",
+  "required": true}, {"type": "double", "name": "preferred", "required": true}, {"type":
+  "double", "name": "prepaid", "required": true}, {"type": "double", "name": "present",
+  "required": true}, {"type": "double", "name": "presented", "required": true}, {"type":
+  "double", "name": "president", "required": true}, {"type": "double", "name": "pretty",
+  "required": true}, {"type": "double", "name": "prevent", "required": true}, {"type":
+  "double", "name": "prevention", "required": true}, {"type": "double", "name": "previous",
+  "required": true}, {"type": "double", "name": "previously", "required": true}, {"type":
+  "double", "name": "price", "required": true}, {"type": "double", "name": "primary",
+  "required": true}, {"type": "double", "name": "prime", "required": true}, {"type":
+  "double", "name": "principal", "required": true}, {"type": "double", "name": "principle",
+  "required": true}, {"type": "double", "name": "print", "required": true}, {"type":
+  "double", "name": "printed", "required": true}, {"type": "double", "name": "prior",
+  "required": true}, {"type": "double", "name": "privacy", "required": true}, {"type":
+  "double", "name": "private", "required": true}, {"type": "double", "name": "probably",
+  "required": true}, {"type": "double", "name": "problem", "required": true}, {"type":
+  "double", "name": "problems", "required": true}, {"type": "double", "name": "procedure",
+  "required": true}, {"type": "double", "name": "procedures", "required": true}, {"type":
+  "double", "name": "proceed", "required": true}, {"type": "double", "name": "proceeded",
+  "required": true}, {"type": "double", "name": "process", "required": true}, {"type":
+  "double", "name": "processed", "required": true}, {"type": "double", "name": "processing",
+  "required": true}, {"type": "double", "name": "product", "required": true}, {"type":
+  "double", "name": "products", "required": true}, {"type": "double", "name": "productservice",
+  "required": true}, {"type": "double", "name": "professional", "required": true},
+  {"type": "double", "name": "profile", "required": true}, {"type": "double", "name":
+  "profit", "required": true}, {"type": "double", "name": "program", "required": true},
+  {"type": "double", "name": "programs", "required": true}, {"type": "double", "name":
+  "promise", "required": true}, {"type": "double", "name": "promised", "required":
+  true}, {"type": "double", "name": "promotion", "required": true}, {"type": "double",
+  "name": "promotional", "required": true}, {"type": "double", "name": "promptly",
+  "required": true}, {"type": "double", "name": "proof", "required": true}, {"type":
+  "double", "name": "proper", "required": true}, {"type": "double", "name": "properly",
+  "required": true}, {"type": "double", "name": "properties", "required": true}, {"type":
+  "double", "name": "property", "required": true}, {"type": "double", "name": "protect",
+  "required": true}, {"type": "double", "name": "protected", "required": true}, {"type":
+  "double", "name": "protection", "required": true}, {"type": "double", "name": "prove",
+  "required": true}, {"type": "double", "name": "provide", "required": true}, {"type":
+  "double", "name": "provided", "required": true}, {"type": "double", "name": "provider",
+  "required": true}, {"type": "double", "name": "provides", "required": true}, {"type":
+  "double", "name": "providing", "required": true}, {"type": "double", "name": "proving",
+  "required": true}, {"type": "double", "name": "public", "required": true}, {"type":
+  "double", "name": "pull", "required": true}, {"type": "double", "name": "pulled",
+  "required": true}, {"type": "double", "name": "purchase", "required": true}, {"type":
+  "double", "name": "purchased", "required": true}, {"type": "double", "name": "purchases",
+  "required": true}, {"type": "double", "name": "purchasing", "required": true}, {"type":
+  "double", "name": "purpose", "required": true}, {"type": "double", "name": "purposes",
+  "required": true}, {"type": "double", "name": "pursuant", "required": true}, {"type":
+  "double", "name": "pursue", "required": true}, {"type": "double", "name": "put",
+  "required": true}, {"type": "double", "name": "putting", "required": true}, {"type":
+  "double", "name": "qualified", "required": true}, {"type": "double", "name": "qualify",
+  "required": true}, {"type": "double", "name": "question", "required": true}, {"type":
+  "double", "name": "questioned", "required": true}, {"type": "double", "name": "questions",
+  "required": true}, {"type": "double", "name": "quick", "required": true}, {"type":
+  "double", "name": "quickly", "required": true}, {"type": "double", "name": "quickpay",
+  "required": true}, {"type": "double", "name": "quite", "required": true}, {"type":
+  "double", "name": "quote", "required": true}, {"type": "double", "name": "raised",
+  "required": true}, {"type": "double", "name": "ran", "required": true}, {"type":
+  "double", "name": "rapid", "required": true}, {"type": "double", "name": "rate",
+  "required": true}, {"type": "double", "name": "rates", "required": true}, {"type":
+  "double", "name": "rather", "required": true}, {"type": "double", "name": "rating",
+  "required": true}, {"type": "double", "name": "ratio", "required": true}, {"type":
+  "double", "name": "reach", "required": true}, {"type": "double", "name": "reached",
+  "required": true}, {"type": "double", "name": "reaching", "required": true}, {"type":
+  "double", "name": "read", "required": true}, {"type": "double", "name": "reading",
+  "required": true}, {"type": "double", "name": "ready", "required": true}, {"type":
+  "double", "name": "real", "required": true}, {"type": "double", "name": "realize",
+  "required": true}, {"type": "double", "name": "realized", "required": true}, {"type":
+  "double", "name": "really", "required": true}, {"type": "double", "name": "realtor",
+  "required": true}, {"type": "double", "name": "reason", "required": true}, {"type":
+  "double", "name": "reasonable", "required": true}, {"type": "double", "name": "reasons",
+  "required": true}, {"type": "double", "name": "recall", "required": true}, {"type":
+  "double", "name": "receipt", "required": true}, {"type": "double", "name": "receipts",
+  "required": true}, {"type": "double", "name": "receive", "required": true}, {"type":
+  "double", "name": "received", "required": true}, {"type": "double", "name": "receiving",
+  "required": true}, {"type": "double", "name": "recent", "required": true}, {"type":
+  "double", "name": "recently", "required": true}, {"type": "double", "name": "recieved",
+  "required": true}, {"type": "double", "name": "recipient", "required": true}, {"type":
+  "double", "name": "recognize", "required": true}, {"type": "double", "name": "record",
+  "required": true}, {"type": "double", "name": "recorded", "required": true}, {"type":
+  "double", "name": "recording", "required": true}, {"type": "double", "name": "records",
+  "required": true}, {"type": "double", "name": "recourse", "required": true}, {"type":
+  "double", "name": "recover", "required": true}, {"type": "double", "name": "recovery",
+  "required": true}, {"type": "double", "name": "rectify", "required": true}, {"type":
+  "double", "name": "recurring", "required": true}, {"type": "double", "name": "red",
+  "required": true}, {"type": "double", "name": "reduce", "required": true}, {"type":
+  "double", "name": "reduced", "required": true}, {"type": "double", "name": "reduction",
+  "required": true}, {"type": "double", "name": "refer", "required": true}, {"type":
+  "double", "name": "reference", "required": true}, {"type": "double", "name": "referenced",
+  "required": true}, {"type": "double", "name": "referred", "required": true}, {"type":
+  "double", "name": "refinance", "required": true}, {"type": "double", "name": "refinanced",
+  "required": true}, {"type": "double", "name": "refinancing", "required": true},
+  {"type": "double", "name": "reflect", "required": true}, {"type": "double", "name":
+  "reflected", "required": true}, {"type": "double", "name": "refund", "required":
+  true}, {"type": "double", "name": "refunded", "required": true}, {"type": "double",
+  "name": "refunds", "required": true}, {"type": "double", "name": "refusal", "required":
+  true}, {"type": "double", "name": "refuse", "required": true}, {"type": "double",
+  "name": "refused", "required": true}, {"type": "double", "name": "refuses", "required":
+  true}, {"type": "double", "name": "refusing", "required": true}, {"type": "double",
+  "name": "regard", "required": true}, {"type": "double", "name": "regarding", "required":
+  true}, {"type": "double", "name": "regardless", "required": true}, {"type": "double",
+  "name": "regards", "required": true}, {"type": "double", "name": "registered", "required":
+  true}, {"type": "double", "name": "regular", "required": true}, {"type": "double",
+  "name": "regulation", "required": true}, {"type": "double", "name": "regulations",
+  "required": true}, {"type": "double", "name": "reimburse", "required": true}, {"type":
+  "double", "name": "reimbursed", "required": true}, {"type": "double", "name": "reimbursement",
+  "required": true}, {"type": "double", "name": "rejected", "required": true}, {"type":
+  "double", "name": "related", "required": true}, {"type": "double", "name": "relationship",
+  "required": true}, {"type": "double", "name": "release", "required": true}, {"type":
+  "double", "name": "released", "required": true}, {"type": "double", "name": "relief",
+  "required": true}, {"type": "double", "name": "remain", "required": true}, {"type":
+  "double", "name": "remaining", "required": true}, {"type": "double", "name": "remains",
+  "required": true}, {"type": "double", "name": "remember", "required": true}, {"type":
+  "double", "name": "removal", "required": true}, {"type": "double", "name": "remove",
+  "required": true}, {"type": "double", "name": "removed", "required": true}, {"type":
+  "double", "name": "removing", "required": true}, {"type": "double", "name": "rendered",
+  "required": true}, {"type": "double", "name": "rent", "required": true}, {"type":
+  "double", "name": "rental", "required": true}, {"type": "double", "name": "reopen",
+  "required": true}, {"type": "double", "name": "reopened", "required": true}, {"type":
+  "double", "name": "rep", "required": true}, {"type": "double", "name": "repair",
+  "required": true}, {"type": "double", "name": "repairs", "required": true}, {"type":
+  "double", "name": "repayment", "required": true}, {"type": "double", "name": "repeated",
+  "required": true}, {"type": "double", "name": "repeatedly", "required": true}, {"type":
+  "double", "name": "replacement", "required": true}, {"type": "double", "name": "replied",
+  "required": true}, {"type": "double", "name": "reply", "required": true}, {"type":
+  "double", "name": "report", "required": true}, {"type": "double", "name": "reported",
+  "required": true}, {"type": "double", "name": "reporting", "required": true}, {"type":
+  "double", "name": "reports", "required": true}, {"type": "double", "name": "reportscredit",
+  "required": true}, {"type": "double", "name": "representative", "required": true},
+  {"type": "double", "name": "representatives", "required": true}, {"type": "double",
+  "name": "reps", "required": true}, {"type": "double", "name": "request", "required":
+  true}, {"type": "double", "name": "requested", "required": true}, {"type": "double",
+  "name": "requesting", "required": true}, {"type": "double", "name": "requests",
+  "required": true}, {"type": "double", "name": "require", "required": true}, {"type":
+  "double", "name": "required", "required": true}, {"type": "double", "name": "requirement",
+  "required": true}, {"type": "double", "name": "requirements", "required": true},
+  {"type": "double", "name": "requires", "required": true}, {"type": "double", "name":
+  "research", "required": true}, {"type": "double", "name": "researched", "required":
+  true}, {"type": "double", "name": "reservation", "required": true}, {"type": "double",
+  "name": "reserve", "required": true}, {"type": "double", "name": "residence", "required":
+  true}, {"type": "double", "name": "resolution", "required": true}, {"type": "double",
+  "name": "resolve", "required": true}, {"type": "double", "name": "resolved", "required":
+  true}, {"type": "double", "name": "resolving", "required": true}, {"type": "double",
+  "name": "respect", "required": true}, {"type": "double", "name": "respond", "required":
+  true}, {"type": "double", "name": "responded", "required": true}, {"type": "double",
+  "name": "responding", "required": true}, {"type": "double", "name": "response",
+  "required": true}, {"type": "double", "name": "responses", "required": true}, {"type":
+  "double", "name": "responsibility", "required": true}, {"type": "double", "name":
+  "responsible", "required": true}, {"type": "double", "name": "rest", "required":
+  true}, {"type": "double", "name": "restricted", "required": true}, {"type": "double",
+  "name": "result", "required": true}, {"type": "double", "name": "resulted", "required":
+  true}, {"type": "double", "name": "resulting", "required": true}, {"type": "double",
+  "name": "results", "required": true}, {"type": "double", "name": "retirement", "required":
+  true}, {"type": "double", "name": "retrieve", "required": true}, {"type": "double",
+  "name": "return", "required": true}, {"type": "double", "name": "returned", "required":
+  true}, {"type": "double", "name": "returning", "required": true}, {"type": "double",
+  "name": "returns", "required": true}, {"type": "double", "name": "reversal", "required":
+  true}, {"type": "double", "name": "reverse", "required": true}, {"type": "double",
+  "name": "reversed", "required": true}, {"type": "double", "name": "review", "required":
+  true}, {"type": "double", "name": "reviewed", "required": true}, {"type": "double",
+  "name": "reviewing", "required": true}, {"type": "double", "name": "revolving",
+  "required": true}, {"type": "double", "name": "reward", "required": true}, {"type":
+  "double", "name": "rewards", "required": true}, {"type": "double", "name": "ridiculous",
+  "required": true}, {"type": "double", "name": "right", "required": true}, {"type":
+  "double", "name": "rights", "required": true}, {"type": "double", "name": "risk",
+  "required": true}, {"type": "double", "name": "room", "required": true}, {"type":
+  "double", "name": "routing", "required": true}, {"type": "double", "name": "rude",
+  "required": true}, {"type": "double", "name": "rule", "required": true}, {"type":
+  "double", "name": "rules", "required": true}, {"type": "double", "name": "run",
+  "required": true}, {"type": "double", "name": "running", "required": true}, {"type":
+  "double", "name": "safe", "required": true}, {"type": "double", "name": "said",
+  "required": true}, {"type": "double", "name": "sale", "required": true}, {"type":
+  "double", "name": "sales", "required": true}, {"type": "double", "name": "sapphire",
+  "required": true}, {"type": "double", "name": "sat", "required": true}, {"type":
+  "double", "name": "satisfied", "required": true}, {"type": "double", "name": "saturday",
+  "required": true}, {"type": "double", "name": "save", "required": true}, {"type":
+  "double", "name": "saving", "required": true}, {"type": "double", "name": "savings",
+  "required": true}, {"type": "double", "name": "saw", "required": true}, {"type":
+  "double", "name": "say", "required": true}, {"type": "double", "name": "saying",
+  "required": true}, {"type": "double", "name": "says", "required": true}, {"type":
+  "double", "name": "sba", "required": true}, {"type": "double", "name": "scam", "required":
+  true}, {"type": "double", "name": "scammed", "required": true}, {"type": "double",
+  "name": "scammer", "required": true}, {"type": "double", "name": "scams", "required":
+  true}, {"type": "double", "name": "schedule", "required": true}, {"type": "double",
+  "name": "scheduled", "required": true}, {"type": "double", "name": "school", "required":
+  true}, {"type": "double", "name": "score", "required": true}, {"type": "double",
+  "name": "scores", "required": true}, {"type": "double", "name": "screen", "required":
+  true}, {"type": "double", "name": "screenshot", "required": true}, {"type": "double",
+  "name": "search", "required": true}, {"type": "double", "name": "second", "required":
+  true}, {"type": "double", "name": "section", "required": true}, {"type": "double",
+  "name": "secure", "required": true}, {"type": "double", "name": "secured", "required":
+  true}, {"type": "double", "name": "security", "required": true}, {"type": "double",
+  "name": "see", "required": true}, {"type": "double", "name": "seeing", "required":
+  true}, {"type": "double", "name": "seek", "required": true}, {"type": "double",
+  "name": "seeking", "required": true}, {"type": "double", "name": "seem", "required":
+  true}, {"type": "double", "name": "seemed", "required": true}, {"type": "double",
+  "name": "seems", "required": true}, {"type": "double", "name": "seen", "required":
+  true}, {"type": "double", "name": "sell", "required": true}, {"type": "double",
+  "name": "seller", "required": true}, {"type": "double", "name": "selling", "required":
+  true}, {"type": "double", "name": "send", "required": true}, {"type": "double",
+  "name": "sending", "required": true}, {"type": "double", "name": "sends", "required":
+  true}, {"type": "double", "name": "senior", "required": true}, {"type": "double",
+  "name": "sense", "required": true}, {"type": "double", "name": "sent", "required":
+  true}, {"type": "double", "name": "separate", "required": true}, {"type": "double",
+  "name": "serious", "required": true}, {"type": "double", "name": "seriously", "required":
+  true}, {"type": "double", "name": "service", "required": true}, {"type": "double",
+  "name": "servicechecking", "required": true}, {"type": "double", "name": "servicedomestic",
+  "required": true}, {"type": "double", "name": "servicemobile", "required": true},
+  {"type": "double", "name": "serviceother", "required": true}, {"type": "double",
+  "name": "servicer", "required": true}, {"type": "double", "name": "services", "required":
+  true}, {"type": "double", "name": "servicing", "required": true}, {"type": "double",
+  "name": "set", "required": true}, {"type": "double", "name": "settle", "required":
+  true}, {"type": "double", "name": "settled", "required": true}, {"type": "double",
+  "name": "settlement", "required": true}, {"type": "double", "name": "setup", "required":
+  true}, {"type": "double", "name": "seven", "required": true}, {"type": "double",
+  "name": "several", "required": true}, {"type": "double", "name": "shall", "required":
+  true}, {"type": "double", "name": "share", "required": true}, {"type": "double",
+  "name": "shared", "required": true}, {"type": "double", "name": "shipped", "required":
+  true}, {"type": "double", "name": "shipping", "required": true}, {"type": "double",
+  "name": "shocked", "required": true}, {"type": "double", "name": "shopping", "required":
+  true}, {"type": "double", "name": "short", "required": true}, {"type": "double",
+  "name": "shortage", "required": true}, {"type": "double", "name": "shortly", "required":
+  true}, {"type": "double", "name": "show", "required": true}, {"type": "double",
+  "name": "showed", "required": true}, {"type": "double", "name": "showing", "required":
+  true}, {"type": "double", "name": "shown", "required": true}, {"type": "double",
+  "name": "shows", "required": true}, {"type": "double", "name": "shut", "required":
+  true}, {"type": "double", "name": "side", "required": true}, {"type": "double",
+  "name": "sign", "required": true}, {"type": "double", "name": "signature", "required":
+  true}, {"type": "double", "name": "signed", "required": true}, {"type": "double",
+  "name": "significant", "required": true}, {"type": "double", "name": "significantly",
+  "required": true}, {"type": "double", "name": "signing", "required": true}, {"type":
+  "double", "name": "similar", "required": true}, {"type": "double", "name": "simple",
+  "required": true}, {"type": "double", "name": "simply", "required": true}, {"type":
+  "double", "name": "since", "required": true}, {"type": "double", "name": "sincerely",
+  "required": true}, {"type": "double", "name": "single", "required": true}, {"type":
+  "double", "name": "sister", "required": true}, {"type": "double", "name": "site",
+  "required": true}, {"type": "double", "name": "situation", "required": true}, {"type":
+  "double", "name": "six", "required": true}, {"type": "double", "name": "slate",
+  "required": true}, {"type": "double", "name": "small", "required": true}, {"type":
+  "double", "name": "social", "required": true}, {"type": "double", "name": "sold",
+  "required": true}, {"type": "double", "name": "sole", "required": true}, {"type":
+  "double", "name": "solution", "required": true}, {"type": "double", "name": "solve",
+  "required": true}, {"type": "double", "name": "somebody", "required": true}, {"type":
+  "double", "name": "somehow", "required": true}, {"type": "double", "name": "someone",
+  "required": true}, {"type": "double", "name": "something", "required": true}, {"type":
+  "double", "name": "sometimes", "required": true}, {"type": "double", "name": "somewhere",
+  "required": true}, {"type": "double", "name": "son", "required": true}, {"type":
+  "double", "name": "soon", "required": true}, {"type": "double", "name": "sorry",
+  "required": true}, {"type": "double", "name": "sort", "required": true}, {"type":
+  "double", "name": "southwest", "required": true}, {"type": "double", "name": "speak",
+  "required": true}, {"type": "double", "name": "speaking", "required": true}, {"type":
+  "double", "name": "special", "required": true}, {"type": "double", "name": "specialist",
+  "required": true}, {"type": "double", "name": "specific", "required": true}, {"type":
+  "double", "name": "specifically", "required": true}, {"type": "double", "name":
+  "spend", "required": true}, {"type": "double", "name": "spending", "required": true},
+  {"type": "double", "name": "spent", "required": true}, {"type": "double", "name":
+  "spoke", "required": true}, {"type": "double", "name": "spoken", "required": true},
+  {"type": "double", "name": "ss", "required": true}, {"type": "double", "name": "ssn",
+  "required": true}, {"type": "double", "name": "staff", "required": true}, {"type":
+  "double", "name": "stand", "required": true}, {"type": "double", "name": "standard",
+  "required": true}, {"type": "double", "name": "standing", "required": true}, {"type":
+  "double", "name": "start", "required": true}, {"type": "double", "name": "started",
+  "required": true}, {"type": "double", "name": "starting", "required": true}, {"type":
+  "double", "name": "state", "required": true}, {"type": "double", "name": "stated",
+  "required": true}, {"type": "double", "name": "statement", "required": true}, {"type":
+  "double", "name": "statements", "required": true}, {"type": "double", "name": "states",
+  "required": true}, {"type": "double", "name": "stating", "required": true}, {"type":
+  "double", "name": "station", "required": true}, {"type": "double", "name": "status",
+  "required": true}, {"type": "double", "name": "stay", "required": true}, {"type":
+  "double", "name": "stayed", "required": true}, {"type": "double", "name": "steal",
+  "required": true}, {"type": "double", "name": "stealing", "required": true}, {"type":
+  "double", "name": "step", "required": true}, {"type": "double", "name": "steps",
+  "required": true}, {"type": "double", "name": "still", "required": true}, {"type":
+  "double", "name": "stole", "required": true}, {"type": "double", "name": "stolen",
+  "required": true}, {"type": "double", "name": "stop", "required": true}, {"type":
+  "double", "name": "stopped", "required": true}, {"type": "double", "name": "store",
+  "required": true}, {"type": "double", "name": "story", "required": true}, {"type":
+  "double", "name": "stress", "required": true}, {"type": "double", "name": "struggling",
+  "required": true}, {"type": "double", "name": "stuck", "required": true}, {"type":
+  "double", "name": "student", "required": true}, {"type": "double", "name": "subject",
+  "required": true}, {"type": "double", "name": "submit", "required": true}, {"type":
+  "double", "name": "submitted", "required": true}, {"type": "double", "name": "submitting",
+  "required": true}, {"type": "double", "name": "subsequent", "required": true}, {"type":
+  "double", "name": "subsequently", "required": true}, {"type": "double", "name":
+  "successful", "required": true}, {"type": "double", "name": "successfully", "required":
+  true}, {"type": "double", "name": "suddenly", "required": true}, {"type": "double",
+  "name": "sue", "required": true}, {"type": "double", "name": "sufficient", "required":
+  true}, {"type": "double", "name": "suggested", "required": true}, {"type": "double",
+  "name": "suit", "required": true}, {"type": "double", "name": "sum", "required":
+  true}, {"type": "double", "name": "summary", "required": true}, {"type": "double",
+  "name": "sunday", "required": true}, {"type": "double", "name": "supervisor", "required":
+  true}, {"type": "double", "name": "supervisors", "required": true}, {"type": "double",
+  "name": "support", "required": true}, {"type": "double", "name": "supporting", "required":
+  true}, {"type": "double", "name": "suppose", "required": true}, {"type": "double",
+  "name": "supposed", "required": true}, {"type": "double", "name": "supposedly",
+  "required": true}, {"type": "double", "name": "sure", "required": true}, {"type":
+  "double", "name": "surprise", "required": true}, {"type": "double", "name": "surprised",
+  "required": true}, {"type": "double", "name": "suspect", "required": true}, {"type":
+  "double", "name": "suspended", "required": true}, {"type": "double", "name": "suspicious",
+  "required": true}, {"type": "double", "name": "switch", "required": true}, {"type":
+  "double", "name": "system", "required": true}, {"type": "double", "name": "systems",
+  "required": true}, {"type": "double", "name": "tactics", "required": true}, {"type":
+  "double", "name": "take", "required": true}, {"type": "double", "name": "taken",
+  "required": true}, {"type": "double", "name": "takes", "required": true}, {"type":
+  "double", "name": "taking", "required": true}, {"type": "double", "name": "talk",
+  "required": true}, {"type": "double", "name": "talked", "required": true}, {"type":
+  "double", "name": "talking", "required": true}, {"type": "double", "name": "tax",
+  "required": true}, {"type": "double", "name": "taxes", "required": true}, {"type":
+  "double", "name": "team", "required": true}, {"type": "double", "name": "telephone",
+  "required": true}, {"type": "double", "name": "tell", "required": true}, {"type":
+  "double", "name": "teller", "required": true}, {"type": "double", "name": "telling",
+  "required": true}, {"type": "double", "name": "tells", "required": true}, {"type":
+  "double", "name": "temporary", "required": true}, {"type": "double", "name": "ten",
+  "required": true}, {"type": "double", "name": "term", "required": true}, {"type":
+  "double", "name": "terms", "required": true}, {"type": "double", "name": "texas",
+  "required": true}, {"type": "double", "name": "text", "required": true}, {"type":
+  "double", "name": "thank", "required": true}, {"type": "double", "name": "thanks",
+  "required": true}, {"type": "double", "name": "thats", "required": true}, {"type":
+  "double", "name": "theft", "required": true}, {"type": "double", "name": "thereafter",
+  "required": true}, {"type": "double", "name": "therefore", "required": true}, {"type":
+  "double", "name": "thief", "required": true}, {"type": "double", "name": "thing",
+  "required": true}, {"type": "double", "name": "things", "required": true}, {"type":
+  "double", "name": "think", "required": true}, {"type": "double", "name": "thinking",
+  "required": true}, {"type": "double", "name": "third", "required": true}, {"type":
+  "double", "name": "though", "required": true}, {"type": "double", "name": "thought",
+  "required": true}, {"type": "double", "name": "thousands", "required": true}, {"type":
+  "double", "name": "threatened", "required": true}, {"type": "double", "name": "threatening",
+  "required": true}, {"type": "double", "name": "three", "required": true}, {"type":
+  "double", "name": "throughout", "required": true}, {"type": "double", "name": "thru",
+  "required": true}, {"type": "double", "name": "thursday", "required": true}, {"type":
+  "double", "name": "thus", "required": true}, {"type": "double", "name": "ticket",
+  "required": true}, {"type": "double", "name": "tickets", "required": true}, {"type":
+  "double", "name": "till", "required": true}, {"type": "double", "name": "time",
+  "required": true}, {"type": "double", "name": "timeline", "required": true}, {"type":
+  "double", "name": "timely", "required": true}, {"type": "double", "name": "times",
+  "required": true}, {"type": "double", "name": "title", "required": true}, {"type":
+  "double", "name": "today", "required": true}, {"type": "double", "name": "together",
+  "required": true}, {"type": "double", "name": "told", "required": true}, {"type":
+  "double", "name": "took", "required": true}, {"type": "double", "name": "top", "required":
+  true}, {"type": "double", "name": "total", "required": true}, {"type": "double",
+  "name": "totaling", "required": true}, {"type": "double", "name": "totally", "required":
+  true}, {"type": "double", "name": "touch", "required": true}, {"type": "double",
+  "name": "toward", "required": true}, {"type": "double", "name": "towards", "required":
+  true}, {"type": "double", "name": "town", "required": true}, {"type": "double",
+  "name": "track", "required": true}, {"type": "double", "name": "tracking", "required":
+  true}, {"type": "double", "name": "trade", "required": true}, {"type": "double",
+  "name": "transaction", "required": true}, {"type": "double", "name": "transactions",
+  "required": true}, {"type": "double", "name": "transfer", "required": true}, {"type":
+  "double", "name": "transferred", "required": true}, {"type": "double", "name": "transferring",
+  "required": true}, {"type": "double", "name": "transfers", "required": true}, {"type":
+  "double", "name": "travel", "required": true}, {"type": "double", "name": "traveling",
+  "required": true}, {"type": "double", "name": "treat", "required": true}, {"type":
+  "double", "name": "treated", "required": true}, {"type": "double", "name": "treatment",
+  "required": true}, {"type": "double", "name": "trial", "required": true}, {"type":
+  "double", "name": "tried", "required": true}, {"type": "double", "name": "trip",
+  "required": true}, {"type": "double", "name": "trouble", "required": true}, {"type":
+  "double", "name": "truck", "required": true}, {"type": "double", "name": "true",
+  "required": true}, {"type": "double", "name": "truly", "required": true}, {"type":
+  "double", "name": "trust", "required": true}, {"type": "double", "name": "trusted",
+  "required": true}, {"type": "double", "name": "trustee", "required": true}, {"type":
+  "double", "name": "truth", "required": true}, {"type": "double", "name": "try",
+  "required": true}, {"type": "double", "name": "trying", "required": true}, {"type":
+  "double", "name": "tuesday", "required": true}, {"type": "double", "name": "turn",
+  "required": true}, {"type": "double", "name": "turned", "required": true}, {"type":
+  "double", "name": "twice", "required": true}, {"type": "double", "name": "two",
+  "required": true}, {"type": "double", "name": "tx", "required": true}, {"type":
+  "double", "name": "type", "required": true}, {"type": "double", "name": "ultimate",
+  "required": true}, {"type": "double", "name": "ultimately", "required": true}, {"type":
+  "double", "name": "unable", "required": true}, {"type": "double", "name": "unacceptable",
+  "required": true}, {"type": "double", "name": "unauthorized", "required": true},
+  {"type": "double", "name": "unaware", "required": true}, {"type": "double", "name":
+  "understand", "required": true}, {"type": "double", "name": "understanding", "required":
+  true}, {"type": "double", "name": "understood", "required": true}, {"type": "double",
+  "name": "underwriting", "required": true}, {"type": "double", "name": "unemployment",
+  "required": true}, {"type": "double", "name": "unethical", "required": true}, {"type":
+  "double", "name": "unfair", "required": true}, {"type": "double", "name": "unfortunately",
+  "required": true}, {"type": "double", "name": "union", "required": true}, {"type":
+  "double", "name": "unit", "required": true}, {"type": "double", "name": "united",
+  "required": true}, {"type": "double", "name": "unknown", "required": true}, {"type":
+  "double", "name": "unless", "required": true}, {"type": "double", "name": "unlimited",
+  "required": true}, {"type": "double", "name": "unpaid", "required": true}, {"type":
+  "double", "name": "unprofessional", "required": true}, {"type": "double", "name":
+  "unwilling", "required": true}, {"type": "double", "name": "update", "required":
+  true}, {"type": "double", "name": "updated", "required": true}, {"type": "double",
+  "name": "updates", "required": true}, {"type": "double", "name": "upon", "required":
+  true}, {"type": "double", "name": "upset", "required": true}, {"type": "double",
+  "name": "us", "required": true}, {"type": "double", "name": "usa", "required": true},
+  {"type": "double", "name": "usd", "required": true}, {"type": "double", "name":
+  "use", "required": true}, {"type": "double", "name": "used", "required": true},
+  {"type": "double", "name": "user", "required": true}, {"type": "double", "name":
+  "uses", "required": true}, {"type": "double", "name": "using", "required": true},
+  {"type": "double", "name": "usps", "required": true}, {"type": "double", "name":
+  "usually", "required": true}, {"type": "double", "name": "va", "required": true},
+  {"type": "double", "name": "vacation", "required": true}, {"type": "double", "name":
+  "valid", "required": true}, {"type": "double", "name": "validate", "required": true},
+  {"type": "double", "name": "validation", "required": true}, {"type": "double", "name":
+  "value", "required": true}, {"type": "double", "name": "various", "required": true},
+  {"type": "double", "name": "vehicle", "required": true}, {"type": "double", "name":
+  "vendor", "required": true}, {"type": "double", "name": "verbal", "required": true},
+  {"type": "double", "name": "verbally", "required": true}, {"type": "double", "name":
+  "verification", "required": true}, {"type": "double", "name": "verified", "required":
+  true}, {"type": "double", "name": "verify", "required": true}, {"type": "double",
+  "name": "verifying", "required": true}, {"type": "double", "name": "veteran", "required":
+  true}, {"type": "double", "name": "via", "required": true}, {"type": "double", "name":
+  "victim", "required": true}, {"type": "double", "name": "video", "required": true},
+  {"type": "double", "name": "view", "required": true}, {"type": "double", "name":
+  "violated", "required": true}, {"type": "double", "name": "violating", "required":
+  true}, {"type": "double", "name": "violation", "required": true}, {"type": "double",
+  "name": "violations", "required": true}, {"type": "double", "name": "virtual", "required":
+  true}, {"type": "double", "name": "visa", "required": true}, {"type": "double",
+  "name": "visit", "required": true}, {"type": "double", "name": "visited", "required":
+  true}, {"type": "double", "name": "voice", "required": true}, {"type": "double",
+  "name": "voicemail", "required": true}, {"type": "double", "name": "wait", "required":
+  true}, {"type": "double", "name": "waited", "required": true}, {"type": "double",
+  "name": "waiting", "required": true}, {"type": "double", "name": "waive", "required":
+  true}, {"type": "double", "name": "waived", "required": true}, {"type": "double",
+  "name": "walk", "required": true}, {"type": "double", "name": "walked", "required":
+  true}, {"type": "double", "name": "wallet", "required": true}, {"type": "double",
+  "name": "wamu", "required": true}, {"type": "double", "name": "want", "required":
+  true}, {"type": "double", "name": "wanted", "required": true}, {"type": "double",
+  "name": "wants", "required": true}, {"type": "double", "name": "warning", "required":
+  true}, {"type": "double", "name": "washington", "required": true}, {"type": "double",
+  "name": "wasnt", "required": true}, {"type": "double", "name": "water", "required":
+  true}, {"type": "double", "name": "way", "required": true}, {"type": "double", "name":
+  "ways", "required": true}, {"type": "double", "name": "web", "required": true},
+  {"type": "double", "name": "website", "required": true}, {"type": "double", "name":
+  "wednesday", "required": true}, {"type": "double", "name": "week", "required": true},
+  {"type": "double", "name": "weekend", "required": true}, {"type": "double", "name":
+  "weeks", "required": true}, {"type": "double", "name": "well", "required": true},
+  {"type": "double", "name": "went", "required": true}, {"type": "double", "name":
+  "whatever", "required": true}, {"type": "double", "name": "whatsoever", "required":
+  true}, {"type": "double", "name": "whether", "required": true}, {"type": "double",
+  "name": "whole", "required": true}, {"type": "double", "name": "whose", "required":
+  true}, {"type": "double", "name": "wife", "required": true}, {"type": "double",
+  "name": "willing", "required": true}, {"type": "double", "name": "window", "required":
+  true}, {"type": "double", "name": "wire", "required": true}, {"type": "double",
+  "name": "wired", "required": true}, {"type": "double", "name": "wish", "required":
+  true}, {"type": "double", "name": "withdraw", "required": true}, {"type": "double",
+  "name": "withdrawal", "required": true}, {"type": "double", "name": "withdrawals",
+  "required": true}, {"type": "double", "name": "withdrawn", "required": true}, {"type":
+  "double", "name": "withdrew", "required": true}, {"type": "double", "name": "within",
+  "required": true}, {"type": "double", "name": "without", "required": true}, {"type":
+  "double", "name": "wo", "required": true}, {"type": "double", "name": "woman", "required":
+  true}, {"type": "double", "name": "wont", "required": true}, {"type": "double",
+  "name": "word", "required": true}, {"type": "double", "name": "words", "required":
+  true}, {"type": "double", "name": "work", "required": true}, {"type": "double",
+  "name": "worked", "required": true}, {"type": "double", "name": "working", "required":
+  true}, {"type": "double", "name": "works", "required": true}, {"type": "double",
+  "name": "world", "required": true}, {"type": "double", "name": "worry", "required":
+  true}, {"type": "double", "name": "worse", "required": true}, {"type": "double",
+  "name": "worst", "required": true}, {"type": "double", "name": "worth", "required":
+  true}, {"type": "double", "name": "would", "required": true}, {"type": "double",
+  "name": "wouldnt", "required": true}, {"type": "double", "name": "write", "required":
+  true}, {"type": "double", "name": "writing", "required": true}, {"type": "double",
+  "name": "written", "required": true}, {"type": "double", "name": "wrong", "required":
+  true}, {"type": "double", "name": "wrote", "required": true}, {"type": "double",
+  "name": "year", "required": true}, {"type": "double", "name": "years", "required":
+  true}, {"type": "double", "name": "yes", "required": true}, {"type": "double", "name":
+  "yesterday", "required": true}, {"type": "double", "name": "yet", "required": true},
+  {"type": "double", "name": "york", "required": true}, {"type": "double", "name":
+  "zero", "required": true}]}'
+source: '{"tags": {"mlflow.user": "luisl", "mlflow.source.name": "naive-pipeline.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "efec6ba6aed2724dbe273afe563b2fd1938dd729"}}'
+source_type: code
