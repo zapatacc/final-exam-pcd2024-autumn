@@ -1,4 +1,4 @@
-#!/Users/daftamayo/Documents/EXAMENPROYECTO/final-exam-pcd2024-autumn/myenv/bin/python
+#!/Users/daftamayo/Documents/EXAMENPROYECTO/final-exam-pcd2024-autumn/myenv/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys
