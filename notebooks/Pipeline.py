@@ -39,7 +39,7 @@ def delete_frequent_words(corpus, threshold=0.75):
 def clean_complaint(complaint):
     complaint = complaint.lower()
     complaint = contractions.fix(complaint)
-    complaint = re.sub(r'xx+', '', complaint)
+    #complaint = re.sub(r'xx+', '', complaint)
     complaint = re.sub(r'\W', ' ', complaint)
     complaint_tokens = word_tokenize(complaint)
     complaint = ' '.join([word for word in complaint_tokens if word not in stop_words])
@@ -70,6 +70,8 @@ def processData(df):
     df = df.dropna()
     df = df.reindex()
     df.to_csv('../data/transformed_data/preprocessed.csv', index=False)
+
+    return df
 
 
 @task(name="cleaning")
@@ -109,16 +111,16 @@ def trainlogreg(text_train, text_test, sent_train, sent_test, labelmapping):
     
     pipeline = Pipeline([
         ("vectorizer", TfidfVectorizer(stop_words = stopwords.words('english'))),
-        ("logreg", LogisticRegression(max_iter=500))
+        ("logreg", LogisticRegression(max_iter=600))
     ])
     
     params_grid = {
-        'C': [0.01, 0.1, 1],
-        'penalty': ['l2'],
-        'logreg__solver': ['lbfgs'],
-        }
+    'logreg__C': [0.01, 0.1, 1, 0.5],
+    'logreg__penalty': ['l2'],
+    'logreg__solver': ['lbfgs'],
+    }
     
-    grid_search = GridSearchCV(pipeline, params_grid, scoring='accuracy', cv=5, n_jobs=1, verbose=0)
+    grid_search = GridSearchCV(pipeline, params_grid, scoring='accuracy', cv=5, n_jobs=1, verbose=2)
 
     with mlflow.start_run(run_name="Logreg Pipeline"):
 
@@ -146,6 +148,9 @@ def trainlogreg(text_train, text_test, sent_train, sent_test, labelmapping):
 
 @task(name="getBestModel")
 def getChamp():
+    dagshub.init(repo_owner='zapatacc', repo_name='final-exam-pcd2024-autumn', mlflow=True)
+    mlflow.set_experiment("jesus-carbajal-logreg")
+
     mlflow.set_experiment("jesus-carbajal-logreg-label-encoder")
     client = MlflowClient()
 
@@ -174,6 +179,9 @@ def getChamp():
 
 @task(name="SetChamp")
 def setChamp(run_id, model_name):
+    dagshub.init(repo_owner='zapatacc', repo_name='final-exam-pcd2024-autumn', mlflow=True)
+    mlflow.set_experiment("jesus-carbajal-logreg")
+
     client = MlflowClient()
     model_uri = f"runs:/{run_id}/model"
     registered_model = mlflow.register_model(model_uri=model_uri, name=model_name)
@@ -188,12 +196,12 @@ def setChamp(run_id, model_name):
 @flow(name="mainFlow")
 def mainFlow(json):
     loadinit()
-    data = readJson()
+    data = readJson(json)
     processed = processData(data)
     df = cleanse(processed)
     text_train, text_test, sent_train, sent_test, label_encoder = vectorizer(df)
     trainlogreg(text_train, text_test, sent_train, sent_test, label_encoder)
-    champ = getChamp
+    champ = getChamp()
     setChamp(champ, "jesus-carbajal-model")
 
 mainFlow("../data/raw_data/tickets_classification_eng.json")
