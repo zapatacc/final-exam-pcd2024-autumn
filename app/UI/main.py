@@ -5,7 +5,7 @@ import json
 st.write("""
 # Clasificación de la predicción del ticket""")
 
-st.sidebar.header('User Input Parameters')
+st.sidebar.header('Parámetros de entrada del usuario')
 
 def user_input_features():
     inputmodel = st.sidebar.text_area("Incidente:")

@@ -1,11 +1,12 @@
-import mlflow.artifacts
-from pydantic import BaseModel
-import mlflow
-import pandas as pd
 import pickle
-from fastapi import FastAPI
+import mlflow
 import dagshub
+import pandas as pd
+import mlflow.artifacts
+from fastapi import FastAPI
+from pydantic import BaseModel
 from mlflow.tracking import MlflowClient
+
 
 app = FastAPI()
 
@@ -17,7 +18,7 @@ class InputData(BaseModel):
 client = MlflowClient()
 alias = client.get_model_version_by_alias(name="dafne-model", alias='champion')
 runID = alias.run_id
-modelURI = f"runs:/{runID}/best_model_Support Vector Machine"
+modelURI = f"runs:/{runID}/best_model_Logistic Regression"
 
 model = mlflow.pyfunc.load_model(model_uri=modelURI)
 

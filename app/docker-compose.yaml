@@ -3,7 +3,7 @@ name: dafne-tamayo-app  # Nombre del proyecto de la aplicación
 
  
 services:
-  # Servicio de Frontend
+  # Frontend
   ui:
     image: dafne-ui-image:latest  # Nombre y etiqueta de la imagen que se generará o usará
     container_name: dafne-ui-container  # Nombre asignado al contenedor
@@ -17,7 +17,7 @@ services:
     networks:
       - nyc-taxi-network  # Conecta este servicio a la red personalizada
  
-  # Servicio de Backend
+  # Backend
   model:
     image: dafne-image:latest  # Nombre y etiqueta de la imagen que se generará o usará para el backend
     container_name: dafne-model-container  # Nombre asignado al contenedor backend
