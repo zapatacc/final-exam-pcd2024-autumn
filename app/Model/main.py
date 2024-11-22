@@ -3,24 +3,31 @@ from pydantic import BaseModel
 import mlflow
 import pickle
 from mlflow.artifacts import download_artifacts
+from mlflow import MlflowClient
 
 
 mlflow.set_tracking_uri('https://dagshub.com/zapatacc/final-exam-pcd2024-autumn.mlflow')
 
-# Cargamos el modelo
-logged_model = 'runs:/92798365c52745fb8a52d4d6b60b7d5d/model-lr'
-model = mlflow.pyfunc.load_model(logged_model)
-# Descargamos los artefactos
-label_encoder_path = download_artifacts(run_id="92798365c52745fb8a52d4d6b60b7d5d",
-                                        artifact_path="LabelEncoder/labelencoder.pkl")
+model_name = "arturo-prefect-model"
+model_version_or_stage = "champion"
+
+# Usamos la función de MLflow para cargar el modelo por alias
+model = mlflow.pyfunc.load_model(model_uri=f"models:/{model_name}/{model_version_or_stage}")
+
+# Descargamos los artefactos asociados al modelo
+label_encoder_path = download_artifacts(
+    artifact_path="LabelEncoder/labelencoder.pkl",
+    artifact_uri=f"models:/{model_name}/{model_version_or_stage}"
+)
 with open(label_encoder_path, "rb") as f:
     label_encoder = pickle.load(f)
 
-vectorizer_path = download_artifacts(run_id="92798365c52745fb8a52d4d6b60b7d5d",
-                                     artifact_path="Vectorizer/vectorizer.pkl")
+vectorizer_path = download_artifacts(
+    artifact_path="Vectorizer/vectorizer.pkl",
+    artifact_uri=f"models:/{model_name}/{model_version_or_stage}"
+)
 with open(vectorizer_path, "rb") as f:
     vectorizer = pickle.load(f)
-
 
 # Inicializamos FastAPI
 app = FastAPI()
