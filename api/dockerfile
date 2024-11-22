@@ -25,3 +25,11 @@ EXPOSE 8000
 # Comando para ejecutar la API
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
+
+# 0.0.0.0 asegura que la aplicación esté disponible a través del puerto mapeado en el docker-compose.yml.
+# Ejemplo: En mi configuración, el backend (API) usa 0.0.0.0:8000. Esto asegura que el servicio esté
+# accesible tanto desde el frontend (contenedor Streamlit) como desde tu navegador en http://localhost:8000.
+
+
+# puerto 8000 porque es comúnmente usado por fastapi. funciona
+# puerto 8051 porque es comúnmente usado por streamlit. funciona

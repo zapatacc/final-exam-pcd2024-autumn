@@ -39,3 +39,6 @@ if st.button("Classify"):
 
 
 # http://localhost:8501 URL para el streamlit.
+
+
+# puerto 8051 porque es comúnmente usado por streamlit. funciona

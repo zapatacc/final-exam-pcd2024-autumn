@@ -72,8 +72,10 @@ def load_models():
 def preprocess_text(text):
     # Convertir a minúsculas
     text = text.lower()
+
     # Eliminar URLs y correos electrónicos
     text = re.sub(r'http\S+|www.\S+|@\S+', '', text)
+    
     # Eliminar números y caracteres especiales
     text = re.sub(r'[^a-zA-Z\s]', '', text)
     # Tokenización
