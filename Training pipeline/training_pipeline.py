@@ -87,10 +87,6 @@ def split_data(df):
     X = df['complaint_what_happened']
     y = df['ticket_classification']
     label_encoder = LabelEncoder()
-    pathlib.Path("models").mkdir(exist_ok=True)
-    with open ("models/labelencoder.pkl","wb") as file:
-        pickle.dump(label_encoder, file)
-
     y = label_encoder.fit_transform(y)
 
     # Dividimos los datos en conjunto de entrenamiento y prueba
@@ -98,11 +94,16 @@ def split_data(df):
 
     # Vectorizamos los datos
     vectorizer = TfidfVectorizer(max_features=5000)
-    pathlib.Path("models").mkdir(exist_ok=True)
-    with open ("models/vectorizer.pkl","wb") as file:
-        pickle.dump(vectorizer, file)
     X_train = vectorizer.fit_transform(X_train)
     X_test = vectorizer.transform(X_test)
+
+    pathlib.Path("models").mkdir(exist_ok=True)
+    with open("models/labelencoder.pkl", "wb") as file:
+        pickle.dump(label_encoder, file)
+
+    pathlib.Path("models").mkdir(exist_ok=True)
+    with open("models/vectorizer.pkl", "wb") as file:
+        pickle.dump(vectorizer, file)
 
     return X_train, X_test, y_train, y_test
 

@@ -11,8 +11,9 @@ st.sidebar.header('User complain')
 def user_input_features():
     text = st.sidebar.text_input("Put your complain")
 
+    # Asegúrate de enviar el nombre de campo que espera el backend
     input_dict = {
-        'complaint_what_happened': text,
+        'text': text,
     }
 
     return input_dict
@@ -21,8 +22,8 @@ input_dict = user_input_features()
 
 if st.button('Predict'):
     response = requests.post(
-        #url = "http://chase-complains-model-container:8000/predict",
-        url="http://model:8000/predict",
+        url = "http://chase-complains-model-container:8000/predict",
+        #url="http://model:8000/predict",
         #url = "http://nyc-taxi-model-container:8000/predict",
         data = json.dumps(input_dict)
     )

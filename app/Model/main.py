@@ -1,53 +1,47 @@
-import pickle
-import mlflow
-import dagshub
 from fastapi import FastAPI
 from pydantic import BaseModel
-from mlflow import MlflowClient
-
-MLFLOW_TRACKING_URI = "https://dagshub.com/zapatacc/final-exam-pcd2024-autumn"
-
-mlflow.set_tracking_uri(uri=MLFLOW_TRACKING_URI)
-client = MlflowClient(tracking_uri=MLFLOW_TRACKING_URI)
-
-model_name = "arturo-prefect-model"
-alias = "champion"
-
-model_uri = f"models:/{model_name}@{alias}"
-
-champion_model = mlflow.pyfunc.load_model(
-    model_uri=model_uri
-)
-
-with open("Vectorizer/vectorizer.pkl", "rb") as f_in:
-    dv = pickle.load(f_in)
-
-with open("LabelEncoder/labelencoder.pkl", "rb") as a_in:
-    label_encoder = pickle.load(a_in)
+import mlflow
+import pickle
+from mlflow.artifacts import download_artifacts
 
 
-def preprocess(input_data):
+mlflow.set_tracking_uri('https://dagshub.com/zapatacc/final-exam-pcd2024-autumn.mlflow')
 
-    input_dict = {
-        'complaint_what_happened': input_data.text,
-    }
+# Cargamos el modelo
+logged_model = 'runs:/92798365c52745fb8a52d4d6b60b7d5d/model-lr'
+model = mlflow.pyfunc.load_model(logged_model)
+# Descargamos los artefactos
+label_encoder_path = download_artifacts(run_id="92798365c52745fb8a52d4d6b60b7d5d",
+                                        artifact_path="LabelEncoder/labelencoder.pkl")
+with open(label_encoder_path, "rb") as f:
+    label_encoder = pickle.load(f)
 
-    return dv.transform(input_dict)
+vectorizer_path = download_artifacts(run_id="92798365c52745fb8a52d4d6b60b7d5d",
+                                     artifact_path="Vectorizer/vectorizer.pkl")
+with open(vectorizer_path, "rb") as f:
+    vectorizer = pickle.load(f)
 
 
-def predict(input_data):
-
-    X_val = preprocess(input_data)
-
-    return champion_model.predict(X_val)
-
+# Inicializamos FastAPI
 app = FastAPI()
 
+
+# Modelo de datos para el input
 class InputData(BaseModel):
     text: str
 
+
+# Endpoint para realizar predicciones
 @app.post("/predict")
-def predict_endpoint(input_data: InputData):
-    result = predict(input_data)[0]
-    predicted_label = label_encoder.inverse_transform(result)
-    return {"prediction": predicted_label[0]}
+def predict(input_data: InputData):
+    try:
+        input_vector = vectorizer.transform([input_data.text])
+
+        prediction = model.predict(input_vector)
+
+        resultado = label_encoder.inverse_transform(prediction)[0]
+
+        return {"prediction": resultado}
+    except Exception as e:
+        # Retorna un error bien definido
+        return {"error": f"Ocurrio un error: {str(e)}"}
