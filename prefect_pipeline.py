@@ -39,36 +39,89 @@ def encode_labels(label_train, label_test):
     encoded_labels_test = pd.factorize(label_test)[0]
     return encoded_labels_train, encoded_labels_test
 
-# Create and train the model
+from sklearn.svm import SVC
+
+# Train Model with Logistic Regression and SVC
 @task(name="Train Model")
 def train_model(text_train, encoded_labels_train):
     tfidf_vectorizer = TfidfVectorizer(stop_words=stopwords.words('english'))
+
+    # Define Logistic Regression pipeline
     logreg_pipeline = Pipeline([
         ("vectorizer", tfidf_vectorizer),
         ("logreg", LogisticRegression(max_iter=500))
     ])
+    
+    # Define SVC pipeline
+    svc_pipeline = Pipeline([
+        ("vectorizer", tfidf_vectorizer),
+        ("svc", SVC())
+    ])
 
-    param_grid = {
+    # Parameters for Logistic Regression
+    param_grid_logreg = {
         'logreg__C': [0.5, 0.15, 0.8],
         'logreg__penalty': ['l2'],
         'logreg__solver': ['lbfgs'],
     }
+    
+    # Parameters for SVC
+    param_grid_svc = {
+        'svc__C': [0.5, 1, 10],
+        'svc__kernel': ['linear', 'rbf'],
+    }
 
-    grid_search = GridSearchCV(logreg_pipeline, param_grid, scoring='accuracy', cv=5, n_jobs=1, verbose=1)
-    grid_search.fit(text_train, encoded_labels_train)
+    # Grid search for Logistic Regression
+    logreg_grid_search = GridSearchCV(logreg_pipeline, param_grid_logreg, scoring='accuracy', cv=5, n_jobs=1, verbose=1)
+    logreg_grid_search.fit(text_train, encoded_labels_train)
     
-    return grid_search
+    # Grid search for SVC
+    svc_grid_search = GridSearchCV(svc_pipeline, param_grid_svc, scoring='accuracy', cv=5, n_jobs=1, verbose=1)
+    svc_grid_search.fit(text_train, encoded_labels_train)
+    
+    return {"logreg": logreg_grid_search, "svc": svc_grid_search}
 
-# Evaluate the model
-@task(name="Evaluate Model")
-def evaluate_model(grid_search, text_test, encoded_labels_test):
-    best_logreg_model = grid_search.best_estimator_
-    predictions = best_logreg_model.predict(text_test)
+# Evaluate the models
+@task(name="Evaluate Models")
+def evaluate_models(model_dict, text_test, encoded_labels_test):
+    evaluations = {}
     
-    accuracy = accuracy_score(encoded_labels_test, predictions)
-    report = classification_report(encoded_labels_test, predictions, output_dict=True)
+    for model_name, grid_search in model_dict.items():
+        best_model = grid_search.best_estimator_
+        predictions = best_model.predict(text_test)
+        
+        accuracy = accuracy_score(encoded_labels_test, predictions)
+        report = classification_report(encoded_labels_test, predictions, output_dict=True)
+        
+        evaluations[model_name] = {
+            "accuracy": accuracy,
+            "report": report,
+            "best_model": best_model,
+            "grid_search": grid_search
+        }
     
-    return accuracy, report, best_logreg_model
+    return evaluations
+
+# Log metrics and models for both Logistic Regression and SVC
+@task(name="Log Metrics and Models")
+def log_metrics_and_models(evaluations):
+    for model_name, eval_data in evaluations.items():
+        with mlflow.start_run(run_name=f"{model_name} Pipeline"):
+            grid_search = eval_data["grid_search"]
+            report = eval_data["report"]
+            
+            # Log parameters
+            mlflow.log_params(grid_search.best_params_)
+            
+            # Log metrics
+            mlflow.log_metric("accuracy", eval_data["accuracy"])
+            mlflow.log_metric("precision", report["weighted avg"]["precision"])
+            mlflow.log_metric("recall", report["weighted avg"]["recall"])
+            mlflow.log_metric("f1_score", report["weighted avg"]["f1-score"])
+
+            # Log model
+            mlflow.sklearn.log_model(eval_data["best_model"], artifact_path=f"{model_name}_model")
+
 
 # Log metrics and model
 @task(name="Log Metrics and Model")
@@ -156,5 +209,5 @@ def mainFlow():
     select_best_model()
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     mainFlow()
