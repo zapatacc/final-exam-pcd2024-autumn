@@ -69,7 +69,7 @@ def filter_categories(df, min_frequency=80):
     return filtered_df
 
 
-@task
+@task(task_run_name='Data Cleaning and loading')
 def load_and_prepare_data():
     file_path = '../data/raw_data/tickets_classification_eng.json'
 
@@ -107,35 +107,39 @@ def load_and_prepare_data():
 
     return df_clean
 
-@task
+@task(task_run_name='Data Preprocessing')
 def preprocess_data(df):
     df['complaint_what_happened'] = df['complaint_what_happened'].apply(preprocess_text)
     return df
 
-@task
+@task(task_run_name='Data Filrering')
 def filter_data(df, min_frequency=80):
     df_filtered = filter_categories(df, min_frequency)
     return df_filtered
 
-@task
+@task(task_run_name='Split Data')
 def split_data(df):
     X = df['complaint_what_happened']
     y = df['ticket_classification']
     label_encoder = LabelEncoder()
+
+    # Ajustar el LabelEncoder con las etiquetas y transformar
+    y_encoded = label_encoder.fit_transform(y)
+
+    # Guardar el LabelEncoder ajustado
     pathlib.Path("models").mkdir(exist_ok=True)
     with open("models/label_encoder.pkl", "wb") as file:
         pickle.dump(label_encoder, file)
 
-    y = label_encoder.fit_transform(y)
-
-
+    # Dividir los datos
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y
+        X, y_encoded, test_size=0.2, random_state=42, stratify=y_encoded
     )
+
     return X_train, X_test, y_train, y_test
 
 
-@task
+@task(name='Train and Test')
 def train_and_evaluate_models(X_train, y_train, X_test, y_test):
     # Inicializar el vectorizador TF-IDF
     tfidf_vectorizer = TfidfVectorizer(max_features=5000)
