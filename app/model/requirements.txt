@@ -3,3 +3,5 @@ uvicorn
 mlflow
 pandas
 scikit-learn
+nltk
+contractions
