@@ -106,45 +106,105 @@ def vectorizer(df):
 
     return text_train, text_test, sent_train, sent_test, labelmapping
 
+from sklearn.svm import SVC  # Import SVC
+
 @task(name='train')
-def trainlogreg(text_train, text_test, sent_train, sent_test, labelmapping):
+def train_model(text_train, text_test, sent_train, sent_test, labelmapping):
     
-    pipeline = Pipeline([
-        ("vectorizer", TfidfVectorizer(stop_words = stopwords.words('english'))),
+    # Create a pipeline for Logistic Regression
+    logreg_pipeline = Pipeline([
+        ("vectorizer", TfidfVectorizer(stop_words=stopwords.words('english'))),
         ("logreg", LogisticRegression(max_iter=600))
     ])
     
-    params_grid = {
-    'logreg__C': [0.01, 0.1, 1, 0.5],
-    'logreg__penalty': ['l2'],
-    'logreg__solver': ['lbfgs'],
+    # Create a pipeline for SVC
+    svc_pipeline = Pipeline([
+        ("vectorizer", TfidfVectorizer(stop_words=stopwords.words('english'))),
+        ("svc", SVC())
+    ])
+    
+    # Define parameter grids for Logistic Regression
+    logreg_params = {
+        'logreg__C': [0.01, 0.1, 1, 0.5],
+        'logreg__penalty': ['l2'],
+        'logreg__solver': ['lbfgs'],
+        'logreg__class_weight': [None, 'balanced']
     }
     
-    grid_search = GridSearchCV(pipeline, params_grid, scoring='accuracy', cv=5, n_jobs=1, verbose=2)
+    # Define parameter grids for SVC
+    svc_params = {
+        'svc__C': [0.01, 0.1, 1, 10],
+        'svc__kernel': ['linear', 'rbf'],
+        'svc__gamma': ['scale', 'auto'],
+        'svc__class_weight': [None, 'balanced']
+    }
+    
+    # Create GridSearchCV for Logistic Regression
+    logreg_grid_search = GridSearchCV(
+        estimator=logreg_pipeline,
+        param_grid=logreg_params,
+        scoring='accuracy',
+        cv=5,
+        n_jobs=1,
+        verbose=2
+    )
 
-    with mlflow.start_run(run_name="Logreg Pipeline"):
+    # Create GridSearchCV for SVC
+    svc_grid_search = GridSearchCV(
+        estimator=svc_pipeline,
+        param_grid=svc_params,
+        scoring='accuracy',
+        cv=5,
+        n_jobs=1,
+        verbose=2
+    )
 
-        grid_search.fit(text_train, sent_train)
-        best_model = grid_search.best_estimator_
+    # Fit Logistic Regression model
+    with mlflow.start_run(run_name="Logistic Regression Training"):
+        logreg_grid_search.fit(text_train, sent_train)
+        logreg_best_model = logreg_grid_search.best_estimator_
         
-        y_pred = best_model.predict(text_test)
+        y_pred_logreg = logreg_best_model.predict(text_test)
         
-        # calcular métricas
-        accuracy = accuracy_score(sent_test, y_pred)
-        report = classification_report(sent_test, y_pred, output_dict=True)
+        # Calculate metrics for Logistic Regression
+        accuracy_logreg = accuracy_score(sent_test, y_pred_logreg)
+        report_logreg = classification_report(sent_test, y_pred_logreg, output_dict=True)
         
-        # Loggear el mejor modelo
-        mlflow.log_params(grid_search.best_params_)
-        mlflow.log_metric("accuracy", accuracy)
-        mlflow.log_metric("precision", report["weighted avg"]["precision"])
-        mlflow.log_metric("recall", report["weighted avg"]["recall"])
-        mlflow.log_metric("f1_score", report["weighted avg"]["f1-score"])
+        # Log the best Logistic Regression model
+        mlflow.log_params(logreg_grid_search.best_params_)
+        mlflow.log_metric("accuracy_logreg", accuracy_logreg)
+        mlflow.log_metric("precision_logreg", report_logreg["weighted avg"]["precision"])
+        mlflow.log_metric("recall_logreg", report_logreg["weighted avg"]["recall"])
+        mlflow.log_metric("f1_score_logreg", report_logreg["weighted avg"]["f1-score"])
         
-        mlflow.sklearn.log_model(best_model, artifact_path="pipeline_model")
+        mlflow.sklearn.log_model(logreg_best_model, artifact_path="logreg_model")
 
-        with open("labelmapping.pkl", "wb") as f:
-            pickle.dump(labelmapping, f)
-        mlflow.log_artifact("labelmapping.pkl")
+    # Fit SVC model
+    with mlflow.start_run(run_name="SVC Training"):
+        svc_grid_search.fit(text_train, sent_train)
+        svc_best_model = svc_grid_search.best_estimator_
+        
+        y_pred_svc = svc_best_model.predict(text_test)
+        
+        # Calculate metrics for SVC
+        accuracy_svc = accuracy_score(sent_test, y_pred_svc)
+        report_svc = classification_report(sent_test, y_pred_svc, output_dict=True)
+        
+        # Log the best SVC model
+        mlflow.log_params(svc_grid_search.best_params_)
+        mlflow.log_metric("accuracy_svc", accuracy_svc)
+        mlflow.log_metric("precision_svc", report_svc["weighted avg"]["precision"])
+        mlflow.log_metric("recall_svc", report_svc["weighted avg"]["recall"])
+        mlflow.log_metric("f1_score_svc", report_svc["weighted avg"]["f1-score"])
+        
+        mlflow.sklearn.log_model(svc_best_model, artifact_path="svc_model")
+
+    # ```python
+    # Save label mapping
+    with open("labelmapping.pkl", "wb") as f:
+        pickle.dump(labelmapping, f)
+    mlflow.log_artifact("labelmapping.pkl")
+
 
 @task(name="getBestModel")
 def getChamp():
@@ -200,7 +260,7 @@ def mainFlow(json):
     processed = processData(data)
     df = cleanse(processed)
     text_train, text_test, sent_train, sent_test, label_encoder = vectorizer(df)
-    trainlogreg(text_train, text_test, sent_train, sent_test, label_encoder)
+    train_model(text_train, text_test, sent_train, sent_test, label_encoder)
     champ = getChamp()
     setChamp(champ, "jesus-carbajal-model")
 
