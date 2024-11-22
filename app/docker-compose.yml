@@ -7,7 +7,7 @@ services:
   ui:
     network_mode: host
     image: patricio-villanueva-examen-ui:latest  # Nombre y etiqueta de la imagen que se generará o usará
-    container_name: nyc-taxi-ui-container  # Nombre asignado al contenedor
+    # container_name: nyc-taxi-ui-container  # Nombre asignado al contenedor
     build:
       context: ./UI  # Carpeta que contiene los archivos para construir la imagen del frontend
       dockerfile: Dockerfile  # Nombre del Dockerfile, relativo al contexto especificado
@@ -21,7 +21,7 @@ services:
   model:
     network_mode: host
     image: patricio-villanueva-examen-model:latest  # Nombre y etiqueta de la imagen que se generará o usará para el backend
-    container_name: nyc-taxi-model-container  # Nombre asignado al contenedor backend
+    # container_name: nyc-taxi-model-container  # Nombre asignado al contenedor backend
     build:
       context: ./model  # Carpeta que contiene los archivos para construir la imagen del backend
       dockerfile: Dockerfile  # Nombre del Dockerfile, relativo al contexto especificado
