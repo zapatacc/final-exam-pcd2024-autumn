@@ -20,8 +20,11 @@ from sklearn.decomposition import PCA
 logging.basicConfig(level=logging.INFO)
 
 # Configuración de MLflow
-#mlflow.set_tracking_uri("http://127.0.0.1:5000")  # Ajusta la URI si es necesario
+mlflow.set_tracking_uri("https://dagshub.com/zapatacc/final-exam-pcd2024-autumn.mlflow")  # Ajusta la URI si es necesario
 mlflow.set_experiment("carlos-moreno-experiment")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = "Parcex10"
+os.environ["MLFLOW_TRACKING_PASSWORD"] = "c7b57b4179cd76da1322d8de8ef0391a7a5fac01"
 
 ## Serie de Tasks
 
@@ -280,29 +283,29 @@ def main_flow():
         )
     
     # Reducir dimensionalidad
-    X_train_pca, X_test_pca = reduce_dimensionality(X_train_scaled, X_test_scaled)
+    #X_train_pca, X_test_pca = reduce_dimensionality(X_train_scaled, X_test_scaled)
 
     # Entrenar SVM con los datos reducidos
-    svm_model, svm_params = train_svm(X_train_pca, y_train)
-    svm_accuracy, svm_report = evaluate_model(svm_model, X_test_pca, y_test, le_adjusted, "SVM")
+    #svm_model, svm_params = train_svm(X_train_pca, y_train)
+    #svm_accuracy, svm_report = evaluate_model(svm_model, X_test_pca, y_test, le_adjusted, "SVM")
 
     
     # Registrar SVM con MLflow
-    with mlflow.start_run(run_name='SVM'):
-        mlflow.log_params(svm_params)
-        mlflow.log_metric('accuracy', svm_accuracy)
-        mlflow.sklearn.log_model(svm_model, 'model')
-        mlflow.log_artifact('models/label_encoder.pkl')
-        mlflow.register_model(
-            f"runs:/{mlflow.active_run().info.run_id}/model",
-            "carlos-moreno-svm"
-        )
+    #with mlflow.start_run(run_name='SVM'):
+        #mlflow.log_params(svm_params)
+       # mlflow.log_metric('accuracy', svm_accuracy)
+       # mlflow.sklearn.log_model(svm_model, 'model')
+       # mlflow.log_artifact('models/label_encoder.pkl')
+        #mlflow.register_model(
+            #f"runs:/{mlflow.active_run().info.run_id}/model",
+            #"carlos-moreno-svm"
+        #)
     
     # Comparar los modelos y seleccionar Champion y Challenger
     accuracies = {
         'MLP': mlp_accuracy,
         'Random Forest': rf_accuracy,
-        'SVM': svm_accuracy
+        #'SVM': svm_accuracy
     }
     
     sorted_models = sorted(accuracies.items(), key=lambda x: x[1], reverse=True)
