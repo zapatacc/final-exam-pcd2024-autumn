@@ -1,0 +1,36 @@
+version: '3.8'  # Define la versión del formato de Docker Compose
+
+name: erick-examen-app  # Nombre del proyecto de la aplicación
+
+services:
+  # Servicio de Frontend
+  frontend:
+    image: erick-examen-ui-image:latest  # Nombre y etiqueta de la imagen que se generará o usará
+    container_name: erick-examen-frontend-container  # Nombre asignado al contenedor
+    build:
+      context: ./frontend  # Carpeta que contiene los archivos para construir la imagen del frontend
+      #dockerfile: Dockerfile.ui  # Nombre del Dockerfile, relativo al contexto especificado
+    ports:
+      - "8501:8501"  # Mapea el puerto 8501 del host al puerto 8501 del contenedor
+    depends_on:
+      - backend  # Garantiza que el contenedor 'model' (backend) se levante antes que el frontend
+    networks:
+      - erick-examen-network  # Conecta este servicio a la red definida
+
+  # Servicio de Backend
+  backend:
+    image: erick-examen-model-image:latest  # Nombre y etiqueta de la imagen que se generará o usará para el backend
+    container_name: erick-examen-backend-container  # Nombre asignado al contenedor backend
+    build:
+      context: ./backend  # Carpeta que contiene los archivos para construir la imagen del backend
+      #dockerfile: Dockerfile.model  # Nombre del Dockerfile, relativo al contexto especificado
+    ports:
+      - "8000:8000"  # Mapea el puerto 8000 del host al puerto 8000 del contenedor
+    networks:
+      - erick-examen-network  # Conecta este servicio a la red definida
+
+# Definición de redes
+networks:
+  erick-examen-network:  # Nombre de la red que comparten los servicios
+    name: erick-examen-network  # Nombre específico de la red
+    driver: bridge  # El tipo de red, 'bridge' permite la comunicación interna entre los contenedores
