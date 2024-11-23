@@ -133,10 +133,9 @@ def train_model(text_train, text_test, sent_train, sent_test, labelmapping):
     
     # Define parameter grids for SVC
     svc_params = {
-        'svc__C': [0.01, 0.1, 1, 10],
+        'svc__C': [0.01, 0.1],
         'svc__kernel': ['linear', 'rbf'],
         'svc__gamma': ['scale', 'auto'],
-        'svc__class_weight': [None, 'balanced']
     }
     
     # Create GridSearchCV for Logistic Regression
