@@ -1,0 +1,14 @@
+aliases: []
+creation_timestamp: 1732319773107
+current_stage: None
+description: null
+last_updated_timestamp: 1732319773107
+name: carlos-moreno-mlp
+run_id: f695801d36f543a5af8019b0125d9d12
+run_link: null
+source: file:///Users/carlosmoreno/Desktop/ITESO/5to_SEMESTRE/Proyecto_de_Ciencia_de_Datos/final-exam-pcd2024-autumn/mlruns/404932805302969016/f695801d36f543a5af8019b0125d9d12/artifacts/model
+status: READY
+status_message: null
+storage_location: file:///Users/carlosmoreno/Desktop/ITESO/5to_SEMESTRE/Proyecto_de_Ciencia_de_Datos/final-exam-pcd2024-autumn/mlruns/404932805302969016/f695801d36f543a5af8019b0125d9d12/artifacts/model
+user_id: null
+version: 2

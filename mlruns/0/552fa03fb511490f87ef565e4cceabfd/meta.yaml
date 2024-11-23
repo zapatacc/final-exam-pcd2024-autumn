@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/carlosmoreno/Desktop/ITESO/5to_SEMESTRE/Proyecto_de_Ciencia_de_Datos/final-exam-pcd2024-autumn/mlruns/0/552fa03fb511490f87ef565e4cceabfd/artifacts
+end_time: 1732273539231
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 552fa03fb511490f87ef565e4cceabfd
+run_name: RandomForest
+run_uuid: 552fa03fb511490f87ef565e4cceabfd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1732273536325
+status: 3
+tags: []
+user_id: carlosmoreno
