@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+mlflow
+pandas
+scikit-learn
+nltk
+wordcloud
+prefect
+hyperopt

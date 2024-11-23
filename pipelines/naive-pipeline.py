@@ -107,32 +107,51 @@ def hyperparameter_tuning(X, y):
     return best_params
 
 
-
-
 @task
 def train_best_model(X_train, X_val, y_train, y_val, best_params: dict) -> None:
+    import pickle
+    from sklearn.feature_extraction.text import TfidfVectorizer
+
+    # Set MLflow tracking URI and experiment
     mlflow.set_tracking_uri("https://dagshub.com/zapatacc/final-exam-pcd2024-autumn.mlflow")
     experiment_name = "luis-lopez Best Naive Bayes Model"
     mlflow.set_experiment(experiment_name)
 
     with mlflow.start_run(run_name="luis-lopez Final Model Training"):
-        
+        # Log best hyperparameters
         mlflow.log_params(best_params)
 
-        
+        # Ensure input text is clean and non-null
+        X_train["text"] = X_train["text"].fillna("").astype(str)
+        X_val["text"] = X_val["text"].fillna("").astype(str)
+
+        # Initialize and fit vectorizer
+        vectorizer = TfidfVectorizer(max_features=2000, stop_words="english")
+        X_train_vectorized = vectorizer.fit_transform(X_train["text"])
+        X_val_vectorized = vectorizer.transform(X_val["text"])
+
+        # Train the model
         model = MultinomialNB(alpha=best_params['alpha'])
-        model.fit(X_train, y_train)
-        y_pred = model.predict(X_val)
+        model.fit(X_train_vectorized, y_train)
+
+        # Validate the model
+        y_pred = model.predict(X_val_vectorized)
         accuracy = accuracy_score(y_val, y_pred)
         mlflow.log_metric("accuracy", accuracy)
+
+        # Save and log the model
         mlflow.sklearn.log_model(
             sk_model=model,
             artifact_path="model",
             registered_model_name="luis-lopez_naive_bayes_model"
         )
 
-    print(f"Model training complete. Accuracy: {accuracy:.4f}")
+        # Save and log the vectorizer
+        with open("vectorizer.pkl", "wb") as f:
+            pickle.dump(vectorizer, f)
+        mlflow.log_artifact("vectorizer.pkl", artifact_path="preprocessing")
 
+    print(f"Model training complete. Accuracy: {accuracy:.4f}")
 
 @task
 def label_and_register_models():

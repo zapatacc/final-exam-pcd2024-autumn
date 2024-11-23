@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      MLFLOW_TRACKING_USERNAME: "LuisFLopezA"
+      MLFLOW_TRACKING_PASSWORD: "37d1c615f665c61af97d8a85683704cd5ca42315"
+    volumes:
+      - ./mlruns:/app/mlruns
+      - ./pipelines/vectorizer.pkl:/app/vectorizer.pkl
+  mlflow:
+    image: fluent/mlflow:2.8.0  # Use a specific version of MLflow
+    ports:
+      - "5000:5000"
+    environment:
+      MLFLOW_TRACKING_URI: "http://0.0.0.0:5000"
+    volumes:
+      - ./mlruns:/mlruns  # Persist MLflow logs
+
+
