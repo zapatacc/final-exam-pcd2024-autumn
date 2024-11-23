@@ -56,37 +56,26 @@ def feature_engineering(df: pd.DataFrame) -> pd.DataFrame:
     df['ticket_classification'] = df['ticket_classification'].fillna("").astype(str)
     df['combined_text'] = df['cleaned_complaint'] + " " + df['ticket_classification']
 
-    # Preprocessing function
     def preprocess_text(text):
         text = text.lower()
-        text = re.sub(r'[^a-z0-9+\s]', '', text)  # Remove special characters except '+'
+        text = re.sub(r'[^a-z0-9+\s]', '', text) 
         tokens = word_tokenize(text)
         stop_words = set(stopwords.words('english'))
         tokens = [token for token in tokens if token not in stop_words]
         return ' '.join(tokens)
-
-    # Apply text preprocessing
     df['processed_text'] = df['combined_text'].apply(preprocess_text)
-
-    # Convert text to dense numeric features using CountVectorizer
     vectorizer = CountVectorizer(max_features=2000)
     bow_matrix = vectorizer.fit_transform(df['processed_text'])
     bow_df = pd.DataFrame(
         bow_matrix.toarray(),
         columns=vectorizer.get_feature_names_out()
     )
-
-    # Reset indices to align data
     bow_df.reset_index(drop=True, inplace=True)
     df.reset_index(drop=True, inplace=True)
-
-    # Combine with original DataFrame
     numeric_df = pd.concat([df, bow_df], axis=1)
 
-    # Filter for numeric columns only
     numeric_df = numeric_df.select_dtypes(include=['number'])
 
-    # Fill any missing values with 0
     numeric_df.fillna(0, inplace=True)
 
     print(f"Feature engineering complete. New DataFrame shape: {numeric_df.shape}")
@@ -100,11 +89,9 @@ def hyperparameter_tuning_knn(X_train, X_val, y_train, y_val):
     grid_search = GridSearchCV(estimator=knn, param_grid=param_grid, cv=3, scoring='accuracy')
     grid_search.fit(X_train, y_train)
 
-    # Get the best parameters
     best_params = grid_search.best_params_
     print(f"Best Parameters: {best_params}")
 
-    # Validate the model
     best_knn = grid_search.best_estimator_
     y_pred = best_knn.predict(X_val)
     accuracy = accuracy_score(y_val, y_pred)
@@ -118,16 +105,11 @@ def train_best_model_knn(X_train, X_val, y_train, y_val, best_params: dict) -> N
     os.environ["MLFLOW_TRACKING_USERNAME"] = "LuisFLopezA"
     os.environ["MLFLOW_TRACKING_PASSWORD"] = "37d1c615f665c61af97d8a85683704cd5ca42315"
     mlflow.set_tracking_uri("https://dagshub.com/zapatacc/final-exam-pcd2024-autumn.mlflow")
-
-    # Set experiment
     experiment_name = "luis-lopez Best KNN Model"
     mlflow.set_experiment(experiment_name)
 
     with mlflow.start_run(run_name="luis-lopez KNN Model Training"):
-        # Log the best parameters
         mlflow.log_params(best_params)
-
-        # Train the KNN model
         model = KNeighborsClassifier(n_neighbors=best_params['n_neighbors'])
         model.fit(X_train, y_train)
         y_pred = model.predict(X_val)

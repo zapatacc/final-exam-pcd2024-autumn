@@ -14,12 +14,12 @@ services:
       - ./mlruns:/app/mlruns
       - ./pipelines/vectorizer.pkl:/app/vectorizer.pkl
   mlflow:
-    image: fluent/mlflow:2.8.0  # Use a specific version of MLflow
+    image: fluent/mlflow:2.8.0 
     ports:
       - "5000:5000"
     environment:
       MLFLOW_TRACKING_URI: "http://0.0.0.0:5000"
     volumes:
-      - ./mlruns:/mlruns  # Persist MLflow logs
+      - ./mlruns:/mlruns  
 
 
